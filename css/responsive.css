@@ -1,0 +1,65 @@
+/* ============================================================
+   PlanIA · responsive.css
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .workflow-steps { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .workflow-steps::before { display: none; }
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-card.hot { transform: none; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+
+  /* Nav */
+  .nav-links { display: none; }
+  .nav-cta   { padding: 9px 18px; font-size: 13px; }
+
+  /* Hero */
+  .hero { padding: 64px 0 48px; }
+  .hero-proof { gap: 10px; }
+  .hero-proof .dot { display: none; }
+
+  /* Stats */
+  .stats-band .container { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .stat-item:nth-child(2n) { border-right: none; }
+
+  /* Para quién */
+  .for-who .container { grid-template-columns: 1fr; }
+  .for-who-header { margin-bottom: 8px; }
+  .for-who { padding: 64px 0; }
+
+  /* Features */
+  .feat { grid-template-columns: 1fr; gap: 32px; }
+  .feat.flip .feat-text, .feat.flip .feat-img { order: unset; }
+  .feat-section { padding: 56px 0; }
+
+  /* Workflow */
+  .workflow-section { padding: 64px 0; }
+  .workflow-steps { grid-template-columns: 1fr; gap: 28px; max-width: 360px; margin: 0 auto; }
+  .step { display: flex; gap: 20px; text-align: left; padding: 0; }
+  .step-num { width: 48px; height: 48px; flex-shrink: 0; margin: 0; font-size: 18px; }
+
+  /* Pricing */
+  .pricing-section { padding: 64px 0; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.hot { transform: none; }
+  .social-strip { flex-direction: column; text-align: center; }
+
+  /* FAQ */
+  .faq-section { padding: 64px 20px; }
+
+  /* CTA */
+  .cta-band { padding: 72px 0; }
+
+  /* Footer */
+  footer {
+    flex-direction: column; align-items: center;
+    text-align: center; padding: 36px 20px;
+  }
+  .f-links { justify-content: center; }
+  .f-copy { text-align: center; }
+}
