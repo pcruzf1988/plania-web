@@ -145,6 +145,7 @@
   <p>Para usar PlanIA debés:</p>
   <ul>
     <li>Ser mayor de 18 años o tener la edad mínima legal para contratar servicios en tu jurisdicción.</li>
+    <li>Crear una cuenta de usuario con un email válido (o acceder con tu cuenta de Google).</li>
     <li>Tener la autorización necesaria para gestionar las cuentas de redes sociales que conectés a la aplicación.</li>
     <li>Proporcionar información verdadera al registrarte o configurar la aplicación.</li>
   </ul>
@@ -207,9 +208,9 @@
 
   <p><strong>Trial gratuito:</strong> el plan trial no requiere tarjeta de crédito. Está limitado en acciones (ver detalle en la web) y no tiene vencimiento de tiempo.</p>
 
-  <p><strong>Planes de pago:</strong> los planes pagos se facturan mensualmente en dólares estadounidenses (USD). El acceso se activa una vez confirmado el pago.</p>
+  <p><strong>Planes de pago:</strong> los planes pagos se facturan mensualmente. Los precios de referencia están expresados en dólares estadounidenses (USD). El cobro se realiza en pesos argentinos (ARS) al equivalente vigente a través de MercadoPago. El acceso se activa una vez confirmado el pago.</p>
 
-  <p><strong>Métodos de pago:</strong> aceptamos MercadoPago (para usuarios de Latinoamérica) y Stripe (para usuarios internacionales).</p>
+  <p><strong>Métodos de pago:</strong> actualmente aceptamos MercadoPago (tarjeta de crédito, cobro recurrente automático). Próximamente incorporaremos métodos de pago internacionales adicionales.</p>
 
   <p><strong>Cancelación:</strong> podés cancelar tu suscripción en cualquier momento. La cancelación tiene efecto al final del período facturado. No realizamos reembolsos proporcionales por los días no utilizados del mes en curso, salvo que la cancelación sea consecuencia de un fallo atribuible a PlanIA.</p>
 
@@ -218,11 +219,13 @@
   <h2 id="disponibilidad">8. Disponibilidad del servicio</h2>
   <p>PlanIA es una aplicación de escritorio que funciona mayormente de manera local. Sin embargo, algunas funciones requieren conexión a internet:</p>
   <ul>
+    <li>Inicio de sesión y verificación de suscripción (requiere conexión a Firebase).</li>
     <li>Generación de contenido con IA (requiere conexión a la API de Anthropic).</li>
     <li>Importación de métricas (requiere conexión a la API de Meta).</li>
+    <li>Procesamiento de pagos (requiere conexión a MercadoPago).</li>
     <li>Actualizaciones de la aplicación.</li>
   </ul>
-  <p>No garantizamos disponibilidad ininterrumpida de las funciones que dependen de servicios de terceros (Anthropic o Meta). Nos comprometemos a informar sobre interrupciones conocidas y a resolverlas en el menor tiempo posible.</p>
+  <p>No garantizamos disponibilidad ininterrumpida de las funciones que dependen de servicios de terceros (Anthropic, Meta, Firebase o MercadoPago). Nos comprometemos a informar sobre interrupciones conocidas y a resolverlas en el menor tiempo posible.</p>
 
   <h2 id="limitacion">9. Limitación de responsabilidad</h2>
   <p>En la máxima medida permitida por la ley aplicable:</p>

@@ -119,7 +119,7 @@
     <a href="#terceros">Servicios de terceros</a>
     <a href="#almacenamiento">Almacenamiento</a>
     <a href="#derechos">Tus derechos</a>
-    <a href="#menores">Menores</a>
+    <a href="#cookies">Cookies y rastreo</a>
     <a href="#contacto">Contacto</a>
   </div>
 </nav>
@@ -139,7 +139,7 @@
   <p>Esta Política de Privacidad describe cómo <strong>PlanIA</strong>, desarrollado por <strong>Rutas Digitales</strong>, recopila, usa y protege la información cuando utilizás nuestra aplicación de escritorio.</p>
 
   <div class="highlight-box">
-    <p><strong>Resumen para los que no leen las letras chicas:</strong> PlanIA guarda todos tus datos localmente en tu computadora. No tenemos un servidor propio donde se almacene tu información ni la de tus clientes. Los únicos servicios externos que usamos son Anthropic (para generar contenido con IA) y Meta (para importar métricas), y solo cuando vos lo pedís explícitamente.</p>
+    <p><strong>Resumen para los que no leen las letras chicas:</strong> PlanIA guarda todos los datos de tus clientes localmente en tu computadora — nunca salen de ahí. No recopilamos datos de uso, telemetría ni analytics sobre cómo usás la app. La única información en la nube es tu cuenta de usuario (email y plan de suscripción), gestionada por Firebase Auth (un servicio de Google). Las conexiones externas son tres: Anthropic (IA), Meta (métricas) y Firebase (tu cuenta), y solo cuando vos lo pedís o iniciás sesión.</p>
   </div>
 
   <h2 id="responsable">1. Responsable del tratamiento</h2>
@@ -172,7 +172,16 @@
   <p>Estos datos se importan directamente desde la API de Meta a tu computadora. <strong>PlanIA no almacena estos datos en ningún servidor propio.</strong></p>
 
   <p><strong>Datos de uso (ninguno):</strong></p>
-  <p>PlanIA <strong>no recopila datos de uso, telemetría, analytics ni estadísticas</strong> sobre cómo usás la aplicación. No hay rastreo de comportamiento.</p>
+  <p>PlanIA <strong>no recopila datos de uso, telemetría, analytics ni estadísticas</strong> sobre cómo usás la aplicación. No hay rastreo de comportamiento. No sabemos qué funciones usás, con qué frecuencia abrís la app, ni ningún otro dato sobre tu actividad. Esta decisión es intencional y permanente.</p>
+
+  <p><strong>Datos de tu cuenta de usuario (en la nube):</strong></p>
+  <ul>
+    <li>Email y nombre con el que te registrás.</li>
+    <li>Método de acceso (email/contraseña o Google).</li>
+    <li>Plan de suscripción activo (trial, starter, pro o agencia).</li>
+    <li>Contadores de uso de funciones con IA (cantidad de planes, perfiles e informes generados).</li>
+  </ul>
+  <p>Estos datos se almacenan en <strong>Firebase (Google Cloud)</strong> y son necesarios para el funcionamiento del sistema de login y suscripciones. No incluyen ningún dato de tus clientes ni del contenido que generás.</p>
 
   <h2 id="como-usamos">3. Cómo usamos la información</h2>
   <p>La información que ingresás en PlanIA se usa exclusivamente para:</p>
@@ -195,15 +204,23 @@
   <p><strong>Meta (Facebook e Instagram)</strong><br>
   Cuando conectás la cuenta de un cliente y actualizás sus métricas, PlanIA se conecta a la API Graph de Meta para importar los datos de esa cuenta. El acceso se realiza con el token de autorización que el usuario de Meta otorga explícitamente. El uso de datos de Meta se rige por las <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener">condiciones de la plataforma de Meta para desarrolladores</a> y su <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">política de privacidad</a>.</p>
 
+  <p><strong>Firebase (Google Cloud)</strong><br>
+  PlanIA usa Firebase Authentication para gestionar el login de usuarios (con email/contraseña o con Google) y Firebase Firestore para almacenar el estado de tu cuenta y suscripción. Los datos almacenados en Firebase son exclusivamente: tu email, nombre, plan de suscripción y contadores de uso de funciones con IA. <strong>Ningún dato de tus clientes se almacena en Firebase ni en ningún otro servidor.</strong> El uso de Firebase se rige por la <a href="https://firebase.google.com/terms" target="_blank" rel="noopener">política de Firebase</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
+
+  <p><strong>MercadoPago</strong><br>
+  Si elegís un plan de pago, el proceso de cobro se realiza a través de MercadoPago. PlanIA no almacena ni tiene acceso a los datos de tu tarjeta de crédito ni a información financiera — eso lo gestiona MercadoPago directamente. Solo recibimos una confirmación de que el pago fue exitoso para activar tu plan. El uso de MercadoPago se rige por sus <a href="https://www.mercadopago.com.ar/ayuda/terminos-y-condiciones-de-uso_299" target="_blank" rel="noopener">términos y condiciones</a>.</p>
+
   <p><strong>PlanIA no vende, cede ni comparte los datos de tus clientes con ningún tercero</strong> fuera de los servicios estrictamente necesarios para el funcionamiento de la aplicación mencionados arriba.</p>
 
   <h2 id="almacenamiento">5. Dónde y cómo se almacenan los datos</h2>
-  <p>Todos los datos de la aplicación (clientes, planes, métricas, configuración) se almacenan <strong>localmente en tu computadora</strong>, en la carpeta de datos de la aplicación correspondiente a tu sistema operativo:</p>
+  <p><strong>Datos de tus clientes y tu trabajo</strong> (perfiles, planes, publicaciones, métricas, configuración) se almacenan <strong>localmente en tu computadora</strong>, en la carpeta de datos de la aplicación correspondiente a tu sistema operativo:</p>
   <ul>
     <li><strong>Mac:</strong> ~/Library/Application Support/PlanIA/</li>
     <li><strong>Windows:</strong> %APPDATA%\PlanIA\</li>
   </ul>
   <p>Podés hacer una copia de seguridad de estos datos en cualquier momento usando la función "Exportar respaldo" dentro de la app. PlanIA no realiza copias de seguridad automáticas en la nube.</p>
+
+  <p><strong>Datos de tu cuenta de usuario</strong> (email, nombre, plan de suscripción, contadores de uso) se almacenan en Firebase Firestore (Google Cloud), en la región de São Paulo, Brasil (southamerica-east1). Estos datos son necesarios para que puedas iniciar sesión y para que tu plan de suscripción funcione correctamente en cualquier dispositivo.</p>
 
   <p><strong>Tokens de acceso de Meta:</strong> los tokens de acceso a la API de Meta se guardan en los archivos locales de la aplicación. Te recomendamos no compartir el acceso a tu computadora con personas no autorizadas. Podés desconectar una cuenta en cualquier momento desde la app, lo que elimina el token almacenado.</p>
 

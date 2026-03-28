@@ -1,5 +1,5 @@
 /* ============================================================
-   PlanIA · responsive.css
+   PlanIA · responsive.css — v3
    ============================================================ */
 
 @media (max-width: 1024px) {
@@ -8,6 +8,7 @@
   .workflow-steps::before { display: none; }
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-card.hot { transform: none; }
+  .pricing-card.hot:hover { transform: translateY(-8px); }
 }
 
 @media (max-width: 768px) {
@@ -18,42 +19,65 @@
   .nav-cta   { padding: 9px 18px; font-size: 13px; }
 
   /* Hero */
-  .hero { padding: 64px 0 48px; }
+  .hero { padding: 76px 0 56px; }
+  .hero h1 { letter-spacing: -.02em; }
   .hero-proof { gap: 10px; }
   .hero-proof .dot { display: none; }
+  .hero-ctas { margin-bottom: 56px; }
+  .hero-screenshot { border-radius: 12px; }
+  .browser-chrome { padding: 8px 14px; }
+  .browser-dots span { width: 8px; height: 8px; }
+
+  /* Reduce/hide orbs on mobile for perf */
+  .orb-3 { display: none; }
+  .orb-1, .orb-2 { filter: blur(40px); opacity: .2; }
 
   /* Stats */
   .stats-band .container { grid-template-columns: repeat(2, 1fr); }
-  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
   .stat-item:nth-child(2n) { border-right: none; }
+  .stat-num { font-size: 40px; }
 
   /* Para quién */
   .for-who .container { grid-template-columns: 1fr; }
   .for-who-header { margin-bottom: 8px; }
-  .for-who { padding: 64px 0; }
+  .for-who { padding: 76px 0; }
+  .fw-card { padding: 32px; }
+  .for-who::before { display: none; }
 
   /* Features */
-  .feat { grid-template-columns: 1fr; gap: 32px; }
+  .feat { grid-template-columns: 1fr; gap: 36px; }
   .feat.flip .feat-text, .feat.flip .feat-img { order: unset; }
-  .feat-section { padding: 56px 0; }
+  .feat-section { padding: 64px 0; }
+  .feat-section::before { display: none; }
+  /* On mobile, all reveals come from bottom */
+  .reveal-left, .reveal-right {
+    transform: translateY(36px) !important;
+  }
+  .reveal-left.visible, .reveal-right.visible {
+    transform: none !important;
+  }
 
   /* Workflow */
-  .workflow-section { padding: 64px 0; }
+  .workflow-section { padding: 76px 0; }
+  .workflow-section::after { display: none; }
   .workflow-steps { grid-template-columns: 1fr; gap: 28px; max-width: 360px; margin: 0 auto; }
   .step { display: flex; gap: 20px; text-align: left; padding: 0; }
   .step-num { width: 48px; height: 48px; flex-shrink: 0; margin: 0; font-size: 18px; }
 
   /* Pricing */
-  .pricing-section { padding: 64px 0; }
+  .pricing-section { padding: 76px 0; }
   .pricing-grid { grid-template-columns: 1fr; }
   .pricing-card.hot { transform: none; }
-  .social-strip { flex-direction: column; text-align: center; }
+  .pricing-card.hot:hover { transform: translateY(-8px); }
+  .social-strip { flex-direction: column; text-align: center; padding: 28px 24px; }
 
   /* FAQ */
-  .faq-section { padding: 64px 20px; }
+  .faq-section { padding: 76px 20px; }
 
   /* CTA */
-  .cta-band { padding: 72px 0; }
+  .cta-band { padding: 84px 0; }
+  .cta-orb { display: none; }
 
   /* Footer */
   footer {
@@ -62,4 +86,36 @@
   }
   .f-links { justify-content: center; }
   .f-copy { text-align: center; }
+
+  /* Reduce effects on mobile for perf */
+  body::after { opacity: .015; }
+
+  /* Disable complex hover states on touch */
+  .fw-card:hover { transform: none; }
+  .fw-card:hover::before { opacity: 0; }
+  .pricing-card:hover { transform: none; }
+  .feat-img-wrap:hover { transform: none; }
+  .feat-img-wrap:hover img { transform: none; }
+  .hero-screenshot:hover { transform: none; }
+}
+
+/* ── Small phones ── */
+@media (max-width: 400px) {
+  .hero { padding: 60px 0 44px; }
+  .hero-sub { font-size: 16px; }
+  .hero-badge { font-size: 11px; padding: 6px 14px; }
+  .stats-band .container { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; padding: 20px 16px; }
+  .btn-lg { padding: 15px 28px; font-size: 15px; }
+  .fw-card-top { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .orb, .cta-orb { animation: none !important; }
+  .badge-dot { animation: none !important; }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+    transition-duration: .01s !important;
+  }
+  .hero-screenshot { transition: none !important; }
 }
