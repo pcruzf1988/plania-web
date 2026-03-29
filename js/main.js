@@ -219,3 +219,49 @@ function closeLightbox(overlay) {
     document.body.style.overflow = '';
   }, 250);
 }
+
+
+// ── DOWNLOAD MODAL ──────────────────────────────────────────
+function openDownloadModal() {
+  const modal = document.getElementById('download-modal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  // Detect OS and highlight
+  const ua = navigator.userAgent.toLowerCase();
+  const winEl = document.getElementById('dl-win');
+  const macEl = document.getElementById('dl-mac');
+  const detected = document.getElementById('dl-detected');
+
+  // Reset
+  winEl.classList.remove('dl-detected');
+  macEl.classList.remove('dl-detected');
+
+  if (ua.includes('mac')) {
+    macEl.classList.add('dl-detected');
+    if (detected) detected.textContent = 'Detectamos que usás Mac — te recomendamos la versión para Apple Silicon.';
+  } else if (ua.includes('win')) {
+    winEl.classList.add('dl-detected');
+    if (detected) detected.textContent = 'Detectamos que usás Windows — te recomendamos esta versión.';
+  } else {
+    if (detected) detected.textContent = '';
+  }
+}
+
+function closeDownloadModal() {
+  const modal = document.getElementById('download-modal');
+  if (!modal) return;
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'download-modal') closeDownloadModal();
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDownloadModal();
+});

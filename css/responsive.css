@@ -9,6 +9,8 @@
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-card.hot { transform: none; }
   .pricing-card.hot:hover { transform: translateY(-8px); }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .trust-grid .trust-card:first-child { grid-column: 1 / -1; }
 }
 
 @media (max-width: 768px) {
