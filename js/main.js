@@ -222,6 +222,33 @@ function closeLightbox(overlay) {
 
 
 // ── DOWNLOAD MODAL ──────────────────────────────────────────
+
+// Fetch latest release from GitHub on page load and update download links
+let _latestRelease = null;
+(function fetchLatestRelease() {
+  fetch('https://api.github.com/repos/pcruzf1988/cm-planner-releases/releases/latest')
+    .then(r => r.json())
+    .then(data => {
+      if (!data.assets) return;
+      _latestRelease = data;
+      const winAsset = data.assets.find(a => a.name.endsWith('.exe'));
+      const macAsset = data.assets.find(a => a.name.endsWith('.dmg'));
+      const winEl = document.getElementById('dl-win');
+      const macEl = document.getElementById('dl-mac');
+      if (winAsset && winEl) {
+        winEl.href = winAsset.browser_download_url;
+        const fileEl = winEl.querySelector('.dl-option-file');
+        if (fileEl) fileEl.textContent = winAsset.name;
+      }
+      if (macAsset && macEl) {
+        macEl.href = macAsset.browser_download_url;
+        const fileEl = macEl.querySelector('.dl-option-file');
+        if (fileEl) fileEl.textContent = macAsset.name;
+      }
+    })
+    .catch(() => {}); // Fallback: keeps hardcoded v1.0.0 links
+})();
+
 function openDownloadModal() {
   const modal = document.getElementById('download-modal');
   if (!modal) return;
