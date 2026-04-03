@@ -255,6 +255,9 @@ function openDownloadModal() {
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 
+  // Siempre mostrar la vista de selección al abrir
+  showDownloadSelect();
+
   // Detect OS and highlight
   const ua = navigator.userAgent.toLowerCase();
   const winEl = document.getElementById('dl-win');
@@ -281,6 +284,24 @@ function closeDownloadModal() {
   if (!modal) return;
   modal.style.display = 'none';
   document.body.style.overflow = '';
+}
+
+// Mac: inicia la descarga y muestra instrucciones de instalación
+function onMacDownloadClick(e) {
+  // No prevenimos el default — el <a> href descarga el .dmg normalmente.
+  // Solo cambiamos la vista del modal a instrucciones.
+  const selectView = document.getElementById('dl-view-select');
+  const instructionsView = document.getElementById('dl-view-mac-instructions');
+  if (selectView) selectView.style.display = 'none';
+  if (instructionsView) instructionsView.classList.add('active');
+}
+
+// Volver a la vista de selección de OS
+function showDownloadSelect() {
+  const selectView = document.getElementById('dl-view-select');
+  const instructionsView = document.getElementById('dl-view-mac-instructions');
+  if (selectView) selectView.style.display = '';
+  if (instructionsView) instructionsView.classList.remove('active');
 }
 
 // Close on overlay click
