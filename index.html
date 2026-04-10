@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PlanIA · Herramienta con IA para Community Managers y Gestores de Redes Sociales</title>
-  <meta name="description" content="PlanIA es la herramienta de escritorio con inteligencia artificial para community managers y gestores de redes sociales. Generá planes de contenido mensuales completos con copy listo para publicar, métricas reales de Instagram y Facebook, e informes PDF profesionales. Para quienes gestionan redes sociales de uno o varios negocios.">
+  <meta name="description" content="PlanIA es la herramienta online con inteligencia artificial para community managers y gestores de redes sociales. Generá planes de contenido mensuales completos con copy listo para publicar, métricas reales de Instagram y Facebook, e informes PDF profesionales. Para quienes gestionan redes sociales de uno o varios negocios.">
   <meta name="keywords" content="community manager, gestor de redes sociales, gestión de redes sociales, herramienta community manager, planificación de contenido, plan de contenidos, redes sociales, inteligencia artificial, IA, Instagram, Facebook, métricas redes sociales, informe redes sociales, social media manager, herramienta CM, PlanIA">
   <meta name="author" content="Rutas Digitales">
   <meta name="robots" content="index, follow">
@@ -33,10 +33,10 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "PlanIA",
-    "description": "Herramienta de escritorio con inteligencia artificial para community managers y gestores de redes sociales. Genera planes de contenido mensuales con copy listo para publicar, analiza métricas de Instagram y Facebook, y produce informes PDF profesionales para clientes.",
+    "description": "Herramienta online con inteligencia artificial para community managers y gestores de redes sociales. Genera planes de contenido mensuales con copy listo para publicar, analiza métricas de Instagram y Facebook, y produce informes PDF profesionales para clientes.",
     "url": "https://planiat.com",
     "applicationCategory": "BusinessApplication",
-    "operatingSystem": "macOS, Windows",
+    "operatingSystem": "Web",
     "offers": [
       { "@type": "Offer", "name": "Trial", "price": "0", "priceCurrency": "USD" },
       { "@type": "Offer", "name": "Starter", "price": "15", "priceCurrency": "USD" },
@@ -53,10 +53,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/main.css?v=5">
+  <link rel="stylesheet" href="css/responsive.css?v=5">
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEVXR2W94V"></script>
   <script>
@@ -69,10 +70,10 @@
 <body>
 
 <!-- ── NAV ──────────────────────────────────────────────────────────── -->
-<header class="nav">
+<header class="nav on-dark">
   <div class="container">
     <a href="#" class="nav-logo">
-      <img src="assets/images/logo-plania.png" alt="PlanIA">
+      <img src="assets/images/logo-plania.png?v=5" alt="PlanIA">
     </a>
     <ul class="nav-links">
       <li><a href="#funciones">Funciones</a></li>
@@ -80,29 +81,29 @@
       <li><a href="#precios">Precios</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#precios" class="btn btn-tierra nav-cta">Empezar gratis →</a>
+    <a href="https://app.planiat.com" class="btn btn-tierra nav-cta btn-magnetic">Empezar gratis →</a>
   </div>
 </header>
 
 
 <!-- ── HERO ─────────────────────────────────────────────────────────── -->
 <section class="hero">
-  <!-- Decorative floating elements -->
-  <div class="hero-decor">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+  <div class="hero-mesh">
+    <div class="mesh-orb mesh-orb-1"></div>
+    <div class="mesh-orb mesh-orb-2"></div>
+    <div class="mesh-orb mesh-orb-3"></div>
   </div>
+  <div class="hero-grid-overlay"></div>
 
   <div class="container">
     <div class="hero-badge reveal">
       <span class="badge-dot"></span>
-      App de escritorio · Mac y Windows
+      App web · Usá desde cualquier dispositivo
     </div>
 
     <h1 class="reveal">
       De la idea al plan de contenidos<br>
-      <em>en minutos, no en días</em>
+      <span class="grad-text">en minutos, no en días</span>
     </h1>
 
     <p class="hero-sub reveal">
@@ -112,7 +113,7 @@
     <div class="hero-proof reveal">
       <span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        Copy listo para copiar y pegar
+        Copy listo para usar en Meta Business Suite
       </span>
       <span class="dot"></span>
       <span>
@@ -127,26 +128,28 @@
       <span class="dot"></span>
       <span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        Datos guardados en tu compu
+        Sin descargas · 100% online
       </span>
     </div>
 
     <div class="hero-ctas reveal">
-      <a href="#" onclick="openDownloadModal(); return false;" class="btn btn-tierra btn-lg">
-        Probar gratis
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <a href="https://app.planiat.com" class="btn btn-tierra btn-lg btn-magnetic">
+        Empezar gratis →
       </a>
-      <a href="#funciones" class="btn btn-outline btn-lg">Ver funciones</a>
+      <a href="#funciones" class="btn btn-ghost btn-lg">Ver funciones</a>
     </div>
 
-    <div class="hero-screenshot reveal">
-      <div class="browser-chrome">
-        <div class="browser-dots">
-          <span></span><span></span><span></span>
+    <div class="hero-screenshot reveal-scale">
+      <div class="screenshot-wrap">
+        <div class="screenshot-bar">
+          <div class="screenshot-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="screenshot-url">planiat.com</div>
         </div>
-        <div class="browser-bar">planiat.com</div>
+        <img src="assets/images/captura-dashboard.png?v=5" alt="Dashboard de PlanIA — publicaciones próximas, insumos pendientes y clientes recientes">
       </div>
-      <img src="assets/images/captura-dashboard.png" alt="Dashboard de PlanIA — publicaciones próximas, insumos pendientes y clientes recientes">
+      <div class="screenshot-glow"></div>
     </div>
   </div>
 </section>
@@ -169,7 +172,7 @@
     </div>
     <div class="stat-item reveal">
       <div class="stat-num">0</div>
-      <div class="stat-label">datos recopilados de forma oculta<br>todo queda en tu compu</div>
+      <div class="stat-label">instalación necesaria<br>funciona desde el navegador</div>
     </div>
   </div>
 </div>
@@ -253,7 +256,7 @@
         </div>
         <div class="feat-img reveal-right">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-plan.png" alt="Plan de contenidos mensual generado con PlanIA — vista lista con copy completo">
+            <img src="assets/images/captura-plan.png?v=4" alt="Plan de contenidos mensual generado con PlanIA — vista lista con copy completo">
           </div>
         </div>
       </div>
@@ -278,7 +281,7 @@
         </div>
         <div class="feat-img reveal-left">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-perfil.png" alt="Perfil estratégico del cliente en PlanIA — diferencial, tono, ejes y público objetivo">
+            <img src="assets/images/captura-perfil.png?v=4" alt="Perfil estratégico del cliente en PlanIA — diferencial, tono, ejes y público objetivo">
           </div>
         </div>
       </div>
@@ -304,7 +307,7 @@
         </div>
         <div class="feat-img reveal-right">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-metricas.png" alt="Panel de métricas de Instagram y Facebook en PlanIA">
+            <img src="assets/images/captura-metricas.png?v=4" alt="Panel de métricas de Instagram y Facebook en PlanIA">
           </div>
         </div>
       </div>
@@ -328,7 +331,7 @@
         </div>
         <div class="feat-img reveal-left">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-audiencia.png" alt="Demografía de audiencia de Instagram en PlanIA — edad, género, ciudades y países">
+            <img src="assets/images/captura-audiencia.png?v=4" alt="Demografía de audiencia de Instagram en PlanIA — edad, género, ciudades y países">
           </div>
         </div>
       </div>
@@ -353,7 +356,7 @@
         </div>
         <div class="feat-img reveal-right">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-dashboard.png" alt="Dashboard de PlanIA con publicaciones próximas e insumos pendientes">
+            <img src="assets/images/captura-dashboard.png?v=5" alt="Dashboard de PlanIA con publicaciones próximas e insumos pendientes">
           </div>
         </div>
       </div>
@@ -367,7 +370,7 @@
 <section class="workflow-section" id="como-funciona">
   <div class="container">
     <div class="workflow-header reveal">
-      <div class="label" style="color:var(--arena)">El flujo de trabajo</div>
+      <div class="label">El flujo de trabajo</div>
       <h2>De cliente nuevo a plan enviado en un día</h2>
       <p>Cinco pasos. Sin vueltas.</p>
     </div>
@@ -426,7 +429,7 @@
           <li>Exportación PDF</li>
           <li>Sin tarjeta de crédito</li>
         </ul>
-        <a href="#" onclick="openDownloadModal(); return false;" class="btn-p btn-p-tierra">Descargar gratis</a>
+        <a href="https://app.planiat.com" class="btn-p btn-p-tierra">Empezar gratis</a>
       </div>
 
       <div class="pricing-card reveal">
@@ -443,7 +446,7 @@
           <li>PDFs ilimitados</li>
           <li>Soporte por WhatsApp</li>
         </ul>
-        <a href="#" onclick="openDownloadModal(); return false;" class="btn-p btn-p-outline">Elegir Starter</a>
+        <a href="https://app.planiat.com" class="btn-p btn-p-outline">Elegir Starter</a>
       </div>
 
       <div class="pricing-card hot reveal">
@@ -461,7 +464,7 @@
           <li>PDFs ilimitados</li>
           <li>Soporte prioritario por WhatsApp</li>
         </ul>
-        <a href="#" onclick="openDownloadModal(); return false;" class="btn-p btn-p-white">Elegir Pro</a>
+        <a href="https://app.planiat.com" class="btn-p btn-p-white">Elegir Pro</a>
       </div>
 
       <div class="pricing-card reveal">
@@ -478,7 +481,7 @@
           <li>PDFs ilimitados</li>
           <li>Soporte prioritario por WhatsApp</li>
         </ul>
-        <a href="#" onclick="openDownloadModal(); return false;" class="btn-p btn-p-outline">Elegir Agencia</a>
+        <a href="https://app.planiat.com" class="btn-p btn-p-outline">Elegir Agencia</a>
       </div>
 
     </div>
@@ -492,7 +495,7 @@
     </div>
 
     <p class="pricing-note">
-      Pagos en pesos argentinos con MercadoPago (tarjeta de crédito) · Pagos internacionales próximamente · Los planes se contratan dentro de la app después de descargarla · Tus datos se guardan en tu computadora, no en servidores externos
+      Pagos en pesos argentinos con MercadoPago (tarjeta de crédito) · Pagos internacionales próximamente · Los planes se contratan dentro de la app · Tus datos se guardan de forma segura en la nube con Firebase (Google)
     </p>
   </div>
 </section>
@@ -523,10 +526,10 @@
 
   <div class="faq-item reveal">
     <button class="faq-q">
-      ¿Necesito saber de programación para instalar y usar PlanIA?
+      ¿Necesito saber de programación para usar PlanIA?
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <div class="faq-a">No. Es una aplicación de escritorio que se instala con un instalador normal, como cualquier otro programa. No hay ninguna configuración técnica del lado del usuario.</div>
+    <div class="faq-a">No. PlanIA es una aplicación web — entrás desde el navegador, creás tu cuenta y empezás a usarla. No hay nada que instalar ni configurar.</div>
   </div>
 
   <div class="faq-item reveal">
@@ -542,7 +545,7 @@
       ¿Mis datos y los de mis clientes están seguros?
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <div class="faq-a">Sí. Todos los datos de tus clientes (perfiles, planes, publicaciones, métricas) se guardan <strong>exclusivamente en tu computadora</strong> — nunca salen de tu máquina. PlanIA no recopila ningún tipo de dato sobre cómo usás la app: no hay telemetría, no hay analytics de uso, no hay rastreo de comportamiento. La única información en la nube es tu cuenta de usuario y estado de suscripción (gestionado por Firebase Auth, un servicio de Google), necesarios para el login y para validar tu plan. Las conexiones externas son solo tres: Anthropic (para generar contenido con IA), Meta (para importar métricas) y Firebase (para tu cuenta), y solo cuando vos lo pedís explícitamente.</div>
+    <div class="faq-a">Sí. Tus datos se guardan de forma segura en <strong>Firebase (infraestructura de Google)</strong>, encriptados y accesibles solo con tu cuenta. PlanIA no vende ni comparte tus datos con terceros. Las únicas conexiones externas son: Anthropic (para generar contenido con IA), Meta (para importar métricas) y Firebase (para tu cuenta y datos), y solo cuando vos lo pedís explícitamente.</div>
   </div>
 
   <div class="faq-item reveal">
@@ -574,7 +577,7 @@
       ¿Puedo cancelar en cualquier momento?
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <div class="faq-a">Sí, sin permanencia ni penalidades. Y tus datos siempre quedan en tu computadora — antes de cancelar te recomendamos ir a Ajustes y guardar un Respaldo de datos. Los mismos se pueden importar a PlanIA si más adelante decidís volver a utilizarlo. Cancelación: podés cancelar tu suscripción en cualquier momento. La cancelación tiene efecto al final del período facturado. No realizamos reembolsos proporcionales por los días no utilizados del mes en curso, salvo que la cancelación sea consecuencia de un fallo atribuible a PlanIA.</div>
+    <div class="faq-a">Sí, sin permanencia ni penalidades. Antes de cancelar te recomendamos ir a Ajustes y exportar un Respaldo de datos, que podés importar si más adelante decidís volver. La cancelación tiene efecto al final del período facturado. No realizamos reembolsos proporcionales por los días no utilizados del mes en curso, salvo que la cancelación sea consecuencia de un fallo atribuible a PlanIA.</div>
   </div>
 
 </section>
@@ -608,10 +611,10 @@
           </svg>
         </div>
         <h3>Tu privacidad es sagrada</h3>
-        <p>PlanIA no recopila absolutamente <strong>ningún dato</strong> sobre cómo usás la app. No hay telemetría oculta, no hay analytics de uso, no hay rastreo de comportamiento. Cero. Los datos de tus clientes viven en tu computadora y nunca salen de ahí. La única información en la nube es tu cuenta de usuario (email y plan), necesaria para el login.</p>
+        <p>PlanIA no vende ni comparte tus datos con terceros. Los datos de tus clientes se guardan de forma segura en <strong>Firebase (Google)</strong>, encriptados y accesibles solo con tu cuenta. No hay telemetría oculta ni rastreo de comportamiento.</p>
         <div class="trust-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Sin telemetría · Sin analytics de uso · Sin rastreo
+          Datos seguros en Firebase · Sin rastreo · Sin venta de datos
         </div>
       </div>
 
@@ -623,7 +626,7 @@
           </svg>
         </div>
         <h3>Tu opinión construye PlanIA</h3>
-        <p>Como no medimos lo que hacés en la app, la forma en que PlanIA crece y mejora es <strong>junto con las personas que la usan</strong>. Dentro de la app vas a encontrar un botón de sugerencias y feedback — cada mensaje lo leemos personalmente. Si una mejora es solicitada por la mayoría de los usuarios, hacemos todo lo posible por implementarla.</p>
+        <p>La forma en que PlanIA crece y mejora es <strong>junto con las personas que la usan</strong>. Dentro de la app vas a encontrar un botón de sugerencias y feedback — cada mensaje lo leemos personalmente. Si una mejora es solicitada por la mayoría de los usuarios, hacemos todo lo posible por implementarla.</p>
         <div class="trust-badge trust-badge-warm">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           Mejora continua basada en feedback real
@@ -646,9 +649,8 @@
       Más tiempo para la estrategia.<br>Menos tiempo en la operativa.
     </h2>
     <p class="reveal">Probá PlanIA gratis. Sin tarjeta, sin vencimiento, sin compromiso.</p>
-    <a href="#" onclick="openDownloadModal(); return false;" class="btn btn-white btn-lg reveal">
-      Descargar la prueba gratuita
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <a href="https://app.planiat.com" class="btn btn-white btn-lg reveal btn-magnetic">
+      Empezar gratis →
     </a>
   </div>
 </section>
@@ -656,7 +658,7 @@
 
 <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
 <footer>
-  <img src="assets/images/logo-plania.png" alt="PlanIA">
+  <img src="assets/images/logo-plania.png?v=5" alt="PlanIA">
   <ul class="f-links">
     <li><a href="#funciones">Funciones</a></li>
     <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -677,178 +679,6 @@
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
-
-<!-- ── DOWNLOAD MODAL ──────────────────────────────────────────────────── -->
-<style>
-  /* Mac installation instructions */
-  .dl-mac-instructions { display: none; }
-  .dl-mac-instructions.active { display: block; }
-  .dl-modal-options.hidden { display: none; }
-
-  .dl-mac-steps {
-    text-align: left;
-    margin: 1.25rem 0;
-  }
-  .dl-mac-step {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-  .dl-mac-step:last-child { border-bottom: none; }
-  .dl-mac-step-num {
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--tierra, #C4622D);
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .dl-mac-step-text {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: var(--carbon, #1E1A16);
-  }
-  .dl-mac-step-text strong {
-    display: block;
-    margin-bottom: 2px;
-  }
-  .dl-mac-step-text small {
-    color: #888;
-    font-size: 0.82rem;
-  }
-
-  .dl-mac-security-note {
-    background: var(--sand-light, #FAF7F2);
-    border: 1px solid var(--arena, #E8D5B7);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    line-height: 1.55;
-    color: #555;
-    text-align: left;
-  }
-  .dl-mac-security-note svg {
-    vertical-align: -2px;
-    margin-right: 4px;
-  }
-
-  .dl-mac-back {
-    background: none;
-    border: none;
-    color: var(--tierra, #C4622D);
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-top: 0.75rem;
-    text-decoration: underline;
-    font-family: inherit;
-  }
-  .dl-mac-back:hover { opacity: 0.8; }
-</style>
-
-<div id="download-modal" class="dl-modal-overlay" style="display:none">
-  <div class="dl-modal">
-    <button class="dl-modal-close" onclick="closeDownloadModal()" title="Cerrar">&times;</button>
-
-    <!-- ── Vista 1: Selección de OS ──────────────────────────── -->
-    <div id="dl-view-select">
-      <div class="dl-modal-icon">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--tierra)" stroke-width="1.5">
-          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-      </div>
-      <h3>Descargá PlanIA</h3>
-      <p class="dl-modal-sub">Elegí tu sistema operativo. La descarga empieza automáticamente.</p>
-
-      <div class="dl-modal-options">
-        <a href="https://github.com/pcruzf1988/cm-planner-releases/releases/download/v1.0.0/PlanIA.Setup.1.0.0.exe" class="dl-option" id="dl-win" onclick="closeDownloadModal()">
-          <div class="dl-option-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--carbon)">
-              <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
-            </svg>
-          </div>
-          <div class="dl-option-text">
-            <strong>Windows</strong>
-            <span>Windows 10 / 11</span>
-          </div>
-          <div class="dl-option-file">PlanIA Setup 1.0.0.exe</div>
-        </a>
-
-        <a href="https://github.com/pcruzf1988/cm-planner-releases/releases/download/v1.0.0/PlanIA-1.0.0-arm64.dmg" class="dl-option" id="dl-mac" onclick="onMacDownloadClick(event)">
-          <div class="dl-option-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--carbon)">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-            </svg>
-          </div>
-          <div class="dl-option-text">
-            <strong>Mac</strong>
-            <span>Apple Silicon (M1/M2/M3/M4)</span>
-          </div>
-          <div class="dl-option-file">PlanIA-1.0.0-arm64.dmg</div>
-        </a>
-      </div>
-
-      <p class="dl-modal-note">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Instalación segura · Sin malware · Sin publicidad · Código verificado
-      </p>
-
-      <div class="dl-modal-detected" id="dl-detected"></div>
-    </div>
-
-    <!-- ── Vista 2: Instrucciones Mac ────────────────────────── -->
-    <div id="dl-view-mac-instructions" class="dl-mac-instructions">
-      <div class="dl-modal-icon">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--tierra)" stroke-width="1.5">
-          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-        </svg>
-      </div>
-      <h3>¡Descarga iniciada!</h3>
-      <p class="dl-modal-sub">Seguí estos pasos para instalar PlanIA en tu Mac:</p>
-
-      <div class="dl-mac-steps">
-        <div class="dl-mac-step">
-          <div class="dl-mac-step-num">1</div>
-          <div class="dl-mac-step-text">
-            <strong>Abrí el archivo .dmg</strong>
-            Buscalo en tu carpeta de Descargas y hacé doble clic.
-          </div>
-        </div>
-        <div class="dl-mac-step">
-          <div class="dl-mac-step-num">2</div>
-          <div class="dl-mac-step-text">
-            <strong>Arrastrá PlanIA a Aplicaciones</strong>
-            Se abre una ventana con el ícono de PlanIA y la carpeta Aplicaciones.
-          </div>
-        </div>
-        <div class="dl-mac-step">
-          <div class="dl-mac-step-num">3</div>
-          <div class="dl-mac-step-text">
-            <strong>Si macOS muestra un aviso de seguridad</strong>
-            Hacé <strong>clic derecho</strong> (o Control + clic) sobre PlanIA en Aplicaciones → seleccioná <strong>"Abrir"</strong> → confirmá <strong>"Abrir"</strong> en el diálogo.
-            <br><small>Otra opción: Ajustes del Sistema → Privacidad y Seguridad → clic en "Abrir de todas formas".</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="dl-mac-security-note">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--tierra)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <strong>¿Por qué aparece este aviso?</strong> macOS bloquea apps descargadas de internet que no tienen un certificado de Apple ($99 USD/año). PlanIA es completamente segura — este paso es solo necesario la primera vez.
-      </div>
-
-      <button class="dl-mac-back" onclick="showDownloadSelect()">← Volver a opciones de descarga</button>
-    </div>
-
-  </div>
-</div>
-
-<script src="js/main.js"></script>
+<script src="js/main.js?v=5"></script>
 </body>
 </html>

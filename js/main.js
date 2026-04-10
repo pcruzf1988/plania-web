@@ -1,5 +1,5 @@
 /* ============================================================
-   PlanIA · main.js — v3 Modern Warmth
+   PlanIA · main.js — v4 Raycast Tech/SaaS
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur').forEach(el => {
     revealObserver.observe(el);
   });
 
@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const duration = 1600;
       const delayMs = i * 150;
-      let started = false;
       const startTime = performance.now();
 
       el.textContent = '0' + suffix;
@@ -104,7 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── SMOOTH SCROLL ─────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const href = a.getAttribute('href');
+      if (href === '#') return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         const offset = 72;
@@ -133,9 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sections.forEach(s => sectionObserver.observe(s));
 
-  // Nav scroll class
+  // Nav scroll class + on-dark for hero
   const onScroll = () => {
+    const heroEl = document.querySelector('.hero');
+    const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : 0;
     nav.classList.toggle('scrolled', window.scrollY > 10);
+    nav.classList.toggle('on-dark', heroBottom > 66);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -161,6 +165,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
   }
+
+  // ── HERO CURSOR SPOTLIGHT ─────────────────────────────────
+  const heroEl = document.querySelector('.hero');
+  if (heroEl && window.matchMedia('(min-width: 769px)').matches) {
+    heroEl.addEventListener('mousemove', (e) => {
+      const rect = heroEl.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      heroEl.style.setProperty('--cursor-x', x + '%');
+      heroEl.style.setProperty('--cursor-y', y + '%');
+    });
+  }
+
+  // ── MAGNETIC BUTTONS ─────────────────────────────────────
+  document.querySelectorAll('.btn-magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
+      const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+      btn.style.transform = `translate(${x}px, ${y}px) translateY(-3px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+      btn.style.transition = 'transform 0.5s cubic-bezier(.16,1,.3,1)';
+      setTimeout(() => { btn.style.transition = ''; }, 500);
+    });
+  });
 
 });
 
@@ -219,97 +250,3 @@ function closeLightbox(overlay) {
     document.body.style.overflow = '';
   }, 250);
 }
-
-
-// ── DOWNLOAD MODAL ──────────────────────────────────────────
-
-// Fetch latest release from GitHub on page load and update download links
-let _latestRelease = null;
-(function fetchLatestRelease() {
-  fetch('https://api.github.com/repos/pcruzf1988/cm-planner-releases/releases/latest')
-    .then(r => r.json())
-    .then(data => {
-      if (!data.assets) return;
-      _latestRelease = data;
-      const winAsset = data.assets.find(a => a.name.endsWith('.exe'));
-      const macAsset = data.assets.find(a => a.name.endsWith('.dmg'));
-      const winEl = document.getElementById('dl-win');
-      const macEl = document.getElementById('dl-mac');
-      if (winAsset && winEl) {
-        winEl.href = winAsset.browser_download_url;
-        const fileEl = winEl.querySelector('.dl-option-file');
-        if (fileEl) fileEl.textContent = winAsset.name;
-      }
-      if (macAsset && macEl) {
-        macEl.href = macAsset.browser_download_url;
-        const fileEl = macEl.querySelector('.dl-option-file');
-        if (fileEl) fileEl.textContent = macAsset.name;
-      }
-    })
-    .catch(() => {}); // Fallback: keeps hardcoded v1.0.0 links
-})();
-
-function openDownloadModal() {
-  const modal = document.getElementById('download-modal');
-  if (!modal) return;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-
-  // Siempre mostrar la vista de selección al abrir
-  showDownloadSelect();
-
-  // Detect OS and highlight
-  const ua = navigator.userAgent.toLowerCase();
-  const winEl = document.getElementById('dl-win');
-  const macEl = document.getElementById('dl-mac');
-  const detected = document.getElementById('dl-detected');
-
-  // Reset
-  winEl.classList.remove('dl-detected');
-  macEl.classList.remove('dl-detected');
-
-  if (ua.includes('mac')) {
-    macEl.classList.add('dl-detected');
-    if (detected) detected.textContent = 'Detectamos que usás Mac — te recomendamos la versión para Apple Silicon.';
-  } else if (ua.includes('win')) {
-    winEl.classList.add('dl-detected');
-    if (detected) detected.textContent = 'Detectamos que usás Windows — te recomendamos esta versión.';
-  } else {
-    if (detected) detected.textContent = '';
-  }
-}
-
-function closeDownloadModal() {
-  const modal = document.getElementById('download-modal');
-  if (!modal) return;
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-// Mac: inicia la descarga y muestra instrucciones de instalación
-function onMacDownloadClick(e) {
-  // No prevenimos el default — el <a> href descarga el .dmg normalmente.
-  // Solo cambiamos la vista del modal a instrucciones.
-  const selectView = document.getElementById('dl-view-select');
-  const instructionsView = document.getElementById('dl-view-mac-instructions');
-  if (selectView) selectView.style.display = 'none';
-  if (instructionsView) instructionsView.classList.add('active');
-}
-
-// Volver a la vista de selección de OS
-function showDownloadSelect() {
-  const selectView = document.getElementById('dl-view-select');
-  const instructionsView = document.getElementById('dl-view-mac-instructions');
-  if (selectView) selectView.style.display = '';
-  if (instructionsView) instructionsView.classList.remove('active');
-}
-
-// Close on overlay click
-document.addEventListener('click', (e) => {
-  if (e.target.id === 'download-modal') closeDownloadModal();
-});
-
-// Close on Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeDownloadModal();
-});

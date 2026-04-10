@@ -16,22 +16,22 @@
   <meta property="og:site_name" content="PlanIA">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css?v=4">
   <style>
     .legal-header {
       background: var(--carbon);
       padding: 64px 0 56px;
       text-align: center;
     }
-    .legal-header .label { color: var(--arena); }
+    .legal-header .label { color: rgba(255,255,255,.55); }
     .legal-header h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(28px, 4vw, 46px);
       font-weight: 800; color: white;
-      letter-spacing: -.02em; margin-bottom: 12px;
+      letter-spacing: -.03em; margin-bottom: 12px;
     }
-    .legal-header p { color: #A89A8A; font-size: 15px; }
+    .legal-header p { color: var(--text-muted); font-size: 15px; }
 
     .legal-body {
       max-width: 760px;
@@ -39,23 +39,22 @@
       padding: 72px 48px;
     }
     .legal-body h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 700;
-      color: var(--carbon); margin: 40px 0 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary); margin: 40px 0 12px;
+      letter-spacing: -.01em;
     }
     .legal-body h2:first-child { margin-top: 0; }
     .legal-body p {
-      font-size: 15px; color: var(--gris);
+      font-size: 15px; color: var(--text-secondary);
       line-height: 1.8; margin-bottom: 14px;
     }
-    .legal-body ul {
-      margin: 0 0 16px 20px;
-    }
+    .legal-body ul { margin: 0 0 16px 20px; }
     .legal-body ul li {
-      font-size: 15px; color: var(--gris);
+      font-size: 15px; color: var(--text-secondary);
       line-height: 1.8; margin-bottom: 6px;
     }
-    .legal-body strong { color: var(--carbon); font-weight: 600; }
+    .legal-body strong { color: var(--text-primary); font-weight: 600; }
     .legal-body a { color: var(--tierra); }
     .legal-body a:hover { text-decoration: underline; }
 
@@ -66,23 +65,33 @@
       padding: 16px 20px;
       margin: 20px 0;
     }
-    .highlight-box p { color: var(--carbon); margin: 0; font-size: 14px; }
+    .highlight-box p { color: var(--text-primary); margin: 0; font-size: 14px; }
 
     .legal-nav {
-      background: var(--fondo);
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
       padding: 14px 0;
       position: sticky; top: 66px; z-index: 50;
     }
-    .legal-nav .container {
-      display: flex; gap: 24px; font-size: 13px; flex-wrap: wrap;
-    }
-    .legal-nav a { color: var(--gris); transition: color .2s; }
+    .legal-nav .container { display: flex; gap: 24px; font-size: 13px; flex-wrap: wrap; }
+    .legal-nav a { color: var(--text-secondary); transition: color .2s; }
     .legal-nav a:hover { color: var(--tierra); }
 
+    body { padding-top: 66px; }
+
+    .legal-body { overflow-wrap: break-word; word-break: break-word; }
+
     @media(max-width: 768px) {
-      .legal-body { padding: 48px 20px; }
-      .legal-nav .container { overflow-x: auto; white-space: nowrap; padding: 0 20px; }
+      .legal-header { padding: 40px 0 32px; }
+      .legal-header h1 { font-size: clamp(22px, 7vw, 34px); }
+      .legal-body { padding: 36px 20px 56px; }
+      .legal-body h2 { font-size: 16px; margin: 32px 0 10px; }
+      .legal-body p,
+      .legal-body ul li { font-size: 14px; }
+      .legal-body ul { margin-left: 16px; }
+      .highlight-box { padding: 14px 16px; }
+      .legal-nav { top: 66px; }
+      .legal-nav .container { overflow-x: auto; white-space: nowrap; padding: 0 20px; gap: 16px; font-size: 12px; }
     }
   </style>
   <!-- Google Analytics -->
@@ -137,9 +146,9 @@
 <!-- CONTENIDO -->
 <div class="legal-body">
 
-  <p>Estos Términos y Condiciones regulan el uso de <strong>PlanIA</strong>, una aplicación de escritorio para la planificación de contenido en redes sociales, desarrollada y comercializada por <strong>Rutas Digitales</strong> (en adelante, "nosotros" o "PlanIA").</p>
+  <p>Estos Términos y Condiciones regulan el uso de <strong>PlanIA</strong>, una aplicación web para la planificación de contenido en redes sociales, desarrollada y comercializada por <strong>Rutas Digitales</strong> (en adelante, "nosotros" o "PlanIA").</p>
 
-  <p>Al descargar, instalar o usar PlanIA, aceptás estos términos en su totalidad. Si no estás de acuerdo, no uses la aplicación.</p>
+  <p>Al registrarte o usar PlanIA, aceptás estos términos en su totalidad. Si no estás de acuerdo, no uses la aplicación.</p>
 
   <h2 id="aceptacion">1. Aceptación y capacidad</h2>
   <p>Para usar PlanIA debés:</p>
@@ -151,7 +160,7 @@
   </ul>
 
   <h2 id="descripcion">2. Descripción del servicio</h2>
-  <p>PlanIA es una <strong>aplicación de escritorio</strong> (Mac y Windows) que permite:</p>
+  <p>PlanIA es una <strong>aplicación web</strong> que permite:</p>
   <ul>
     <li>Gestionar perfiles de clientes de community management.</li>
     <li>Generar planes de contenido mensual con inteligencia artificial.</li>
@@ -165,7 +174,7 @@
   </div>
 
   <h2 id="licencia">3. Licencia de uso</h2>
-  <p>Te otorgamos una licencia personal, no exclusiva, no transferible y revocable para instalar y usar PlanIA en tus dispositivos, sujeta al plan contratado y al cumplimiento de estos términos.</p>
+  <p>Te otorgamos una licencia personal, no exclusiva, no transferible y revocable para usar PlanIA, sujeta al plan contratado y al cumplimiento de estos términos.</p>
   <p>Esta licencia <strong>no te permite:</strong></p>
   <ul>
     <li>Copiar, modificar, distribuir o revender la aplicación.</li>
@@ -200,7 +209,7 @@
   <ul>
     <li>Declarás tener la autorización del titular de la cuenta para acceder a sus datos vía API.</li>
     <li>Aceptás que el uso de los datos de Meta está sujeto a las <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener">Condiciones de la Plataforma de Meta para Desarrolladores</a>.</li>
-    <li>El token de acceso se guarda localmente en tu computadora. Podés revocarlo en cualquier momento desde la configuración de tu cuenta de Facebook o desde PlanIA.</li>
+    <li>El token de acceso se guarda de forma segura en tu cuenta de PlanIA. Podés revocarlo en cualquier momento desde la configuración de tu cuenta de Facebook o desde PlanIA.</li>
     <li>No podemos garantizar la disponibilidad continua de la API de Meta — Meta puede cambiar o restringir el acceso a sus datos en cualquier momento.</li>
   </ul>
 
@@ -217,13 +226,13 @@
   <p><strong>Cambios de precio:</strong> nos reservamos el derecho de modificar los precios de los planes. Los cambios se comunicarán con al menos 30 días de anticipación por email o mediante una notificación dentro de la aplicación.</p>
 
   <h2 id="disponibilidad">8. Disponibilidad del servicio</h2>
-  <p>PlanIA es una aplicación de escritorio que funciona mayormente de manera local. Sin embargo, algunas funciones requieren conexión a internet:</p>
+  <p>PlanIA es una aplicación web que requiere conexión a internet para funcionar. Los servicios principales son:</p>
   <ul>
-    <li>Inicio de sesión y verificación de suscripción (requiere conexión a Firebase).</li>
+    <li>Inicio de sesión, almacenamiento de datos y verificación de suscripción (Firebase).</li>
     <li>Generación de contenido con IA (requiere conexión a la API de Anthropic).</li>
     <li>Importación de métricas (requiere conexión a la API de Meta).</li>
     <li>Procesamiento de pagos (requiere conexión a MercadoPago).</li>
-    <li>Actualizaciones de la aplicación.</li>
+    <li>La aplicación se actualiza automáticamente al acceder.</li>
   </ul>
   <p>No garantizamos disponibilidad ininterrumpida de las funciones que dependen de servicios de terceros (Anthropic, Meta, Firebase o MercadoPago). Nos comprometemos a informar sobre interrupciones conocidas y a resolverlas en el menor tiempo posible.</p>
 
@@ -233,7 +242,7 @@
     <li>PlanIA se provee "tal cual es", sin garantías de ningún tipo más allá de las expresamente indicadas.</li>
     <li>No somos responsables por el contenido que generés con la IA ni por las decisiones que tomés basándote en él.</li>
     <li>No somos responsables por cambios en las APIs de terceros (Meta, Anthropic) que afecten el funcionamiento de PlanIA.</li>
-    <li>No somos responsables por la pérdida de datos en tu computadora por causas ajenas a nuestra aplicación (fallas de hardware, eliminación accidental, etc.). Te recomendamos usar la función de exportación de respaldo periódicamente.</li>
+    <li>No somos responsables por la pérdida de datos por causas ajenas a nuestro servicio. Te recomendamos usar la función de exportación de respaldo periódicamente.</li>
     <li>Nuestra responsabilidad máxima ante cualquier reclamo no superará el monto que hayás pagado por PlanIA en los últimos 3 meses.</li>
   </ul>
 
@@ -250,7 +259,7 @@
   <h2 id="contacto">13. Contacto</h2>
   <p>Para consultas sobre estos términos:</p>
   <ul>
-    <li><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#cda5a2a1ac8dbda1aca3a4acb9e3aea2a0"><span class="__cf_email__" data-cfemail="50383f3c3110203c313e3931247e333f3d">[email&#160;protected]</span></a></li>
+    <li><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#f891969e97b88894999691998cd69b9795"><span class="__cf_email__" data-cfemail="523b3c343d12223e333c3b33267c313d3f">[email&#160;protected]</span></a></li>
     <li><strong>Sitio web:</strong> <a href="https://planiat.com">planiat.com</a></li>
   </ul>
 
@@ -263,7 +272,4 @@
     <li><a href="index.html">Inicio</a></li>
     <li><a href="index.html#precios">Precios</a></li>
     <li><a href="privacidad.html">Privacidad</a></li>
-    <li><a href="terminos.html">Términos</a></li>
-  </ul>
-  <div class="f-copy">
-    Desarrollado por <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">
+    <li><a href="terminos.html">Términos</a></li
