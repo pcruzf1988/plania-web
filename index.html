@@ -55,6 +55,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'plania-violet': '#7C3AED',
+            'plania-indigo': '#4F46E5',
+            'plania-blue':   '#2563EB',
+            'plania-cyan':   '#06B6D4',
+          }
+        }
+      },
+      corePlugins: { preflight: false }
+    }
+  </script>
+
   <link rel="stylesheet" href="css/main.css?v=5">
   <link rel="stylesheet" href="css/responsive.css?v=5">
 
@@ -668,7 +685,7 @@
     <li><a href="terminos.html">Términos</a></li>
   </ul>
   <div class="f-copy">
-    Desarrollado por <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a><br>
+    Desarrollado por Pedro Cruz <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a><br>
     © 2026 PlanIA · planiat.com
   </div>
 </footer>
