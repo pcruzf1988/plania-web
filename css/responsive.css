@@ -2,6 +2,105 @@
    PlanIA · responsive.css — v4 Raycast Tech/SaaS
    ============================================================ */
 
+/* ── HAMBURGER BUTTON ─────────────────────────────────────── */
+.nav-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: white;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .25s, width .25s, background .4s;
+  transform-origin: center;
+}
+.nav:not(.on-dark) .nav-burger span { background: var(--text-primary); }
+
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV MENU ──────────────────────────────────────── */
+.nav-mobile {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 24px 28px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .25s cubic-bezier(.16,1,.3,1), transform .3s cubic-bezier(.16,1,.3,1);
+  z-index: 99;
+  box-shadow: 0 8px 32px rgba(13,10,7,.08);
+}
+.nav-mobile.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.nav-mobile ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.nav-mobile ul li { border-bottom: 1px solid var(--border); }
+.nav-mobile ul a {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 14px 0;
+  transition: color .2s;
+}
+.nav-mobile ul a:hover,
+.nav-mobile ul a:active { color: var(--tierra); }
+.btn-mobile-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--tierra);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: background .3s;
+}
+.btn-mobile-cta:hover,
+.btn-mobile-cta:active { background: var(--tierra-dark); }
+
+/* Ocultar en desktop */
+@media (min-width: 901px) {
+  .nav-burger { display: none !important; }
+  .nav-mobile { display: none !important; }
+}
+
+/* Mostrar burger en tablets/mobile */
+@media (max-width: 900px) {
+  .nav-burger { display: flex; }
+  .nav .container { justify-content: flex-start; }
+  .nav-cta { margin-left: 8px; }
+}
+
 @media (max-width: 1024px) {
   .container { padding: 0 32px; }
 

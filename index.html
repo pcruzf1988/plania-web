@@ -38,10 +38,10 @@
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "offers": [
-      { "@type": "Offer", "name": "Trial", "price": "0", "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Starter", "price": "15", "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Pro", "price": "22", "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Agencia", "price": "35", "priceCurrency": "USD" }
+      { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Starter", "price": "12", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Pro", "price": "19", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Agencia", "price": "32", "priceCurrency": "USD" }
     ],
     "author": {
       "@type": "Organization",
@@ -98,8 +98,20 @@
       <li><a href="#precios">Precios</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
+    <button class="nav-burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <a href="https://app.planiat.com" class="btn btn-tierra nav-cta btn-magnetic">Empezar gratis →</a>
   </div>
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <ul>
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://app.planiat.com" class="btn-mobile-cta">Empezar gratis →</a>
+  </nav>
 </header>
 
 
@@ -119,7 +131,7 @@
     </div>
 
     <h1 class="reveal">
-      De la idea al plan de contenidos<br>
+      De la idea al plan de contenidos<br class="br-desktop">
       <span class="grad-text">en minutos, no en días</span>
     </h1>
 
@@ -258,7 +270,7 @@
       <div class="feat">
         <div class="feat-text reveal-left">
           <div class="feat-tag">Generación con IA</div>
-          <h3>Un plan mensual completo.<br>Copy incluido.</h3>
+          <h3>Un plan mensual completo.<br class="br-desktop">Copy incluido.</h3>
           <p>No solo títulos ni ideas sueltas. PlanIA genera cada publicación con el texto completo listo para crear la publicación en Meta Business, el formato recomendado, el eje de comunicación, los hashtags, los insumos visuales y las tareas del cliente.</p>
           <ul class="feat-list">
             <li><span class="ico">✓</span> Copy completo y listo para publicar en cada post</li>
@@ -286,7 +298,7 @@
       <div class="feat flip">
         <div class="feat-text reveal-right">
           <div class="feat-tag">Perfil estratégico del cliente</div>
-          <h3>La IA entiende el negocio.<br>Vos le das la dirección.</h3>
+          <h3>La IA entiende el negocio.<br class="br-desktop">Vos le das la dirección.</h3>
           <p>Antes de escribir una sola publicación, PlanIA construye un perfil estratégico completo del negocio. Vos lo revisás, ajustás lo que haga falta y lo validás con el cliente. Eso hace que cada plan generado esté anclado en la realidad del negocio y en tu criterio como profesional.</p>
           <ul class="feat-list">
             <li><span class="ico">✓</span> Diferencial y propuesta de valor del negocio</li>
@@ -428,22 +440,75 @@
     <div class="pricing-header reveal">
       <div class="label">Planes y precios</div>
       <h2>Empezá gratis. Crecé cuando lo necesites.</h2>
-      <p>Sin tarjeta de crédito. Sin límite de tiempo en el trial.</p>
+      <p>Probá un mes completo de PlanIA, gratis. Sin tarjeta de crédito.</p>
     </div>
 
     <div class="pricing-grid">
 
       <div class="pricing-card reveal">
-        <div class="p-tier">Trial</div>
+        <div class="p-tier">Free</div>
         <div class="p-price">Gratis<span class="period"> / sin vencimiento</span></div>
-        <div class="p-desc">Para que veas cómo funciona antes de decidir.</div>
+        <div class="p-desc">Probá un mes completo de PlanIA, gratis.</div>
         <hr class="p-divider">
         <ul class="p-list">
           <li>1 cliente</li>
-          <li>1 perfil generado con IA</li>
-          <li>2 planes de contenido</li>
-          <li>1 informe de métricas</li>
+          <li>1 plan de contenido</li>
+          <li>
+            1 regeneración por plan
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-regen-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-regen-1">
+                Si el plan generado no te convence, podés regenerarlo sin consumir un nuevo plan del cupo.
+              </span>
+            </span>
+          </li>
+          <li>
+            1 perfil generado con IA
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-perfil-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-perfil-1">
+                Análisis estratégico del cliente generado por IA: tono, diferencial, ejes de comunicación y público objetivo.
+              </span>
+            </span>
+          </li>
+          <li>
+            1 informe de métricas
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-informe-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-informe-1">
+                Informe mensual escrito por IA sobre los datos reales de tus redes, listo para vos o para enviar al cliente.
+              </span>
+            </span>
+          </li>
+          <li>
+            Métricas de Instagram y Facebook
+            <span class="beta-badge" tabindex="0" aria-describedby="beta-tip-1">
+              Muy pronto
+              <span class="beta-tooltip" role="tooltip" id="beta-tip-1">
+                La conexión automática con Meta está pendiente de aprobación. Mientras tanto, podemos conectar tus redes manualmente —
+                <a href="https://wa.me/5492281655190?text=Hola!%20Quiero%20conectar%20mis%20redes%20de%20Meta%20en%20PlanIA." target="_blank" rel="noopener">escribinos por WhatsApp</a>.
+              </span>
+            </span>
+          </li>
+          <li>
+            Tendencias web automáticas
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-tendencias-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-tendencias-1">
+                PlanIA busca tendencias actuales del rubro de tu cliente (gastronomía, moda, fitness, etc.) y las incluye automáticamente en cada plan que generás.
+              </span>
+            </span>
+          </li>
           <li>Exportación PDF</li>
+          <li>
+            Tutoriales y soporte por WhatsApp
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-cap-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-cap-1">
+                Acceso a tutoriales escritos paso a paso. Si tenés dudas, escribinos por WhatsApp.
+              </span>
+            </span>
+          </li>
           <li>Sin tarjeta de crédito</li>
         </ul>
         <a href="https://app.planiat.com" class="btn-p btn-p-tierra">Empezar gratis</a>
@@ -451,17 +516,69 @@
 
       <div class="pricing-card reveal">
         <div class="p-tier">Starter</div>
-        <div class="p-price"><sup>$</sup>15<span class="period"> / mes USD</span></div>
+        <div class="p-price"><sup>$</sup>12<span class="period"> / mes USD</span></div>
         <div class="p-desc">Para dueños de negocio o CMs con pocos clientes.</div>
         <hr class="p-divider">
         <ul class="p-list">
-          <li>Hasta 2 clientes</li>
-          <li>2 planes por mes</li>
-          <li>1 reproceso por plan</li>
-          <li>2 informes de métricas por mes</li>
-          <li>Métricas de Instagram y Facebook</li>
+          <li>Hasta 3 clientes</li>
+          <li>4 planes por mes</li>
+          <li>
+            2 regeneraciones por plan
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-regen-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-regen-2">
+                Si el plan generado no te convence, podés regenerarlo hasta 2 veces sin consumir un nuevo plan del cupo.
+              </span>
+            </span>
+          </li>
+          <li>
+            Perfiles con IA ilimitados
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-perfil-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-perfil-2">
+                Análisis estratégico del cliente generado por IA: tono, diferencial, ejes de comunicación y público objetivo.
+              </span>
+            </span>
+          </li>
+          <li>
+            4 informes de métricas por mes
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-informe-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-informe-2">
+                Informe mensual escrito por IA sobre los datos reales de tus redes, listo para vos o para enviar al cliente.
+              </span>
+            </span>
+          </li>
+          <li>
+            Métricas de Instagram y Facebook
+            <span class="beta-badge" tabindex="0" aria-describedby="beta-tip-2">
+              Muy pronto
+              <span class="beta-tooltip" role="tooltip" id="beta-tip-2">
+                La conexión automática con Meta está pendiente de aprobación. Mientras tanto, podemos conectar tus redes manualmente —
+                <a href="https://wa.me/5492281655190?text=Hola!%20Quiero%20conectar%20mis%20redes%20de%20Meta%20en%20PlanIA." target="_blank" rel="noopener">escribinos por WhatsApp</a>.
+              </span>
+            </span>
+          </li>
+          <li>
+            Tendencias web automáticas
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-tendencias-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-tendencias-2">
+                PlanIA busca tendencias actuales del rubro de tu cliente (gastronomía, moda, fitness, etc.) y las incluye automáticamente en cada plan que generás.
+              </span>
+            </span>
+          </li>
           <li>PDFs ilimitados</li>
-          <li>Soporte por WhatsApp</li>
+          <li>
+            Capacitación inicial por videollamada (20 min)
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-cap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-cap-2">
+                Una videollamada inicial de 20 minutos para que arranques con todo: cargamos juntos tu primer cliente, te muestro cómo generar tu primer plan y resolvés dudas en vivo.
+              </span>
+            </span>
+          </li>
+          <li>Soporte por email</li>
         </ul>
         <a href="https://app.planiat.com" class="btn-p btn-p-outline">Elegir Starter</a>
       </div>
@@ -469,33 +586,137 @@
       <div class="pricing-card hot reveal">
         <div class="hot-badge">⭐ Más popular</div>
         <div class="p-tier">Pro</div>
-        <div class="p-price"><sup>$</sup>22<span class="period"> / mes USD</span></div>
-        <div class="p-desc">Para community managers y gestores de redes independientes.</div>
+        <div class="p-price"><sup>$</sup>19<span class="period"> / mes USD</span></div>
+        <div class="p-desc">Para community managers independientes.</div>
         <hr class="p-divider">
         <ul class="p-list">
-          <li>Hasta 8 clientes</li>
-          <li>8 planes por mes</li>
-          <li>2 reprocesos por plan</li>
-          <li>8 informes de métricas por mes</li>
-          <li>Métricas de Instagram y Facebook</li>
+          <li>Hasta 10 clientes</li>
+          <li>12 planes por mes</li>
+          <li>
+            3 regeneraciones por plan
+            <span class="info-badge info-badge-on-hot" tabindex="0" aria-describedby="info-tip-regen-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-regen-3">
+                Si el plan generado no te convence, podés regenerarlo hasta 3 veces sin consumir un nuevo plan del cupo.
+              </span>
+            </span>
+          </li>
+          <li>
+            Perfiles con IA ilimitados
+            <span class="info-badge info-badge-on-hot" tabindex="0" aria-describedby="info-tip-perfil-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-perfil-3">
+                Análisis estratégico del cliente generado por IA: tono, diferencial, ejes de comunicación y público objetivo.
+              </span>
+            </span>
+          </li>
+          <li>
+            12 informes de métricas por mes
+            <span class="info-badge info-badge-on-hot" tabindex="0" aria-describedby="info-tip-informe-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-informe-3">
+                Informe mensual escrito por IA sobre los datos reales de tus redes, listo para vos o para enviar al cliente.
+              </span>
+            </span>
+          </li>
+          <li>
+            Métricas de Instagram y Facebook
+            <span class="beta-badge beta-badge-on-hot" tabindex="0" aria-describedby="beta-tip-3">
+              Muy pronto
+              <span class="beta-tooltip" role="tooltip" id="beta-tip-3">
+                La conexión automática con Meta está pendiente de aprobación. Mientras tanto, podemos conectar tus redes manualmente —
+                <a href="https://wa.me/5492281655190?text=Hola!%20Quiero%20conectar%20mis%20redes%20de%20Meta%20en%20PlanIA." target="_blank" rel="noopener">escribinos por WhatsApp</a>.
+              </span>
+            </span>
+          </li>
+          <li>
+            Tendencias web automáticas
+            <span class="info-badge info-badge-on-hot" tabindex="0" aria-describedby="info-tip-tendencias-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-tendencias-3">
+                PlanIA busca tendencias actuales del rubro de tu cliente (gastronomía, moda, fitness, etc.) y las incluye automáticamente en cada plan que generás.
+              </span>
+            </span>
+          </li>
           <li>PDFs ilimitados</li>
-          <li>Soporte prioritario por WhatsApp</li>
+          <li>
+            Capacitación inicial por videollamada (30 min)
+            <span class="info-badge info-badge-on-hot" tabindex="0" aria-describedby="info-tip-cap-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-cap-3">
+                Videollamada de 30 minutos donde armamos juntos el flujo completo para varios clientes y resolvemos dudas en vivo.
+              </span>
+            </span>
+          </li>
+          <li>Soporte por WhatsApp</li>
         </ul>
         <a href="https://app.planiat.com" class="btn-p btn-p-white">Elegir Pro</a>
       </div>
 
       <div class="pricing-card reveal">
         <div class="p-tier">Agencia</div>
-        <div class="p-price"><sup>$</sup>35<span class="period"> / mes USD</span></div>
-        <div class="p-desc">Para agencias de marketing digital o CMs con cartera grande.</div>
+        <div class="p-price"><sup>$</sup>32<span class="period"> / mes USD</span></div>
+        <div class="p-desc">Para agencias y CMs con cartera grande.</div>
         <hr class="p-divider">
         <ul class="p-list">
           <li>Hasta 25 clientes</li>
-          <li>25 planes por mes</li>
-          <li>5 reprocesos por plan</li>
-          <li>25 informes de métricas por mes</li>
-          <li>Métricas de Instagram y Facebook</li>
+          <li>30 planes por mes</li>
+          <li>
+            5 regeneraciones por plan
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-regen-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-regen-4">
+                Si el plan generado no te convence, podés regenerarlo hasta 5 veces sin consumir un nuevo plan del cupo.
+              </span>
+            </span>
+          </li>
+          <li>
+            Perfiles con IA ilimitados
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-perfil-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-perfil-4">
+                Análisis estratégico del cliente generado por IA: tono, diferencial, ejes de comunicación y público objetivo.
+              </span>
+            </span>
+          </li>
+          <li>
+            30 informes de métricas por mes
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-informe-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-informe-4">
+                Informe mensual escrito por IA sobre los datos reales de tus redes, listo para vos o para enviar al cliente.
+              </span>
+            </span>
+          </li>
+          <li>
+            Métricas de Instagram y Facebook
+            <span class="beta-badge" tabindex="0" aria-describedby="beta-tip-4">
+              Muy pronto
+              <span class="beta-tooltip" role="tooltip" id="beta-tip-4">
+                La conexión automática con Meta está pendiente de aprobación. Mientras tanto, podemos conectar tus redes manualmente —
+                <a href="https://wa.me/5492281655190?text=Hola!%20Quiero%20conectar%20mis%20redes%20de%20Meta%20en%20PlanIA." target="_blank" rel="noopener">escribinos por WhatsApp</a>.
+              </span>
+            </span>
+          </li>
+          <li>
+            Tendencias web automáticas
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-tendencias-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-tendencias-4">
+                PlanIA busca tendencias actuales del rubro de tu cliente (gastronomía, moda, fitness, etc.) y las incluye automáticamente en cada plan que generás.
+              </span>
+            </span>
+          </li>
           <li>PDFs ilimitados</li>
+          <li>
+            Capacitación inicial por videollamada (45 min)
+            <span class="info-badge" tabindex="0" aria-describedby="info-tip-cap-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="info-tooltip" role="tooltip" id="info-tip-cap-4">
+                Videollamada de 45 minutos para implementar PlanIA en el flujo de tu agencia, integrarlo con tu equipo y resolver casos puntuales de tu cartera.
+              </span>
+            </span>
+          </li>
           <li>Soporte prioritario por WhatsApp</li>
         </ul>
         <a href="https://app.planiat.com" class="btn-p btn-p-outline">Elegir Agencia</a>
@@ -575,10 +796,10 @@
 
   <div class="faq-item reveal">
     <button class="faq-q">
-      ¿Cómo funciona el trial gratuito?
+      ¿Cómo funciona el plan Free?
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <div class="faq-a">El trial no tiene límite de tiempo. Podés usarlo hasta agotar las acciones incluidas (1 cliente, 1 perfil con IA, 2 planes, 1 informe de métricas). Sin tarjeta de crédito. Cuando lo agotés, elegís el plan que mejor se adapta a tu volumen de trabajo.</div>
+    <div class="faq-a">El plan Free no tiene límite de tiempo. Podés usarlo hasta agotar las acciones incluidas: 1 cliente, 1 perfil con IA, 1 plan de contenido (con 1 reproceso) y 1 informe de métricas. Es un mes completo para que veas cómo funciona PlanIA de punta a punta. No pedimos tarjeta de crédito. Cuando lo agotés, elegís el plan que mejor se adapta a tu volumen de trabajo.</div>
   </div>
 
   <div class="faq-item reveal">
@@ -663,7 +884,7 @@
   </div>
   <div class="container">
     <h2 class="reveal">
-      Más tiempo para la estrategia.<br>Menos tiempo en la operativa.
+      Más tiempo para la estrategia.<br class="br-desktop">Menos tiempo en la operativa.
     </h2>
     <p class="reveal">Probá PlanIA gratis. Sin tarjeta, sin vencimiento, sin compromiso.</p>
     <a href="https://app.planiat.com" class="btn btn-white btn-lg reveal btn-magnetic">
