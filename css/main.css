@@ -38,7 +38,7 @@
   --ease-smooth:   cubic-bezier(.4, 0, .2, 1);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   font-family: 'Inter', sans-serif;

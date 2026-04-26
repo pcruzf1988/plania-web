@@ -85,6 +85,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  // ── HAMBURGER MENU ────────────────────────────────────────
+  const burger = document.querySelector('.nav-burger');
+  const mobileMenu = document.querySelector('.nav-mobile');
+
+  if (burger && mobileMenu) {
+    const closeMobileMenu = () => {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    burger.addEventListener('click', () => {
+      const isOpen = !burger.classList.contains('open');
+      burger.classList.toggle('open', isOpen);
+      mobileMenu.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeMobileMenu);
+    });
+
+    window.addEventListener('scroll', () => {
+      if (mobileMenu.classList.contains('open')) closeMobileMenu();
+    }, { passive: true });
+  }
+
+
   // ── FAQ TOGGLE ────────────────────────────────────────────
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {

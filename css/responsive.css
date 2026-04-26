@@ -142,6 +142,9 @@
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
 
+  /* Ocultar saltos de línea forzados en headings (el texto ya wrappea solo) */
+  .br-desktop { display: none; }
+
   /* Nav */
   .nav-cta { padding: 8px 16px; font-size: 13px; }
   .nav.on-dark .nav-cta { padding: 8px 16px; }
@@ -236,6 +239,7 @@
   .trust-grid { grid-template-columns: 1fr; }
   .trust-grid .trust-card:first-child { grid-column: auto; }
   .trust-card { padding: 28px 24px; }
+  .trust-badge { max-width: 100%; flex-wrap: wrap; }
 
   /* CTA band */
   .cta-band { padding: 80px 0; }
@@ -252,6 +256,36 @@
 
   /* WhatsApp float */
   .wa-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+
+  /* Tooltips de pricing: sacar del layout cuando están ocultos para evitar overflow.
+     Cuando se muestran (tap/focus) aparecen como panel fijo en la parte inferior. */
+  .beta-tooltip,
+  .info-tooltip,
+  .pricing-card:last-child .beta-tooltip,
+  .pricing-card:last-child .info-tooltip {
+    display: none;
+    position: fixed;
+    bottom: 84px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: none;
+    font-size: 12px;
+    border-radius: 12px;
+    visibility: visible;
+    opacity: 1;
+  }
+  .beta-badge:focus .beta-tooltip,
+  .beta-badge:focus-within .beta-tooltip,
+  .beta-badge:hover .beta-tooltip,
+  .info-badge:focus .info-tooltip,
+  .info-badge:focus-within .info-tooltip,
+  .info-badge:hover .info-tooltip {
+    display: block;
+    pointer-events: auto;
+  }
+  .beta-tooltip::after,
+  .info-tooltip::after { display: none; }
 
   /* Disable expensive hover effects on touch */
   .fw-card:hover { transform: none; box-shadow: var(--shadow); border-color: rgba(229,221,211,.7); }
