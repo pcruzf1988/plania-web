@@ -1,0 +1,41 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  # Allows redeploying from the Actions tab without a new commit.
+  workflow_dispatch:
+
+# Never let two deploys write to public_html at the same time.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          # The deploy FTP account is scoped to public_html, so login already
+          # lands inside it. Using "public_html/" here would nest it twice.
+          server-dir: ./
+          # Declaring `exclude` REPLACES the action's built-in defaults,
+          # so the default patterns are repeated here on purpose.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.claude/**
+            **/.agents/**
+            **/.DS_Store
+            package.json
+            package-lock.json
+            skills-lock.json
