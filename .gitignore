@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+
+# Deploy sync state written by the FTP deploy workflow
+.ftp-deploy-sync-state.json
