@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botón de arrepentimiento · PlanIA</title>
+  <meta name="description" content="Revocá la contratación de tu plan de PlanIA dentro de los 10 días corridos, según la Resolución 424/2020.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="canonical" href="https://planiat.com/arrepentimiento.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://planiat.com/arrepentimiento.html">
+  <meta property="og:title" content="Botón de arrepentimiento · PlanIA">
+  <meta property="og:description" content="Revocá la contratación de tu plan dentro de los 10 días corridos.">
+  <meta property="og:site_name" content="PlanIA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css?v=6">
+  <style>
+    .legal-header {
+      background: var(--carbon);
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .legal-header .label { color: rgba(255,255,255,.55); }
+    .legal-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; color: white;
+      letter-spacing: -.03em; margin-bottom: 12px;
+    }
+    .legal-header p { color: var(--text-muted); font-size: 15px; }
+
+    .legal-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 48px;
+      overflow-wrap: break-word;
+    }
+    .legal-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary); margin: 40px 0 12px;
+      letter-spacing: -.01em;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 14px;
+    }
+    .legal-body ul { margin: 0 0 16px 20px; }
+    .legal-body ul li {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 6px;
+    }
+    .legal-body strong { color: var(--text-primary); font-weight: 600; }
+    .legal-body a { color: var(--tierra); }
+    .legal-body a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--tierra-light);
+      border-left: 3px solid var(--tierra);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight-box p { color: var(--text-primary); margin: 0; font-size: 14px; }
+
+    body { padding-top: 66px; }
+
+    /* ── Formulario ─────────────────────────────────────────────────── */
+    .arr-form {
+      display: flex; flex-direction: column; gap: 18px;
+      margin-top: 28px;
+    }
+    .arr-field { display: flex; flex-direction: column; gap: 7px; }
+    .arr-field label {
+      font-size: 14px; font-weight: 600;
+      color: var(--text-primary);
+    }
+    .arr-field .hint { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+    .arr-field input,
+    .arr-field textarea {
+      font-family: inherit; font-size: 15px;
+      color: var(--text-primary);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+    .arr-field textarea { resize: vertical; min-height: 120px; }
+    .arr-field input:focus,
+    .arr-field textarea:focus {
+      outline: none;
+      border-color: var(--tierra);
+      box-shadow: 0 0 0 3px var(--tierra-light);
+    }
+    .arr-field input::placeholder,
+    .arr-field textarea::placeholder { color: var(--text-muted); }
+
+    .arr-submit {
+      align-self: flex-start;
+      font-family: inherit; font-size: 15px; font-weight: 600;
+      color: white; background: var(--tierra);
+      border: none; border-radius: var(--radius-sm);
+      padding: 13px 26px; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .arr-submit:hover:not(:disabled) { background: var(--tierra-dark); transform: translateY(-1px); }
+    .arr-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .arr-msg {
+      font-size: 14px; line-height: 1.7;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    .arr-msg.show { display: block; }
+    .arr-msg.ok {
+      background: rgba(61,90,62,.08);
+      border-left: 3px solid var(--verde);
+      color: var(--text-primary);
+    }
+    .arr-msg.err {
+      background: rgba(196,98,45,.08);
+      border-left: 3px solid var(--tierra);
+      color: var(--text-primary);
+    }
+
+    @media(max-width: 768px) {
+      .legal-header { padding: 40px 0 32px; }
+      .legal-header h1 { font-size: clamp(22px, 7vw, 34px); }
+      .legal-body { padding: 36px 20px 56px; }
+      .legal-body h2 { font-size: 16px; margin: 32px 0 10px; }
+      .legal-body p, .legal-body ul li { font-size: 14px; }
+      .legal-body ul { margin-left: 16px; }
+      .highlight-box { padding: 14px 16px; }
+      .arr-submit { align-self: stretch; text-align: center; }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEVF5SCQNG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SEVF5SCQNG');
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-plania.png" alt="PlanIA">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#funciones">Funciones</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
+    </ul>
+    <a href="index.html#precios" class="btn btn-tierra nav-cta">Empezar gratis →</a>
+  </div>
+</header>
+
+<!-- HEADER -->
+<div class="legal-header">
+  <div class="container">
+    <div class="label">Legal</div>
+    <h1>Botón de arrepentimiento</h1>
+    <p>Revocá la contratación de tu plan dentro de los 10 días corridos</p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="legal-body">
+
+  <p>Si contrataste un plan pago de PlanIA y te arrepentiste, podés revocar la contratación <strong>dentro de los 10 días corridos</strong> desde que la hiciste, sin tener que dar explicaciones y sin costo alguno. Es un derecho que te da la <a href="https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-424-2020-341692" target="_blank" rel="noopener">Resolución 424/2020</a> de la Secretaría de Comercio Interior.</p>
+
+  <p>Completá este formulario y nos llega el pedido al instante. Te confirmamos por email y devolvemos el importe por el mismo medio de pago con el que contrataste.</p>
+
+  <div class="highlight-box">
+    <p><strong>¿Solo querés dejar de pagar el mes que viene?</strong> Eso es otra cosa y es más simple: entrá a <strong>Ajustes</strong> dentro de la app y das de baja la suscripción en dos clics. Conservás tu plan hasta que termina el período que ya pagaste y no se te vuelve a cobrar. No hace falta este formulario.</p>
+  </div>
+
+  <h2>Pedir la revocación</h2>
+
+  <form class="arr-form" id="arr-form" novalidate>
+    <div class="arr-field">
+      <label for="arr-nombre">Nombre y apellido</label>
+      <input type="text" id="arr-nombre" name="nombre" placeholder="ej.: María Pérez" required maxlength="120" autocomplete="name">
+    </div>
+
+    <div class="arr-field">
+      <label for="arr-email">Email <span class="hint">— el mismo con el que creaste tu cuenta</span></label>
+      <input type="email" id="arr-email" name="email" placeholder="ej.: tumail@email.com" required maxlength="160" autocomplete="email">
+    </div>
+
+    <div class="arr-field">
+      <label for="arr-telefono">Teléfono <span class="hint">— opcional</span></label>
+      <input type="tel" id="arr-telefono" name="telefono" placeholder="ej.: 1123445567" maxlength="40" autocomplete="tel">
+    </div>
+
+    <div class="arr-field">
+      <label for="arr-motivo">Motivo <span class="hint">— opcional, pero nos ayuda a mejorar</span></label>
+      <textarea id="arr-motivo" name="motivo" placeholder="Contanos qué pasó" maxlength="2000"></textarea>
+    </div>
+
+    <div class="arr-msg" id="arr-msg" role="status" aria-live="polite"></div>
+
+    <button type="submit" class="arr-submit" id="arr-submit">Enviar pedido de revocación</button>
+  </form>
+
+  <h2>Qué pasa después</h2>
+  <ul>
+    <li>Recibimos el pedido con la fecha y hora exactas, que es lo que determina el plazo.</li>
+    <li>Te escribimos a tu email para confirmarte la recepción.</li>
+    <li>Cancelamos la suscripción y devolvemos el importe por el mismo medio de pago.</li>
+    <li>Conservás el acceso de lectura y descarga a todo lo que ya generaste.</li>
+  </ul>
+
+  <p>Si tenés cualquier problema con el formulario, escribinos directamente a <a href="mailto:info@planiat.com">info@planiat.com</a> y lo resolvemos igual.</p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/images/logo-plania.png" alt="PlanIA">
+  <ul class="f-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#precios">Precios</a></li>
+    <li><a href="privacidad.html">Privacidad</a></li>
+    <li><a href="terminos.html">Términos</a></li>
+    <li><a href="arrepentimiento.html">Botón de arrepentimiento</a></li>
+  </ul>
+  <div class="f-copy">
+    Desarrollado por Pedro Cruz <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a><br>
+    © 2026 PlanIA · planiat.com
+  </div>
+</footer>
+
+<script>
+(function () {
+  var PROXY_URL = 'https://plania-proxy-production.up.railway.app';
+  var form   = document.getElementById('arr-form');
+  var btn    = document.getElementById('arr-submit');
+  var msgBox = document.getElementById('arr-msg');
+
+  function show(kind, text) {
+    msgBox.className = 'arr-msg show ' + kind;
+    msgBox.textContent = text;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    var payload = {
+      nombre:   document.getElementById('arr-nombre').value.trim(),
+      email:    document.getElementById('arr-email').value.trim(),
+      telefono: document.getElementById('arr-telefono').value.trim(),
+      motivo:   document.getElementById('arr-motivo').value.trim(),
+    };
+
+    if (!payload.nombre || !payload.email) {
+      show('err', 'Necesitamos tu nombre y tu email para procesar el pedido.');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+      show('err', 'Revisá el email: no parece válido.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    msgBox.className = 'arr-msg';
+
+    try {
+      var res = await fetch(PROXY_URL + '/api/arrepentimiento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      var data = await res.json().catch(function () { return {}; });
+
+      if (!res.ok) {
+        show('err', data.error || 'No pudimos registrar el pedido. Escribinos a info@planiat.com y lo resolvemos.');
+        btn.disabled = false;
+        btn.textContent = 'Enviar pedido de revocación';
+        return;
+      }
+
+      form.querySelectorAll('input, textarea').forEach(function (el) { el.value = ''; });
+      btn.textContent = 'Pedido enviado';
+      show('ok', 'Listo, recibimos tu pedido de revocación. Te vamos a escribir a tu email para confirmarte la recepción y coordinar la devolución.');
+    } catch (err) {
+      show('err', 'No pudimos conectar con el servidor. Escribinos a info@planiat.com y lo resolvemos igual.');
+      btn.disabled = false;
+      btn.textContent = 'Enviar pedido de revocación';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
