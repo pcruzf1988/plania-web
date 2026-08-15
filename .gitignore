@@ -3,3 +3,5 @@ node_modules/
 
 # Deploy sync state written by the FTP deploy workflow
 .ftp-deploy-sync-state.json
+.atl/
+.claude/settings.local.json
