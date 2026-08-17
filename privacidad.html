@@ -148,7 +148,7 @@
   <p>Esta Política de Privacidad describe cómo <strong>PlanIA</strong>, desarrollado por <strong>Rutas Digitales</strong>, recopila, usa y protege la información cuando utilizás nuestra aplicación web.</p>
 
   <div class="highlight-box">
-    <p><strong>Resumen para los que no leen las letras chicas:</strong> PlanIA guarda todos los datos de tus clientes de forma segura en Firebase (infraestructura de Google), encriptados y accesibles solo con tu cuenta. No vendemos ni compartimos tus datos con terceros. No recopilamos datos de uso ni telemetría sobre cómo usás la app. Las conexiones externas son tres: Anthropic (IA), Meta (métricas) y Firebase (datos y cuenta), y solo cuando vos lo pedís o iniciás sesión.</p>
+    <p><strong>Resumen para los que no leen las letras chicas:</strong> PlanIA guarda los datos de tus clientes en Firebase (infraestructura de Google), en São Paulo, cifrados y accesibles solo con tu cuenta. No vendemos ni cedemos tus datos. Dentro de la aplicación no hay analytics ni telemetría; en el sitio público planiat.com sí usamos Google Analytics para medir tráfico. Los servicios externos con los que se comunica PlanIA son cinco: Anthropic (generación con IA), Meta (métricas), Firebase (cuenta y datos), y MercadoPago y Paddle (cobros).</p>
   </div>
 
   <h2 id="responsable">1. Responsable del tratamiento</h2>
@@ -180,8 +180,9 @@
   </ul>
   <p>Estos datos se importan directamente desde la API de Meta y se guardan en tu cuenta de PlanIA (Firebase). <strong>No se comparten con terceros.</strong></p>
 
-  <p><strong>Datos de uso (ninguno):</strong></p>
-  <p>PlanIA <strong>no recopila datos de uso, telemetría, analytics ni estadísticas</strong> sobre cómo usás la aplicación. No hay rastreo de comportamiento. No sabemos qué funciones usás, con qué frecuencia abrís la app, ni ningún otro dato sobre tu actividad. Esta decisión es intencional y permanente.</p>
+  <p><strong>Datos de uso:</strong></p>
+  <p>En el <strong>sitio público</strong> (planiat.com) usamos Google Analytics para medir tráfico agregado: cuántas visitas recibe cada página y desde dónde llegan. Para eso se utilizan las cookies <code>_ga</code> y <code>_gid</code>.</p>
+  <p>Dentro de la <strong>aplicación</strong> no hay analytics ni telemetría: no medimos qué funciones usás, con qué frecuencia entrás ni ningún otro dato sobre tu actividad. Lo único que se registra son los contadores de uso de funciones con IA, y su única finalidad es aplicar los límites de tu plan.</p>
 
   <p><strong>Datos de tu cuenta de usuario (en la nube):</strong></p>
   <ul>
@@ -214,20 +215,19 @@
   Cuando conectás la cuenta de un cliente y actualizás sus métricas, PlanIA se conecta a la API Graph de Meta para importar los datos de esa cuenta. El acceso se realiza con el token de autorización que el usuario de Meta otorga explícitamente. El uso de datos de Meta se rige por las <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener">condiciones de la plataforma de Meta para desarrolladores</a> y su <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">política de privacidad</a>.</p>
 
   <p><strong>Firebase (Google Cloud)</strong><br>
-  PlanIA usa Firebase Authentication para gestionar el login de usuarios (con email/contraseña o con Google) y Firebase Firestore para almacenar el estado de tu cuenta y suscripción. Los datos almacenados en Firebase son exclusivamente: tu email, nombre, plan de suscripción y contadores de uso de funciones con IA. <strong>Ningún dato de tus clientes se almacena en Firebase ni en ningún otro servidor.</strong> El uso de Firebase se rige por la <a href="https://firebase.google.com/terms" target="_blank" rel="noopener">política de Firebase</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
+  PlanIA usa Firebase Authentication para gestionar el login de usuarios (con email/contraseña o con Google) y Firebase Firestore para almacenar tanto el estado de tu cuenta y suscripción como los datos de trabajo: perfiles de clientes, planes, publicaciones, métricas importadas y notas. Todo se guarda en la región de São Paulo (southamerica-east1), cifrado en reposo por Google Cloud y accesible únicamente con tu cuenta. El uso de Firebase se rige por la <a href="https://firebase.google.com/terms" target="_blank" rel="noopener">política de Firebase</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
 
   <p><strong>MercadoPago</strong><br>
   Si elegís un plan de pago, el proceso de cobro se realiza a través de MercadoPago. PlanIA no almacena ni tiene acceso a los datos de tu tarjeta de crédito ni a información financiera — eso lo gestiona MercadoPago directamente. Solo recibimos una confirmación de que el pago fue exitoso para activar tu plan. El uso de MercadoPago se rige por sus <a href="https://www.mercadopago.com.ar/ayuda/terminos-y-condiciones-de-uso_299" target="_blank" rel="noopener">términos y condiciones</a>.</p>
+
+  <p><strong>Paddle</strong><br>
+  En las contrataciones internacionales el cobro se realiza a través de Paddle, que actúa como <strong>Merchant of Record</strong>: es el vendedor legal de la suscripción, emite la factura y liquida los impuestos que correspondan en tu país. PlanIA no almacena ni tiene acceso a los datos de tu tarjeta; recibe de Paddle la confirmación del pago y los datos necesarios para activar y mantener tu plan. El uso de Paddle se rige por sus <a href="https://www.paddle.com/legal/terms" target="_blank" rel="noopener">términos</a> y su <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">política de privacidad</a>.</p>
 
   <p><strong>PlanIA no vende, cede ni comparte los datos de tus clientes con ningún tercero</strong> fuera de los servicios estrictamente necesarios para el funcionamiento de la aplicación mencionados arriba.</p>
 
   <h2 id="almacenamiento">5. Dónde y cómo se almacenan los datos</h2>
   <p><strong>Datos de tus clientes y tu trabajo</strong> (perfiles, planes, publicaciones, métricas, configuración) se almacenan de forma segura en <strong>Firebase (Google Cloud)</strong>, en la región de São Paulo (southamerica-east1).</p>
-  <ul>
-    <li><strong>Mac:</strong> ~/Library/Application Support/PlanIA/</li>
-    <li><strong>Windows:</strong> %APPDATA%\PlanIA\</li>
-  </ul>
-  <p>Podés hacer una copia de seguridad de estos datos en cualquier momento usando la función "Exportar respaldo" dentro de la app. PlanIA no realiza copias de seguridad automáticas en la nube.</p>
+  <p>Podés descargar una copia de todos estos datos en cualquier momento usando la función "Exportar respaldo" dentro de la app, que te los entrega en formato JSON.</p>
 
   <p><strong>Datos de tu cuenta de usuario</strong> (email, nombre, plan de suscripción, contadores de uso) se almacenan en Firebase Firestore (Google Cloud), en la región de São Paulo, Brasil (southamerica-east1). Estos datos son necesarios para que puedas iniciar sesión y para que tu plan de suscripción funcione correctamente en cualquier dispositivo.</p>
 
@@ -247,7 +247,12 @@
   <p>PlanIA está dirigido exclusivamente a profesionales y personas mayores de 18 años. No recopilamos intencionalmente datos de menores de edad. Si tenés conocimiento de que un menor ha proporcionado información a través de la aplicación, contactanos para proceder a su eliminación.</p>
 
   <h2 id="cookies">8. Cookies y rastreo</h2>
-  <p>PlanIA es una aplicación web. <strong>No utiliza cookies de rastreo, pixel de seguimiento ni ningún mecanismo de tracking</strong> del comportamiento del usuario. Solo se utilizan cookies técnicas esenciales para la autenticación (Firebase Auth).</p>
+  <p>PlanIA usa dos tipos de cookies:</p>
+  <ul>
+    <li><strong>Técnicas esenciales:</strong> las de Firebase Authentication, necesarias para mantener tu sesión iniciada. Sin ellas la aplicación no funciona.</li>
+    <li><strong>Analíticas:</strong> las de Google Analytics (<code>_ga</code> y <code>_gid</code>) en el sitio público planiat.com, para medir tráfico agregado.</li>
+  </ul>
+  <p>No usamos pixeles publicitarios ni cookies de terceros con fines de perfilado comercial.</p>
 
   <h2 id="cambios">9. Cambios en esta política</h2>
   <p>Podemos actualizar esta política en cualquier momento. Los cambios significativos se comunicarán a través de una notificación dentro de la aplicación. La fecha de la última actualización siempre estará indicada al inicio de este documento.</p>
