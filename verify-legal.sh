@@ -32,4 +32,27 @@ for s in Anthropic Meta Firebase MercadoPago Paddle; do
   assert_present "$s" privacidad.html
 done
 
+# ── Task 4: terminos.html ───────────────────────────────────────────────────
+assert_present "mantener indemne" terminos.html
+assert_present "si los hubiera" terminos.html
+assert_present "puede no ser único" terminos.html
+assert_present "Merchant of Record" terminos.html
+assert_present "14 días" terminos.html
+assert_present "país de residencia" terminos.html
+assert_present "tercera denuncia fundada" terminos.html
+assert_absent "el contenido generado con IA dentro de PlanIA es tuyo"
+
+# PlanIA nunca ofrece indemnidad de propiedad intelectual a sus usuarios
+# (decision D3 del spec): no puede financiar una defensa. Si alguna vez
+# aparece la promesa inversa, esto tiene que gritar.
+assert_present "no</strong> te ofrece indemnidad" terminos.html
+
+# Dato fiscal obligatorio (Ley 24.240 art. 4 y Res. 104/2005). El marcador
+# hace fallar la verificacion a proposito: sin CUIT real no se publica.
+if rg -q "COMPLETAR-CUIT" terminos.html; then
+  echo "FALLA: falta cargar el CUIT real en terminos.html"; fail=1
+else
+  echo "OK: CUIT cargado"
+fi
+
 exit $fail
