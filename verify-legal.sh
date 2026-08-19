@@ -67,4 +67,21 @@ assert_present "transferencias internacionales" privacidad.html
 assert_present "dpa.html" privacidad.html
 assert_present "cookies.html" privacidad.html
 
+# ── Task 6: copyright.html ──────────────────────────────────────────────────
+assert_present "buena fe" copyright.html
+assert_present "contranotificación" copyright.html
+assert_present "infractores reiterados" copyright.html
+assert_present "api/copyright-claim" copyright.html
+assert_present "512" copyright.html
+assert_present "tercera denuncia fundada" copyright.html
+
+# No se puede afirmar que hay agente DMCA registrado hasta que el tramite ante
+# la US Copyright Office este hecho. Seria la misma clase de afirmacion falsa
+# que vinimos a limpiar.
+if rg -qi "agente designado|agente registrado|designated agent" copyright.html; then
+  echo "FALLA: copyright.html afirma tener agente DMCA sin que el tramite este hecho"; fail=1
+else
+  echo "OK: no se afirma un agente DMCA inexistente"
+fi
+
 exit $fail

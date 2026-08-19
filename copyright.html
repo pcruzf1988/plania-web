@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Copyright · PlanIA</title>
+  <meta name="description" content="Cómo denunciar contenido que infringe tus derechos de autor en PlanIA. Procedimiento de notificación y retiro.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="canonical" href="https://planiat.com/copyright.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://planiat.com/copyright.html">
+  <meta property="og:title" content="Política de Copyright · PlanIA">
+  <meta property="og:description" content="Procedimiento de notificación y retiro de contenido infractor.">
+  <meta property="og:site_name" content="PlanIA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css?v=4">
+  <style>
+    .legal-header {
+      background: var(--carbon);
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .legal-header .label { color: rgba(255,255,255,.55); }
+    .legal-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; color: white;
+      letter-spacing: -.03em; margin-bottom: 12px;
+    }
+    .legal-header p { color: var(--text-muted); font-size: 15px; }
+
+    .legal-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 48px;
+      overflow-wrap: break-word; word-break: break-word;
+    }
+    .legal-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary); margin: 40px 0 12px;
+      letter-spacing: -.01em;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 14px;
+    }
+    .legal-body ul, .legal-body ol { margin: 0 0 16px 20px; }
+    .legal-body li {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 6px;
+    }
+    .legal-body strong { color: var(--text-primary); font-weight: 600; }
+    .legal-body a { color: var(--tierra); }
+    .legal-body a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--tierra-light);
+      border-left: 3px solid var(--tierra);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight-box p { color: var(--text-primary); margin: 0; font-size: 14px; }
+
+    .legal-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: sticky; top: 66px; z-index: 50;
+    }
+    .legal-nav .container { display: flex; gap: 24px; font-size: 13px; flex-wrap: wrap; }
+    .legal-nav a { color: var(--text-secondary); transition: color .2s; }
+    .legal-nav a:hover { color: var(--tierra); }
+
+    body { padding-top: 66px; }
+
+    /* ── Formulario de denuncia ── */
+    .cr-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 28px;
+      margin: 24px 0;
+    }
+    .cr-field { margin-bottom: 18px; }
+    .cr-field label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 6px;
+    }
+    .cr-field input,
+    .cr-field textarea {
+      width: 100%; padding: 11px 13px;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); color: var(--text-primary);
+      font-family: inherit; font-size: 14px;
+    }
+    .cr-field textarea { resize: vertical; min-height: 110px; }
+    .cr-field input:focus,
+    .cr-field textarea:focus { outline: none; border-color: var(--tierra); }
+    .cr-field input::placeholder,
+    .cr-field textarea::placeholder { color: var(--text-muted); }
+    .cr-hint { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+
+    .cr-check {
+      display: flex; gap: 10px; align-items: flex-start;
+      margin: 20px 0; font-size: 13px; line-height: 1.6;
+      color: var(--text-secondary);
+    }
+    .cr-check input { margin-top: 3px; flex-shrink: 0; width: 16px; height: 16px; }
+
+    .cr-submit {
+      width: 100%; padding: 13px;
+      background: var(--tierra); color: white;
+      border: none; border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .cr-submit:hover:not(:disabled) { background: var(--tierra-dark); transform: translateY(-1px); }
+    .cr-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .cr-msg { display: none; margin-top: 16px; padding: 14px 16px; border-radius: var(--radius-sm); font-size: 14px; line-height: 1.6; }
+    .cr-msg.show { display: block; }
+    .cr-msg.ok  { background: rgba(46,160,67,.12); border: 1px solid rgba(46,160,67,.35); color: var(--text-primary); }
+    .cr-msg.err { background: rgba(220,60,60,.10); border: 1px solid rgba(220,60,60,.32); color: var(--text-primary); }
+    .cr-ref { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+
+    @media(max-width: 768px) {
+      .legal-header { padding: 40px 0 32px; }
+      .legal-header h1 { font-size: clamp(22px, 7vw, 34px); }
+      .legal-body { padding: 36px 20px 56px; }
+      .legal-body h2 { font-size: 16px; margin: 32px 0 10px; }
+      .legal-body p, .legal-body li { font-size: 14px; }
+      .legal-body ul, .legal-body ol { margin-left: 16px; }
+      .highlight-box { padding: 14px 16px; }
+      .legal-nav { top: 66px; }
+      .legal-nav .container { overflow-x: auto; white-space: nowrap; padding: 0 20px; gap: 16px; font-size: 12px; }
+      .cr-form { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-plania.png" alt="PlanIA">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#funciones">Funciones</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
+    </ul>
+    <a href="index.html#precios" class="btn btn-tierra nav-cta">Empezar gratis →</a>
+  </div>
+</header>
+
+<!-- LEGAL NAV -->
+<nav class="legal-nav">
+  <div class="container">
+    <a href="#que-es">Qué es esto</a>
+    <a href="#denunciar">Cómo denunciar</a>
+    <a href="#formulario">Formulario</a>
+    <a href="#que-hacemos">Qué hacemos</a>
+    <a href="#contranotificacion">Contranotificación</a>
+    <a href="#reiterados">Infractores reiterados</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="legal-header">
+  <div class="container">
+    <div class="label">Legal</div>
+    <h1>Política de Copyright</h1>
+    <p>Última actualización: agosto de 2026</p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="legal-body">
+
+  <h2 id="que-es">1. Qué es esta página</h2>
+  <p>PlanIA es una herramienta de planificación: nuestros usuarios —community managers, agencias, profesionales del marketing— crean contenido dentro de la aplicación y después lo publican por su cuenta en las redes de sus clientes. Nosotros no publicamos nada.</p>
+  <p>Eso significa que el contenido que circula lo escribe el usuario, no nosotros. Pero si alguno de ellos usa PlanIA para infringir tus derechos, <strong>queremos saberlo y queremos actuar</strong>. Esta página explica cómo avisarnos y qué hacemos después.</p>
+
+  <h2 id="denunciar">2. Qué tiene que incluir tu denuncia</h2>
+  <p>Para que podamos actuar necesitamos información concreta. Una denuncia completa incluye:</p>
+  <ol>
+    <li><strong>Identificación de la obra</strong> sobre la que tenés derechos: describila y, si podés, enlazá al original.</li>
+    <li><strong>Identificación del contenido denunciado</strong> y dónde está: el enlace exacto a la publicación, perfil o material que te parece infractor.</li>
+    <li><strong>Tus datos de contacto:</strong> nombre y un email donde podamos responderte.</li>
+    <li><strong>Quién es el titular</strong> del derecho: vos mismo, o la persona u organización que representás.</li>
+    <li><strong>Una declaración de buena fe</strong> de que creés, honestamente, que el uso denunciado no está autorizado por vos, por tu representante ni por la ley.</li>
+    <li><strong>Una declaración de exactitud:</strong> que la información que aportás es correcta y que tenés legitimación para reclamar.</li>
+  </ol>
+  <p>Estos son los elementos que exige el § 512(c)(3) de la <em>Digital Millennium Copyright Act</em> de Estados Unidos, y son también los que necesitamos bajo la normativa argentina y europea para poder evaluar el caso con seriedad.</p>
+
+  <div class="highlight-box">
+    <p><strong>Denunciar en falso tiene consecuencias.</strong> Presentar una denuncia a sabiendas de que es infundada puede generarte responsabilidad frente al usuario afectado, incluidos los daños y los costos de defensa. No lo decimos para desalentarte: lo decimos porque el procedimiento existe para casos reales.</p>
+  </div>
+
+  <h2 id="formulario">3. Formulario de denuncia</h2>
+  <p>Completá este formulario y nos llega al instante. También podés escribirnos a <a href="mailto:copyright@planiat.com">copyright@planiat.com</a> con la misma información.</p>
+
+  <form class="cr-form" id="cr-form" novalidate>
+    <div class="cr-field">
+      <label for="cr-reclamante">Tu nombre completo *</label>
+      <input type="text" id="cr-reclamante" placeholder="ej.: Ana Gómez" required maxlength="120" autocomplete="name">
+    </div>
+
+    <div class="cr-field">
+      <label for="cr-email">Tu email *</label>
+      <input type="email" id="cr-email" placeholder="ej.: ana@estudio.com" required maxlength="160" autocomplete="email">
+      <p class="cr-hint">Acá te respondemos y te pedimos aclaraciones si hacen falta.</p>
+    </div>
+
+    <div class="cr-field">
+      <label for="cr-titular">Titular del derecho *</label>
+      <input type="text" id="cr-titular" placeholder="ej.: Estudio Gómez, o tu propio nombre" required maxlength="160">
+      <p class="cr-hint">Si no sos vos, indicá a quién representás.</p>
+    </div>
+
+    <div class="cr-field">
+      <label for="cr-url-obra">Enlace a tu obra original</label>
+      <input type="url" id="cr-url-obra" placeholder="https://…" maxlength="500">
+      <p class="cr-hint">Opcional, pero acelera mucho la revisión.</p>
+    </div>
+
+    <div class="cr-field">
+      <label for="cr-url-infractora">Enlace al contenido que denunciás *</label>
+      <input type="url" id="cr-url-infractora" placeholder="https://…" required maxlength="500">
+    </div>
+
+    <div class="cr-field">
+      <label for="cr-descripcion">Contanos qué pasó</label>
+      <textarea id="cr-descripcion" placeholder="Describí la obra y en qué consiste la infracción" maxlength="3000"></textarea>
+    </div>
+
+    <label class="cr-check">
+      <input type="checkbox" id="cr-declaracion">
+      <span>Declaro de buena fe que el uso denunciado no está autorizado por mí, por mi representante ni por la ley, y que la información que aporto es exacta y estoy legitimado para presentar este reclamo. *</span>
+    </label>
+
+    <button type="submit" class="cr-submit" id="cr-submit">Enviar denuncia</button>
+    <div class="cr-msg" id="cr-msg"></div>
+  </form>
+
+  <h2 id="que-hacemos">4. Qué hacemos cuando recibimos una denuncia</h2>
+  <ul>
+    <li><strong>Acuse inmediato:</strong> el formulario te devuelve un número de registro en el momento. Guardalo.</li>
+    <li><strong>Revisión dentro de 72 horas hábiles:</strong> evaluamos si la denuncia está completa y si el contenido está efectivamente en nuestra plataforma.</li>
+    <li><strong>Acción:</strong> si corresponde, retiramos o bloqueamos el acceso al contenido dentro de la aplicación y le notificamos al usuario, indicándole el motivo y su derecho a responder.</li>
+    <li><strong>Respuesta:</strong> te contamos qué hicimos.</li>
+  </ul>
+  <p>Si la denuncia está incompleta te pedimos lo que falte antes de actuar; el plazo corre desde que tenemos la información completa.</p>
+  <p>Tené en cuenta un límite real de lo que podemos hacer: si el contenido ya se publicó en Instagram, Facebook u otra red, <strong>nosotros no podemos retirarlo de ahí</strong>. PlanIA no tiene acceso de publicación a esas cuentas. Sí podemos retirarlo de nuestra plataforma y actuar sobre la cuenta del usuario. Para el contenido ya publicado tenés que reclamar además ante la red social correspondiente.</p>
+
+  <h2 id="contranotificacion">5. Si te denunciaron y creés que es un error</h2>
+  <p>Si retiramos contenido tuyo y considerás que la denuncia es infundada —porque tenés licencia, porque la obra es tuya, o porque el uso está amparado por la ley— podés presentar una contranotificación escribiendo a <a href="mailto:copyright@planiat.com">copyright@planiat.com</a> con:</p>
+  <ul>
+    <li>El número de registro de la denuncia, si lo tenés.</li>
+    <li>La identificación del contenido retirado.</li>
+    <li>Una declaración de buena fe de que el retiro fue producto de un error o de una identificación equivocada.</li>
+    <li>Tus datos de contacto.</li>
+  </ul>
+  <p>Trasladamos tu contranotificación a quien denunció. Si en <strong>10 días hábiles</strong> no nos informa que inició acciones legales, restituimos el contenido.</p>
+
+  <h2 id="reiterados">6. Política de infractores reiterados</h2>
+  <p>Llevamos registro de las denuncias fundadas que recibimos por cada cuenta. A partir de la <strong>tercera denuncia fundada</strong> podemos dar de baja la cuenta, conforme al punto 14 de los <a href="terminos.html#terminacion">términos y condiciones</a>.</p>
+  <p>Las denuncias que resultan infundadas, o que el usuario revierte con una contranotificación exitosa, no cuentan para ese total.</p>
+
+  <h2 id="contacto">7. Contacto</h2>
+  <ul>
+    <li><strong>Copyright y denuncias:</strong> <a href="mailto:copyright@planiat.com">copyright@planiat.com</a></li>
+    <li><strong>Consultas generales:</strong> <a href="mailto:info@planiat.com">info@planiat.com</a></li>
+    <li><strong>Titular:</strong> Rutas Digitales — Pedro Cruz, CUIT 20-33476123-2, Humahuaca, provincia de Jujuy, República Argentina</li>
+  </ul>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/images/logo-plania.png" alt="PlanIA">
+  <ul class="f-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#precios">Precios</a></li>
+    <li><a href="privacidad.html">Privacidad</a></li>
+    <li><a href="terminos.html">Términos</a></li>
+    <li><a href="arrepentimiento.html">Botón de arrepentimiento</a></li>
+  </ul>
+  <div class="f-copy">
+    Desarrollado por Pedro Cruz <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a><br>
+    © 2026 PlanIA · planiat.com
+  </div>
+</footer>
+
+<script src="js/main.js?v=5"></script>
+<script>
+(function () {
+  var PROXY_URL = 'https://plania-proxy-production.up.railway.app';
+  var form   = document.getElementById('cr-form');
+  var btn    = document.getElementById('cr-submit');
+  var msgBox = document.getElementById('cr-msg');
+
+  function show(kind, html) {
+    msgBox.className = 'cr-msg show ' + kind;
+    msgBox.innerHTML = html;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    var payload = {
+      reclamante:    document.getElementById('cr-reclamante').value.trim(),
+      email:         document.getElementById('cr-email').value.trim(),
+      titular:       document.getElementById('cr-titular').value.trim(),
+      urlObra:       document.getElementById('cr-url-obra').value.trim(),
+      urlInfractora: document.getElementById('cr-url-infractora').value.trim(),
+      descripcion:   document.getElementById('cr-descripcion').value.trim(),
+      declaracion:   document.getElementById('cr-declaracion').checked ? 'si' : '',
+    };
+
+    if (!payload.reclamante || !payload.email || !payload.titular || !payload.urlInfractora) {
+      show('err', 'Necesitamos tu nombre, tu email, el titular del derecho y el enlace al contenido denunciado.');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+      show('err', 'Revisá el email: no parece válido.');
+      return;
+    }
+    if (payload.declaracion !== 'si') {
+      show('err', 'Necesitamos que confirmes la declaración de buena fe para poder procesar la denuncia.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    msgBox.className = 'cr-msg';
+
+    try {
+      var res = await fetch(PROXY_URL + '/api/copyright-claim', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      var data = await res.json().catch(function () { return {}; });
+
+      if (!res.ok) {
+        show('err', data.error || 'No pudimos registrar la denuncia. Escribinos a copyright@planiat.com y la resolvemos.');
+        btn.disabled = false;
+        btn.textContent = 'Enviar denuncia';
+        return;
+      }
+
+      form.querySelectorAll('input, textarea').forEach(function (el) {
+        if (el.type === 'checkbox') el.checked = false; else el.value = '';
+      });
+      btn.textContent = 'Denuncia enviada';
+
+      // El numero de registro es la constancia con fecha del reclamo: si el
+      // usuario no lo guarda, despues no tiene con que referenciar el caso.
+      var ref = data.id
+        ? '<br><br>Número de registro: <span class="cr-ref">' + data.id + '</span> — guardalo para futuras consultas.'
+        : '';
+      show('ok', 'Recibimos tu denuncia. La revisamos dentro de las 72 horas hábiles y te respondemos a tu email.' + ref);
+    } catch (err) {
+      show('err', 'No pudimos conectar con el servidor. Escribinos a copyright@planiat.com y lo resolvemos igual.');
+      btn.disabled = false;
+      btn.textContent = 'Enviar denuncia';
+    }
+  });
+})();
+</script>
+</body>
+</html>
