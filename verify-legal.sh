@@ -55,4 +55,16 @@ else
   echo "OK: CUIT cargado"
 fi
 
+# ── Task 5: privacidad.html al estandar GDPR ────────────────────────────────
+assert_present "encargado del tratamiento" privacidad.html
+assert_present "base legal" privacidad.html
+assert_present "AAIP" privacidad.html
+assert_present "AEPD" privacidad.html
+assert_present "conservación" privacidad.html
+assert_present "oposición" privacidad.html
+assert_present "limitación del tratamiento" privacidad.html
+assert_present "transferencias internacionales" privacidad.html
+assert_present "dpa.html" privacidad.html
+assert_present "cookies.html" privacidad.html
+
 exit $fail
