@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies · PlanIA</title>
+  <meta name="description" content="Qué cookies usa PlanIA, para qué sirven y cómo cambiar tu decisión.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="canonical" href="https://planiat.com/cookies.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://planiat.com/cookies.html">
+  <meta property="og:title" content="Política de Cookies · PlanIA">
+  <meta property="og:description" content="Qué cookies usa PlanIA y cómo cambiar tu decisión.">
+  <meta property="og:site_name" content="PlanIA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css?v=4">
+  <style>
+    .legal-header {
+      background: var(--carbon);
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .legal-header .label { color: rgba(255,255,255,.55); }
+    .legal-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; color: white;
+      letter-spacing: -.03em; margin-bottom: 12px;
+    }
+    .legal-header p { color: var(--text-muted); font-size: 15px; }
+
+    .legal-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 48px;
+      overflow-wrap: break-word; word-break: break-word;
+    }
+    .legal-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary); margin: 40px 0 12px;
+      letter-spacing: -.01em;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 14px;
+    }
+    .legal-body ul { margin: 0 0 16px 20px; }
+    .legal-body li {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 6px;
+    }
+    .legal-body strong { color: var(--text-primary); font-weight: 600; }
+    .legal-body a { color: var(--tierra); }
+    .legal-body a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--tierra-light);
+      border-left: 3px solid var(--tierra);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight-box p { color: var(--text-primary); margin: 0; font-size: 14px; }
+
+    .legal-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: sticky; top: 66px; z-index: 50;
+    }
+    .legal-nav .container { display: flex; gap: 24px; font-size: 13px; flex-wrap: wrap; }
+    .legal-nav a { color: var(--text-secondary); transition: color .2s; }
+    .legal-nav a:hover { color: var(--tierra); }
+
+    body { padding-top: 66px; }
+
+    /* ── Tabla de cookies ── */
+    .ck-table-wrap { overflow-x: auto; margin: 18px 0 22px; }
+    .ck-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 14px; min-width: 560px;
+    }
+    .ck-table th, .ck-table td {
+      text-align: left; padding: 11px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary); line-height: 1.6;
+    }
+    .ck-table th {
+      font-weight: 600; color: var(--text-primary);
+      font-size: 13px; background: var(--surface);
+    }
+    .ck-table code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px; color: var(--text-primary);
+    }
+
+    /* ── Estado del consentimiento ── */
+    .ck-state {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+      margin: 20px 0;
+    }
+    .ck-state p { margin: 0 0 14px; }
+    .ck-current { font-weight: 600; color: var(--text-primary); }
+    .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .ck-actions button {
+      flex: 1; min-width: 180px; padding: 11px 16px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      border-radius: var(--radius-sm); cursor: pointer;
+      border: 1px solid var(--tierra);
+      background: var(--tierra); color: #fff;
+      transition: opacity .2s;
+    }
+    .ck-actions button:hover { opacity: .87; }
+
+    @media(max-width: 768px) {
+      .legal-header { padding: 40px 0 32px; }
+      .legal-header h1 { font-size: clamp(22px, 7vw, 34px); }
+      .legal-body { padding: 36px 20px 56px; }
+      .legal-body h2 { font-size: 16px; margin: 32px 0 10px; }
+      .legal-body p, .legal-body li { font-size: 14px; }
+      .legal-body ul { margin-left: 16px; }
+      .highlight-box { padding: 14px 16px; }
+      .legal-nav { top: 66px; }
+      .legal-nav .container { overflow-x: auto; white-space: nowrap; padding: 0 20px; gap: 16px; font-size: 12px; }
+      .ck-state { padding: 18px; }
+      .ck-actions button { min-width: 100%; }
+    }
+  </style>
+  <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
+       si el usuario acepta. Ver js/cookie-consent.js -->
+  <script src="js/cookie-consent.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-plania.png" alt="PlanIA">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#funciones">Funciones</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
+    </ul>
+    <a href="index.html#precios" class="btn btn-tierra nav-cta">Empezar gratis →</a>
+  </div>
+</header>
+
+<!-- LEGAL NAV -->
+<nav class="legal-nav">
+  <div class="container">
+    <a href="#que-son">Qué son</a>
+    <a href="#esenciales">Esenciales</a>
+    <a href="#analiticas">Analíticas</a>
+    <a href="#cambiar">Cambiar tu decisión</a>
+    <a href="#borrar">Borrarlas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="legal-header">
+  <div class="container">
+    <div class="label">Legal</div>
+    <h1>Política de Cookies</h1>
+    <p>Última actualización: agosto de 2026</p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="legal-body">
+
+  <h2 id="que-son">1. Qué son y qué usamos</h2>
+  <p>Las cookies son archivos pequeños que un sitio guarda en tu navegador. Algunas son imprescindibles para que la página funcione; otras sirven para medir cómo se usa.</p>
+
+  <div class="highlight-box">
+    <p><strong>La versión corta:</strong> usamos dos cookies técnicas para mantener tu sesión iniciada, y dos analíticas de Google Analytics que <strong>solo se activan si las aceptás</strong>. No usamos pixeles publicitarios, ni cookies de perfilado comercial, ni compartimos datos con anunciantes.</p>
+  </div>
+
+  <h2 id="esenciales">2. Cookies técnicas esenciales</h2>
+  <p>Estas no requieren consentimiento porque sin ellas el servicio no funciona: son las que mantienen tu sesión abierta después de que iniciás sesión.</p>
+  <div class="ck-table-wrap">
+    <table class="ck-table">
+      <thead>
+        <tr><th>Nombre</th><th>Proveedor</th><th>Para qué</th><th>Duración</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>firebaseLocalStorage</code></td>
+          <td>Google Firebase</td>
+          <td>Mantiene tu sesión iniciada en la aplicación</td>
+          <td>Hasta que cerrás sesión</td>
+        </tr>
+        <tr>
+          <td><code>__session</code></td>
+          <td>Firebase Hosting</td>
+          <td>Gestión técnica de la sesión</td>
+          <td>Sesión</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="analiticas">3. Cookies analíticas</h2>
+  <p>Estas solo se instalan si aceptás. Nos sirven para saber qué páginas del sitio público se visitan y desde dónde llega la gente. No las usamos para identificarte ni para publicidad.</p>
+  <div class="ck-table-wrap">
+    <table class="ck-table">
+      <thead>
+        <tr><th>Nombre</th><th>Proveedor</th><th>Para qué</th><th>Duración</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>_ga</code></td>
+          <td>Google Analytics</td>
+          <td>Distingue visitantes para el conteo de tráfico</td>
+          <td>2 años</td>
+        </tr>
+        <tr>
+          <td><code>_ga_&lt;ID&gt;</code></td>
+          <td>Google Analytics</td>
+          <td>Mantiene el estado de la sesión de medición</td>
+          <td>2 años</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>El tratamiento que hace Google de estos datos se rige por su <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad</a>.</p>
+
+  <h2 id="cambiar">4. Cambiar tu decisión</h2>
+  <p>Podés cambiar de opinión cuando quieras, y hacerlo no afecta en nada al funcionamiento del servicio.</p>
+
+  <div class="ck-state">
+    <p>Tu decisión actual: <span class="ck-current" id="ck-current">cargando…</span></p>
+    <div class="ck-actions">
+      <button type="button" id="ck-reject">Usar solo las esenciales</button>
+      <button type="button" id="ck-accept">Aceptar también las analíticas</button>
+    </div>
+  </div>
+
+  <p>Si aceptaste antes y ahora elegís solo las esenciales, dejamos de cargar Google Analytics a partir de la próxima carga de página. Para eliminar las cookies que ya estén en tu navegador, seguí el punto siguiente.</p>
+
+  <h2 id="borrar">5. Borrar las cookies desde tu navegador</h2>
+  <p>Tu navegador te deja ver y borrar las cookies de cualquier sitio, independientemente de lo que decidas acá:</p>
+  <ul>
+    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a></li>
+    <li><a href="https://support.mozilla.org/es/kb/borrar-cookies-y-datos-de-sitios-en-firefox" target="_blank" rel="noopener">Firefox</a></li>
+    <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+    <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Edge</a></li>
+  </ul>
+  <p>Tené en cuenta que si borrás las cookies técnicas vas a tener que volver a iniciar sesión.</p>
+
+  <h2 id="contacto">6. Contacto</h2>
+  <p>Cualquier duda sobre cookies o privacidad: <a href="mailto:info@planiat.com">info@planiat.com</a>. Ver también nuestra <a href="privacidad.html">política de privacidad</a>.</p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/images/logo-plania.png" alt="PlanIA">
+  <ul class="f-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#precios">Precios</a></li>
+    <li><a href="privacidad.html">Privacidad</a></li>
+    <li><a href="terminos.html">Términos</a></li>
+    <li><a href="copyright.html">Copyright</a></li>
+    <li><a href="cookies.html">Cookies</a></li>
+    <li><a href="dpa.html">Encargado de datos</a></li>
+    <li><a href="arrepentimiento.html">Botón de arrepentimiento</a></li>
+  </ul>
+  <div class="f-copy">
+    Desarrollado por Pedro Cruz <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a><br>
+    © 2026 PlanIA · planiat.com
+  </div>
+</footer>
+
+<script src="js/main.js?v=5"></script>
+<script>
+(function () {
+  var KEY = 'plania_cookie_consent';
+  var label = document.getElementById('ck-current');
+
+  function read() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+
+  function paint() {
+    var v = read();
+    if (v === 'accepted')      label.textContent = 'aceptaste las cookies analíticas';
+    else if (v === 'rejected') label.textContent = 'solo cookies esenciales';
+    else                       label.textContent = 'todavía no elegiste (por defecto: solo esenciales)';
+  }
+
+  function choose(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) { /* modo privado */ }
+    paint();
+    // Recargamos para que el cambio tenga efecto real: si acaba de aceptar hay
+    // que inyectar GA, y si acaba de rechazar hay que dejar de cargarlo.
+    location.reload();
+  }
+
+  document.getElementById('ck-accept').addEventListener('click', function () { choose('accepted'); });
+  document.getElementById('ck-reject').addEventListener('click', function () { choose('rejected'); });
+
+  paint();
+})();
+</script>
+</body>
+</html>

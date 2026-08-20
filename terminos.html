@@ -94,14 +94,9 @@
       .legal-nav .container { overflow-x: auto; white-space: nowrap; padding: 0 20px; gap: 16px; font-size: 12px; }
     }
   </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEVF5SCQNG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-SEVF5SCQNG');
-  </script>
+  <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
+       si el usuario acepta. Ver js/cookie-consent.js -->
+  <script src="js/cookie-consent.js"></script>
 </head>
 <body>
 
@@ -125,11 +120,15 @@
     <a href="#aceptacion">Aceptación</a>
     <a href="#descripcion">El servicio</a>
     <a href="#licencia">Licencia</a>
+    <a href="#licencia-usuario">Tu contenido</a>
     <a href="#uso-aceptable">Uso aceptable</a>
     <a href="#ia">Contenido con IA</a>
     <a href="#meta">Conexión Meta</a>
     <a href="#pagos">Pagos</a>
+    <a href="#indemnidad">Indemnidad</a>
     <a href="#limitacion">Limitación de responsabilidad</a>
+    <a href="#terminacion">Suspensión</a>
+    <a href="#ley">Ley aplicable</a>
     <a href="#contacto">Contacto</a>
   </div>
 </nav>
@@ -139,7 +138,7 @@
   <div class="container">
     <div class="label">Legal</div>
     <h1>Términos y Condiciones</h1>
-    <p>Última actualización: marzo de 2026</p>
+    <p>Última actualización: agosto de 2026</p>
   </div>
 </div>
 
@@ -184,7 +183,22 @@
     <li>Superar los límites de clientes, planes e informes de tu plan contratado.</li>
   </ul>
 
-  <h2 id="uso-aceptable">4. Uso aceptable</h2>
+  <h2 id="licencia-usuario">4. Tu contenido y la licencia que nos otorgás</h2>
+  <p>Todo lo que cargás en PlanIA —perfiles de clientes, notas, textos, planes— <strong>sigue siendo tuyo</strong>. No adquirimos ninguna propiedad sobre eso.</p>
+  <p>Pero para que la aplicación pueda funcionar necesitamos tu permiso para procesarlo. Al cargar contenido nos otorgás una licencia <strong>limitada, mundial, no exclusiva, libre de regalías y revocable</strong>, cuyo único fin es operar el servicio: alojar tu contenido, procesarlo, reproducirlo y transmitirlo a los proveedores que hacen falta para prestarte el servicio —principalmente Anthropic, para generar contenido con IA—. La lista completa está en nuestro <a href="dpa.html">acuerdo de encargado de datos</a>.</p>
+  <p>Esta licencia existe solo mientras el contenido esté en PlanIA: <strong>termina cuando borrás el contenido o tu cuenta</strong>. No la usamos para entrenar modelos, para publicidad ni para ningún fin ajeno a prestarte el servicio.</p>
+
+  <h2 id="declaracion">5. Declaración sobre los derechos de tu contenido</h2>
+  <p>Al cargar contenido en PlanIA declarás y garantizás que:</p>
+  <ul>
+    <li>Tenés los derechos necesarios sobre todo lo que subís, o la autorización de quien los tiene.</li>
+    <li>Contás con autorización de tus clientes para gestionar sus marcas, cuentas y datos dentro de la aplicación.</li>
+    <li>El contenido no infringe derechos de autor, marcas, patentes, secretos comerciales, derechos de imagen ni ningún otro derecho de terceros.</li>
+    <li>El contenido no es ilegal, difamatorio ni engañoso.</li>
+  </ul>
+  <p>Si creés que un usuario de PlanIA está infringiendo tus derechos, tenemos un canal para denunciarlo: leé nuestra <a href="copyright.html">política de copyright</a>.</p>
+
+  <h2 id="uso-aceptable">6. Uso aceptable</h2>
   <p>Al usar PlanIA te comprometés a:</p>
   <ul>
     <li>Usar la aplicación únicamente para los fines descriptos (gestión y planificación de contenido).</li>
@@ -195,16 +209,18 @@
   </ul>
   <p>Nos reservamos el derecho de suspender o cancelar el acceso a PlanIA si detectamos usos que violen estos términos, las condiciones de Meta o cualquier legislación aplicable.</p>
 
-  <h2 id="ia">5. Contenido generado con inteligencia artificial</h2>
-  <p>PlanIA usa la API de Anthropic (Claude) para generar contenido. Respecto a ese contenido:</p>
+  <h2 id="ia">7. Contenido generado con inteligencia artificial</h2>
+  <p>PlanIA usa la API de Anthropic (Claude) para generar contenido. Esto es lo que tenés que saber:</p>
   <ul>
-    <li><strong>Revisión obligatoria:</strong> la IA puede cometer errores, incluir datos incorrectos o imprecisos. Es tu responsabilidad revisar y verificar todo el contenido antes de usarlo o publicarlo.</li>
-    <li><strong>Propiedad:</strong> el contenido generado con IA dentro de PlanIA es tuyo para usar en el contexto de tu trabajo de community management.</li>
-    <li><strong>Responsabilidad:</strong> sos responsable del contenido que publicás en las redes sociales de tus clientes, independientemente de si fue generado con IA o escrito por vos.</li>
-    <li><strong>Limitaciones del modelo:</strong> la IA no tiene acceso a información en tiempo real. Los datos sobre eventos, precios, horarios u otra información que cambia frecuentemente deben verificarse con la fuente original.</li>
+    <li><strong>Revisión obligatoria:</strong> la IA puede cometer errores e incluir datos incorrectos o imprecisos, incluso cuando el texto parece seguro y detallado. Es tu responsabilidad revisar y verificar todo el contenido antes de usarlo o publicarlo.</li>
+    <li><strong>Derechos sobre el resultado:</strong> te cedemos los derechos que pudiéramos tener sobre el contenido generado, <strong>si los hubiera</strong>. No afirmamos que existan ni garantizamos que ese contenido sea protegible por derecho de autor: en varias jurisdicciones, incluida la Argentina, la protección autoral requiere autoría humana.</li>
+    <li><strong>El resultado puede no ser único:</strong> por la naturaleza de estos modelos, otros usuarios pueden recibir contenido igual o similar. No garantizamos originalidad ni ausencia de coincidencias con material de terceros. Si el contenido va a usarse como marca, eslogan o pieza distintiva, verificá su disponibilidad antes.</li>
+    <li><strong>Responsabilidad de publicación:</strong> sos responsable del contenido que publicás en las redes de tus clientes, haya sido generado con IA o escrito por vos.</li>
+    <li><strong>Divulgación frente a tus clientes:</strong> sos vos quien decide si le informás a tu cliente que usaste inteligencia artificial, y sos responsable de las divulgaciones que tu relación profesional o la ley de tu jurisdicción te exijan. PlanIA te da la opción de incluir un aviso en los documentos exportados, desactivada por defecto.</li>
+    <li><strong>Limitaciones del modelo:</strong> la IA no tiene acceso a información en tiempo real. Datos sobre eventos, precios, horarios u otra información cambiante deben verificarse con la fuente original.</li>
   </ul>
 
-  <h2 id="meta">6. Conexión con Meta (Facebook e Instagram)</h2>
+  <h2 id="meta">8. Conexión con Meta (Facebook e Instagram)</h2>
   <p>Al conectar una cuenta de Facebook o Instagram a PlanIA:</p>
   <ul>
     <li>Declarás tener la autorización del titular de la cuenta para acceder a sus datos vía API.</li>
@@ -213,23 +229,35 @@
     <li>No podemos garantizar la disponibilidad continua de la API de Meta — Meta puede cambiar o restringir el acceso a sus datos en cualquier momento.</li>
   </ul>
 
-  <h2 id="pagos">7. Pagos, facturación y cancelación</h2>
+  <h2 id="pagos">9. Pagos, facturación y cancelación</h2>
 
   <p><strong>Trial gratuito:</strong> el plan trial no requiere tarjeta de crédito. Está limitado en acciones (ver detalle en la web) y no tiene vencimiento de tiempo.</p>
 
-  <p><strong>Planes de pago:</strong> los planes pagos se facturan mensualmente. Los precios de referencia están expresados en dólares estadounidenses (USD). El cobro se realiza en pesos argentinos (ARS) al equivalente vigente a través de MercadoPago. El acceso se activa una vez confirmado el pago.</p>
+  <p><strong>Planes de pago:</strong> los planes pagos se facturan mensualmente. Los precios de referencia están expresados en dólares estadounidenses (USD). El acceso se activa una vez confirmado el pago.</p>
 
-  <p><strong>Métodos de pago:</strong> actualmente aceptamos MercadoPago (tarjeta de crédito, cobro recurrente automático). Próximamente incorporaremos métodos de pago internacionales adicionales.</p>
+  <p><strong>Métodos de pago según dónde estés:</strong></p>
+  <ul>
+    <li><strong>Argentina:</strong> el cobro se realiza a través de <strong>MercadoPago</strong>, en pesos argentinos al equivalente vigente, con débito recurrente automático.</li>
+    <li><strong>Resto del mundo:</strong> el cobro se realiza a través de <strong>Paddle</strong>.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <p><strong>Paddle actúa como Merchant of Record.</strong> Esto significa que en las contrataciones internacionales <strong>Paddle es el vendedor legal</strong> de la suscripción: es quien te factura, quien calcula y liquida los impuestos que correspondan en tu país, y quien figura en el resumen de tu tarjeta. En esas operaciones también rigen los <a href="https://www.paddle.com/legal/checkout-buyer-terms" target="_blank" rel="noopener">términos de compra de Paddle</a>, además de estos.</p>
+  </div>
 
   <p><strong>Cancelación:</strong> podés cancelar tu suscripción en cualquier momento desde Ajustes, dentro de la aplicación, en dos clics y sin trámite previo. La cancelación tiene efecto al final del período facturado: conservás tu plan y tus límites hasta que termina el período que ya pagaste, y no se te vuelve a cobrar. No realizamos reembolsos proporcionales por los días no utilizados del mes en curso, salvo que la cancelación sea consecuencia de un fallo atribuible a PlanIA.</p>
 
-  <p><strong>Botón de arrepentimiento:</strong> si contrataste un plan pago y te arrepentiste, podés revocar la contratación dentro de los <strong>10 días corridos</strong>, sin dar explicaciones y sin costo, conforme a la Resolución 424/2020 de la Secretaría de Comercio Interior. El pedido se hace desde el <a href="arrepentimiento.html">botón de arrepentimiento</a>, disponible en el pie de todas las páginas del sitio. Devolvemos el importe por el mismo medio de pago con el que contrataste.</p>
+  <p><strong>Botón de arrepentimiento (Argentina):</strong> si contrataste un plan pago y te arrepentiste, podés revocar la contratación dentro de los <strong>10 días corridos</strong>, sin dar explicaciones y sin costo, conforme a la Resolución 424/2020 de la Secretaría de Comercio Interior. El pedido se hace desde el <a href="arrepentimiento.html">botón de arrepentimiento</a>, disponible en el pie de todas las páginas del sitio. Devolvemos el importe por el mismo medio de pago con el que contrataste.</p>
+
+  <p><strong>Derecho de desistimiento (Unión Europea):</strong> si sos consumidor residente en la UE, contás con <strong>14 días</strong> corridos para desistir del contrato sin expresar motivo, conforme a la Directiva 2011/83/UE. El pedido se hace por el mismo canal. Como el servicio es digital y se presta de inmediato, al contratar aceptás que la ejecución comience antes de que venza ese plazo; eso no te hace perder el derecho a desistir, pero sí puede dar lugar a que se descuente la parte proporcional efectivamente utilizada.</p>
+
+  <p>Si contrataste a través de Paddle, el reembolso lo procesa Paddle como vendedor legal, y también podés gestionarlo directamente con ellos.</p>
 
   <p><strong>Tus datos después de la baja:</strong> si cancelás tu suscripción o dejás de pagar, no perdés lo que ya generaste. Dejás de poder generar contenido nuevo, pero conservás acceso de lectura y descarga a todos tus clientes, planes, publicaciones e informes ya generados.</p>
 
   <p><strong>Cambios de precio:</strong> nos reservamos el derecho de modificar los precios de los planes. Los cambios se comunicarán con al menos 30 días de anticipación por email o mediante una notificación dentro de la aplicación. Podés cancelar tu suscripción sin costo antes de que el nuevo precio entre en vigencia.</p>
 
-  <h2 id="disponibilidad">8. Disponibilidad del servicio</h2>
+  <h2 id="disponibilidad">10. Disponibilidad del servicio</h2>
   <p>PlanIA es una aplicación web que requiere conexión a internet para funcionar. Los servicios principales son:</p>
   <ul>
     <li>Inicio de sesión, almacenamiento de datos y verificación de suscripción (Firebase).</li>
@@ -240,7 +268,23 @@
   </ul>
   <p>No garantizamos disponibilidad ininterrumpida de las funciones que dependen de servicios de terceros (Anthropic, Meta, Firebase o MercadoPago). Nos comprometemos a informar sobre interrupciones conocidas y a resolverlas en el menor tiempo posible.</p>
 
-  <h2 id="limitacion">9. Limitación de responsabilidad</h2>
+  <h2 id="indemnidad">11. Indemnidad</h2>
+  <p>Esta cláusula cubre una situación distinta a la del punto siguiente. La limitación de responsabilidad regula lo que vos nos podés reclamar a nosotros; la indemnidad regula qué pasa cuando <strong>un tercero nos reclama a nosotros por algo que hiciste vos</strong>.</p>
+  <p>Te comprometés a defender, mantener indemne y liberar de responsabilidad a PlanIA, a Rutas Digitales, a su titular y a sus colaboradores, frente a cualquier reclamo, demanda, sanción, pérdida, daño o gasto —incluidos honorarios de abogados razonables— que provenga de:</p>
+  <ul>
+    <li>El contenido que cargaste, generaste o publicaste usando PlanIA.</li>
+    <li>La infracción de derechos de autor, marcas u otros derechos de terceros derivada de tu uso del servicio.</li>
+    <li>El incumplimiento de estos términos o de las declaraciones del punto 5.</li>
+    <li>Tu relación con tus propios clientes, incluidos los reclamos que ellos te hagan por el trabajo que les entregaste.</li>
+    <li>El uso de las cuentas de redes sociales que conectaste sin la autorización debida.</li>
+  </ul>
+  <p>Nos comprometemos a avisarte sin demora de cualquier reclamo alcanzado por esta cláusula y a colaborar razonablemente en la defensa. Podés asumir la defensa con abogados de tu elección; si el acuerdo al que llegues nos impone obligaciones o reconoce responsabilidad de nuestra parte, necesitamos aprobarlo previamente.</p>
+
+  <div class="highlight-box">
+    <p><strong>Para que quede claro en el otro sentido:</strong> PlanIA <strong>no</strong> te ofrece indemnidad ni asume tu defensa frente a reclamos de propiedad intelectual por el contenido que generes. Algunos proveedores de IA ofrecen esa cobertura a sus clientes; nosotros no, y preferimos decirlo antes que dejarlo ambiguo.</p>
+  </div>
+
+  <h2 id="limitacion">12. Limitación de responsabilidad</h2>
   <p>En la máxima medida permitida por la ley aplicable:</p>
   <ul>
     <li>PlanIA se provee "tal cual es", sin garantías de ningún tipo más allá de las expresamente indicadas.</li>
@@ -250,22 +294,43 @@
     <li>Nuestra responsabilidad máxima ante cualquier reclamo no superará el monto que hayás pagado por PlanIA en los últimos 3 meses.</li>
   </ul>
 
-  <h2 id="propiedad">10. Propiedad intelectual</h2>
+  <h2 id="propiedad">13. Propiedad intelectual</h2>
   <p>PlanIA, su código, diseño, marca y logotipo son propiedad de Rutas Digitales y están protegidos por las leyes de propiedad intelectual aplicables. Nada en estos términos te transfiere ningún derecho de propiedad sobre la aplicación.</p>
-  <p>Los datos e información que cargás en PlanIA (perfiles de clientes, notas, etc.) son y siguen siendo tuya.</p>
+  <p>Los datos e información que cargás en PlanIA (perfiles de clientes, notas, etc.) son y siguen siendo tuyos, en los términos del punto 4.</p>
 
-  <h2 id="modificaciones">11. Modificaciones a los términos</h2>
+  <h2 id="terminacion">14. Suspensión y terminación</h2>
+  <p>Podemos suspender o dar de baja tu cuenta si:</p>
+  <ul>
+    <li>Incumplís estos términos de forma grave o reiterada.</li>
+    <li>Usás PlanIA para actividades ilegales, o que infringen derechos de terceros.</li>
+    <li>Recibimos denuncias fundadas de infracción de derechos de autor de manera reiterada. Nuestro criterio es la <strong>tercera denuncia fundada</strong>: a partir de ahí podemos dar de baja la cuenta. El procedimiento está detallado en la <a href="copyright.html">política de copyright</a>.</li>
+    <li>Se detecta un uso que compromete la seguridad o la disponibilidad del servicio para otros usuarios.</li>
+  </ul>
+  <p><strong>Aviso previo:</strong> salvo que exista un riesgo inmediato —de seguridad, legal o para terceros—, te avisamos antes de suspender y te damos oportunidad de responder o corregir.</p>
+  <p><strong>Tus datos:</strong> si damos de baja tu cuenta, conservás <strong>30 días</strong> para exportar todo tu contenido. Vencido ese plazo procedemos al borrado conforme a la <a href="privacidad.html">política de privacidad</a>. Si la baja la pedís vos, aplica lo previsto en el punto 9.</p>
+  <p>Podés dar de baja tu cuenta en cualquier momento desde Ajustes.</p>
+
+  <h2 id="modificaciones">15. Modificaciones a los términos</h2>
   <p>Podemos modificar estos términos en cualquier momento. Los cambios sustanciales se notificarán con al menos 15 días de anticipación a través de la aplicación o por email. El uso continuado de PlanIA después de la fecha de vigencia de los cambios implica la aceptación de los nuevos términos.</p>
 
-  <h2 id="ley">12. Ley aplicable</h2>
-  <p>Estos términos se rigen por las leyes de la <strong>República Argentina</strong>. Para cualquier controversia, las partes se someten a la jurisdicción de los tribunales competentes de la provincia de <strong>Jujuy, Argentina</strong>.</p>
+  <h2 id="ley">16. Ley aplicable y jurisdicción</h2>
+  <p>Estos términos se rigen por las leyes de la <strong>República Argentina</strong>, y para cualquier controversia las partes se someten a los tribunales competentes de la provincia de <strong>Jujuy, Argentina</strong>.</p>
 
-  <h2 id="contacto">13. Contacto</h2>
-  <p>Para consultas sobre estos términos:</p>
+  <div class="highlight-box">
+    <p><strong>Reserva a favor de los consumidores.</strong> Lo anterior no te priva de nada: si contratás como consumidor, <strong>conservás los derechos imperativos y la jurisdicción de tu país de residencia habitual</strong>, y podés reclamar ante los tribunales y las autoridades de consumo de ese país. Ninguna cláusula de estos términos se interpretará como una renuncia a esas protecciones.</p>
+  </div>
+
+  <h2 id="contacto">17. Identificación del proveedor y contacto</h2>
   <ul>
+    <li><strong>Denominación:</strong> Rutas Digitales</li>
+    <li><strong>Titular:</strong> Pedro Cruz</li>
+    <li><strong>CUIT:</strong> 20-33476123-2</li>
+    <li><strong>Domicilio:</strong> Humahuaca, provincia de Jujuy, República Argentina</li>
     <li><strong>Email:</strong> <a href="mailto:info@planiat.com">info@planiat.com</a></li>
+    <li><strong>Copyright y denuncias:</strong> <a href="mailto:copyright@planiat.com">copyright@planiat.com</a></li>
     <li><strong>Sitio web:</strong> <a href="https://planiat.com">planiat.com</a></li>
   </ul>
+  <p>Si sos consumidor en Argentina, podés presentar reclamos ante la Dirección Nacional de Defensa del Consumidor a través del sistema <a href="https://autogestion.produccion.gob.ar/consumidores" target="_blank" rel="noopener">Ventanilla Única Federal</a>. Si residís en la Unión Europea, podés acudir a la autoridad de consumo de tu país.</p>
 
 </div>
 
@@ -277,6 +342,9 @@
     <li><a href="index.html#precios">Precios</a></li>
     <li><a href="privacidad.html">Privacidad</a></li>
     <li><a href="terminos.html">Términos</a></li>
+    <li><a href="copyright.html">Copyright</a></li>
+    <li><a href="cookies.html">Cookies</a></li>
+    <li><a href="dpa.html">Encargado de datos</a></li>
     <li><a href="arrepentimiento.html">Botón de arrepentimiento</a></li>
   </ul>
   <div class="f-copy">
