@@ -94,14 +94,9 @@
       .legal-nav .container { overflow-x: auto; white-space: nowrap; padding: 0 20px; gap: 16px; font-size: 12px; }
     }
   </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEVF5SCQNG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-SEVF5SCQNG');
-  </script>
+  <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
+       si el usuario acepta. Ver js/cookie-consent.js -->
+  <script src="js/cookie-consent.js"></script>
 </head>
 <body>
 
@@ -192,7 +187,7 @@
   <p>Estos datos se importan directamente desde la API de Meta y se guardan en tu cuenta de PlanIA (Firebase). <strong>No se comparten con terceros.</strong></p>
 
   <p><strong>Datos de uso:</strong></p>
-  <p>En el <strong>sitio público</strong> (planiat.com) usamos Google Analytics para medir tráfico agregado: cuántas visitas recibe cada página y desde dónde llegan. Para eso se utilizan las cookies <code>_ga</code> y <code>_gid</code>.</p>
+  <p>En el <strong>sitio público</strong> (planiat.com) usamos Google Analytics para medir tráfico agregado: cuántas visitas recibe cada página y desde dónde llegan. Para eso se utilizan las cookies <code>_ga</code> y <code>_ga_&lt;ID&gt;</code>.</p>
   <p>Dentro de la <strong>aplicación</strong> no hay analytics ni telemetría: no medimos qué funciones usás, con qué frecuencia entrás ni ningún otro dato sobre tu actividad. Lo único que se registra son los contadores de uso de funciones con IA, y su única finalidad es aplicar los límites de tu plan.</p>
 
   <p><strong>Datos de tu cuenta de usuario (en la nube):</strong></p>
@@ -308,7 +303,7 @@
   <p>PlanIA usa dos tipos de cookies:</p>
   <ul>
     <li><strong>Técnicas esenciales:</strong> las de Firebase Authentication, necesarias para mantener tu sesión iniciada. Sin ellas la aplicación no funciona, y por eso no requieren consentimiento.</li>
-    <li><strong>Analíticas:</strong> las de Google Analytics (<code>_ga</code> y <code>_gid</code>) en el sitio público planiat.com, para medir tráfico agregado. <strong>Estas solo se activan si las aceptás</strong>, y podés cambiar de opinión cuando quieras.</li>
+    <li><strong>Analíticas:</strong> las de Google Analytics (<code>_ga</code> y <code>_ga_&lt;ID&gt;</code>) en el sitio público planiat.com, para medir tráfico agregado. <strong>Estas solo se activan si las aceptás</strong>, y podés cambiar de opinión cuando quieras.</li>
   </ul>
   <p>No usamos pixeles publicitarios ni cookies de terceros con fines de perfilado comercial. El detalle completo, con nombre, finalidad y duración de cada cookie, está en la <a href="cookies.html">política de cookies</a>.</p>
 

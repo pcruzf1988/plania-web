@@ -84,4 +84,30 @@ else
   echo "OK: no se afirma un agente DMCA inexistente"
 fi
 
+# ── Task 7: cookies.html y banner de consentimiento ─────────────────────────
+assert_present "_ga" cookies.html
+assert_present "esenciales" cookies.html
+assert_present "cookie-consent.js" cookies.html
+
+# GA no puede cargarse de forma incondicional en ninguna pagina: las cookies
+# analiticas necesitan consentimiento previo. El unico lugar donde puede
+# aparecer la URL de googletagmanager es dentro del modulo de consentimiento,
+# que la inyecta solo despues del "aceptar".
+if rg -q "googletagmanager" ./*.html; then
+  echo "FALLA: alguna pagina carga GA sin consentimiento previo"; fail=1
+else
+  echo "OK: ninguna pagina carga GA de forma incondicional"
+fi
+
+for page in index.html terminos.html privacidad.html arrepentimiento.html copyright.html cookies.html; do
+  assert_present "cookie-consent.js" "$page"
+done
+
+# Rechazar tiene que costar lo mismo que aceptar (consentimiento libre).
+if rg -q 'data-consent="rejected"' js/cookie-consent.js && rg -q 'data-consent="accepted"' js/cookie-consent.js; then
+  echo "OK: el banner ofrece aceptar y rechazar"
+else
+  echo "FALLA: el banner no ofrece ambas opciones"; fail=1
+fi
+
 exit $fail
