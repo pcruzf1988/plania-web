@@ -110,4 +110,16 @@ else
   echo "FALLA: el banner no ofrece ambas opciones"; fail=1
 fi
 
+# ── Task 8: dpa.html ────────────────────────────────────────────────────────
+for s in Anthropic Firebase Meta Railway MercadoPago Paddle; do
+  assert_present "$s" dpa.html
+done
+assert_present "72 horas" dpa.html
+assert_present "subencargado" dpa.html
+assert_present "art. 28" dpa.html
+assert_present "cookie-consent.js" dpa.html
+
+# Compromiso explicito que los clientes preguntan y que hay que poder sostener.
+assert_present "no los usamos para entrenar modelos" dpa.html
+
 exit $fail
