@@ -115,7 +115,7 @@
   .stats-band .container { grid-template-columns: repeat(4, 1fr); }
 
   /* For Who */
-  .for-who .container { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .for-who .container { gap: 16px; }
 
   /* Features */
   .feat { gap: 48px; }
@@ -188,6 +188,7 @@
   .for-who .container { grid-template-columns: 1fr; gap: 16px; }
   .for-who-header { margin-bottom: 4px; }
   .fw-card { padding: 28px 24px; }
+  .fw-list { grid-template-columns: 1fr; }
 
   /* Features */
   .feat { grid-template-columns: 1fr; gap: 32px; }

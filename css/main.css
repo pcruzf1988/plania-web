@@ -514,7 +514,7 @@ a   { text-decoration: none; color: inherit; }
 }
 .for-who .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   align-items: start;
 }
@@ -579,7 +579,7 @@ a   { text-decoration: none; color: inherit; }
   margin-bottom: 24px;
 }
 .fw-list {
-  list-style: none; display: flex; flex-direction: column; gap: 10px;
+  list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px;
 }
 .fw-list li {
   font-size: 14px; color: var(--text-secondary);
