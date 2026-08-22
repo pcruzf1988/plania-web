@@ -161,6 +161,7 @@
     <a href="#que-son">Qué son</a>
     <a href="#esenciales">Esenciales</a>
     <a href="#analiticas">Analíticas</a>
+    <a href="#marketing">Marketing</a>
     <a href="#cambiar">Cambiar tu decisión</a>
     <a href="#borrar">Borrarlas</a>
     <a href="#contacto">Contacto</a>
@@ -183,7 +184,7 @@
   <p>Las cookies son archivos pequeños que un sitio guarda en tu navegador. Algunas son imprescindibles para que la página funcione; otras sirven para medir cómo se usa.</p>
 
   <div class="highlight-box">
-    <p><strong>La versión corta:</strong> usamos dos cookies técnicas para mantener tu sesión iniciada, y dos analíticas de Google Analytics que <strong>solo se activan si las aceptás</strong>. No usamos pixeles publicitarios, ni cookies de perfilado comercial, ni compartimos datos con anunciantes.</p>
+    <p><strong>La versión corta:</strong> usamos dos cookies técnicas para mantener tu sesión iniciada. Todo lo demás &mdash; las analíticas de Google Analytics y el píxel de Meta que usamos para medir nuestra publicidad &mdash; <strong>solo se activa si lo aceptás</strong>, y si decís que no, no se carga nada. Nunca vendemos tus datos, y el contenido que creás dentro de la aplicación no se comparte con anunciantes.</p>
   </div>
 
   <h2 id="esenciales">2. Cookies técnicas esenciales</h2>
@@ -235,20 +236,52 @@
   </div>
   <p>El tratamiento que hace Google de estos datos se rige por su <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad</a>.</p>
 
-  <h2 id="cambiar">4. Cambiar tu decisión</h2>
+  <h2 id="marketing">4. Cookies de marketing</h2>
+  <p>Estas tampoco se instalan si no las aceptás. Las usamos para una sola cosa: saber cuáles de nuestros anuncios en Facebook e Instagram terminan en una cuenta creada, y así dejar de pagar por los que no funcionan. El píxel de Meta se carga tanto en este sitio como en la aplicación.</p>
+  <div class="ck-table-wrap">
+    <table class="ck-table">
+      <thead>
+        <tr><th>Nombre</th><th>Proveedor</th><th>Para qué</th><th>Duración</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>_fbp</code></td>
+          <td>Meta Platforms</td>
+          <td>Identifica el navegador para atribuir un registro al anuncio que lo originó</td>
+          <td>3 meses</td>
+        </tr>
+        <tr>
+          <td><code>_fbc</code></td>
+          <td>Meta Platforms</td>
+          <td>Guarda el identificador del anuncio en el que hiciste clic</td>
+          <td>3 meses</td>
+        </tr>
+        <tr>
+          <td><code>plania_cookie_consent</code></td>
+          <td>PlanIA</td>
+          <td>Recuerda esta misma decisión, para no volver a preguntarte al pasar a la aplicación</td>
+          <td>6 meses</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Si aceptás, Meta recibe que visitaste una página del sitio y, en su caso, que creaste una cuenta o contrataste un plan. <strong>No le mandamos tu nombre, tu correo, ni nada de lo que cargues dentro de la aplicación:</strong> ni los datos de tus clientes, ni los planes de contenido, ni las métricas. El tratamiento que hace Meta de estos datos se rige por su <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">política de privacidad</a>.</p>
+  <p>La cookie <code>plania_cookie_consent</code> es la única que se instala igual si rechazás: sin ella no habría forma de recordar que dijiste que no, y volveríamos a preguntarte en cada página. No contiene ningún identificador tuyo, solo tu respuesta.</p>
+
+  <h2 id="cambiar">5. Cambiar tu decisión</h2>
   <p>Podés cambiar de opinión cuando quieras, y hacerlo no afecta en nada al funcionamiento del servicio.</p>
 
   <div class="ck-state">
     <p>Tu decisión actual: <span class="ck-current" id="ck-current">cargando…</span></p>
     <div class="ck-actions">
       <button type="button" id="ck-reject">Usar solo las esenciales</button>
-      <button type="button" id="ck-accept">Aceptar también las analíticas</button>
+      <button type="button" id="ck-accept">Aceptar también las analíticas y el píxel</button>
     </div>
   </div>
 
-  <p>Si aceptaste antes y ahora elegís solo las esenciales, dejamos de cargar Google Analytics a partir de la próxima carga de página. Para eliminar las cookies que ya estén en tu navegador, seguí el punto siguiente.</p>
+  <p>Si aceptaste antes y ahora elegís solo las esenciales, dejamos de cargar Google Analytics y el píxel de Meta a partir de la próxima carga de página, acá y en la aplicación. Para eliminar las cookies que ya estén en tu navegador, seguí el punto siguiente.</p>
 
-  <h2 id="borrar">5. Borrar las cookies desde tu navegador</h2>
+  <h2 id="borrar">6. Borrar las cookies desde tu navegador</h2>
   <p>Tu navegador te deja ver y borrar las cookies de cualquier sitio, independientemente de lo que decidas acá:</p>
   <ul>
     <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a></li>
@@ -258,7 +291,7 @@
   </ul>
   <p>Tené en cuenta que si borrás las cookies técnicas vas a tener que volver a iniciar sesión.</p>
 
-  <h2 id="contacto">6. Contacto</h2>
+  <h2 id="contacto">7. Contacto</h2>
   <p>Cualquier duda sobre cookies o privacidad: <a href="mailto:info@planiat.com">info@planiat.com</a>. Ver también nuestra <a href="privacidad.html">política de privacidad</a>.</p>
 
 </div>
@@ -285,25 +318,27 @@
 <script src="js/main.js?v=5"></script>
 <script>
 (function () {
-  var KEY = 'plania_cookie_consent';
   var label = document.getElementById('ck-current');
 
-  function read() {
-    try { return localStorage.getItem(KEY); } catch (e) { return null; }
-  }
+  // Toda la lectura y escritura pasa por cookie-consent.js. Antes esto tocaba
+  // localStorage directo, y eso dejaba la cookie compartida con
+  // app.planiat.com sin actualizar: cambiabas la decision aca y la aplicacion
+  // seguia con la anterior.
+  var consent = window.planiaConsent;
 
   function paint() {
-    var v = read();
-    if (v === 'accepted')      label.textContent = 'aceptaste las cookies analíticas';
+    var v = consent ? consent.get() : null;
+    if (v === 'accepted')      label.textContent = 'aceptaste las analíticas y el píxel de Meta';
     else if (v === 'rejected') label.textContent = 'solo cookies esenciales';
     else                       label.textContent = 'todavía no elegiste (por defecto: solo esenciales)';
   }
 
   function choose(value) {
-    try { localStorage.setItem(KEY, value); } catch (e) { /* modo privado */ }
+    if (consent) consent.set(value);
     paint();
     // Recargamos para que el cambio tenga efecto real: si acaba de aceptar hay
-    // que inyectar GA, y si acaba de rechazar hay que dejar de cargarlo.
+    // que inyectar GA y el pixel, y si acaba de rechazar hay que dejar de
+    // cargarlos.
     location.reload();
   }
 

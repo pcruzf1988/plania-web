@@ -146,7 +146,7 @@
   <p>Esta Política de Privacidad describe cómo <strong>PlanIA</strong>, desarrollado por <strong>Rutas Digitales</strong>, recopila, usa y protege la información cuando utilizás nuestra aplicación web.</p>
 
   <div class="highlight-box">
-    <p><strong>Resumen para los que no leen las letras chicas:</strong> PlanIA guarda los datos de tus clientes en Firebase (infraestructura de Google), en São Paulo, cifrados y accesibles solo con tu cuenta. No vendemos ni cedemos tus datos. Dentro de la aplicación no hay analytics ni telemetría; en el sitio público planiat.com sí usamos Google Analytics para medir tráfico. Los servicios externos con los que se comunica PlanIA son cinco: Anthropic (generación con IA), Meta (métricas), Firebase (cuenta y datos), y MercadoPago y Paddle (cobros).</p>
+    <p><strong>Resumen para los que no leen las letras chicas:</strong> PlanIA guarda los datos de tus clientes en Firebase (infraestructura de Google), en São Paulo, cifrados y accesibles solo con tu cuenta. No vendemos ni cedemos tus datos. No medimos qué hacés dentro de la aplicación; lo único que se carga, y solo si lo aceptás, es la medición de nuestra propia publicidad: Google Analytics en el sitio público y el píxel de Meta en los dos. Los servicios externos con los que se comunica PlanIA son cinco: Anthropic (generación con IA), Meta (métricas), Firebase (cuenta y datos), y MercadoPago y Paddle (cobros).</p>
   </div>
 
   <h2 id="responsable">1. Quiénes somos</h2>
@@ -188,7 +188,8 @@
 
   <p><strong>Datos de uso:</strong></p>
   <p>En el <strong>sitio público</strong> (planiat.com) usamos Google Analytics para medir tráfico agregado: cuántas visitas recibe cada página y desde dónde llegan. Para eso se utilizan las cookies <code>_ga</code> y <code>_ga_&lt;ID&gt;</code>.</p>
-  <p>Dentro de la <strong>aplicación</strong> no hay analytics ni telemetría: no medimos qué funciones usás, con qué frecuencia entrás ni ningún otro dato sobre tu actividad. Lo único que se registra son los contadores de uso de funciones con IA, y su única finalidad es aplicar los límites de tu plan.</p>
+  <p><strong>Píxel de Meta (solo si lo aceptás):</strong> hacemos publicidad en Facebook e Instagram, y necesitamos saber cuáles de esos anuncios terminan en una cuenta creada. Para eso cargamos el píxel de Meta en el sitio público y también dentro de la aplicación, donde le informa tres cosas: que se visitó una página, que se creó una cuenta y que se contrató un plan de pago. <strong>Nada más.</strong> Meta no recibe tu nombre, tu correo, los datos de tus clientes, los planes de contenido ni las métricas que importás. Si rechazás las cookies, el píxel no se carga en ningún lado.</p>
+  <p>Fuera de eso, dentro de la <strong>aplicación</strong> no hay analytics ni telemetría: no medimos qué funciones usás, con qué frecuencia entrás ni ningún otro dato sobre tu actividad. Lo único que se registra son los contadores de uso de funciones con IA, y su única finalidad es aplicar los límites de tu plan.</p>
 
   <p><strong>Datos de tu cuenta de usuario (en la nube):</strong></p>
   <ul>
@@ -217,7 +218,7 @@
     <li>Generar informes PDF para presentarle a los clientes.</li>
     <li>Facilitar la gestión del trabajo del community manager dentro de la app.</li>
   </ul>
-  <p>No usamos tu información para publicidad, perfilado comercial ni ningún otro fin que no sea el funcionamiento de la aplicación.</p>
+  <p>No usamos para publicidad ni perfilado comercial nada de lo que cargás en la aplicación: ni los datos de tus clientes, ni los planes de contenido, ni las métricas. Lo único que alimenta nuestra publicidad, y solo si aceptaste las cookies, es el hecho de que se creó una cuenta o se contrató un plan &mdash; para saber qué anuncio lo originó. Podés rechazarlo sin perder ninguna función.</p>
 
   <h2 id="terceros">6. Servicios de terceros</h2>
 
@@ -228,6 +229,7 @@
 
   <p><strong>Meta (Facebook e Instagram)</strong><br>
   Cuando conectás la cuenta de un cliente y actualizás sus métricas, PlanIA se conecta a la API Graph de Meta para importar los datos de esa cuenta. El acceso se realiza con el token de autorización que el usuario de Meta otorga explícitamente. El uso de datos de Meta se rige por las <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener">condiciones de la plataforma de Meta para desarrolladores</a> y su <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">política de privacidad</a>.</p>
+  <p>Meta interviene además, y por una finalidad distinta, a través de su píxel de medición publicitaria. Eso <strong>solo ocurre si aceptaste las cookies</strong> y no tiene relación con las cuentas de tus clientes: le informa que alguien visitó el sitio, creó una cuenta o contrató un plan, para atribuir ese resultado a uno de nuestros anuncios. En este tratamiento Meta actúa como <strong>corresponsable</strong> junto con PlanIA, según su <a href="https://www.facebook.com/legal/controller_addendum" target="_blank" rel="noopener">anexo de responsables de datos</a>.</p>
 
   <p><strong>Firebase (Google Cloud)</strong><br>
   PlanIA usa Firebase Authentication para gestionar el login de usuarios (con email/contraseña o con Google) y Firebase Firestore para almacenar tanto el estado de tu cuenta y suscripción como los datos de trabajo: perfiles de clientes, planes, publicaciones, métricas importadas y notas. Todo se guarda en la región de São Paulo (southamerica-east1), cifrado en reposo por Google Cloud y accesible únicamente con tu cuenta. El uso de Firebase se rige por la <a href="https://firebase.google.com/terms" target="_blank" rel="noopener">política de Firebase</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
@@ -300,12 +302,13 @@
   <p>PlanIA está dirigido exclusivamente a profesionales y personas mayores de 18 años. No recopilamos intencionalmente datos de menores de edad. Si tenés conocimiento de que un menor ha proporcionado información a través de la aplicación, contactanos para proceder a su eliminación.</p>
 
   <h2 id="cookies">13. Cookies</h2>
-  <p>PlanIA usa dos tipos de cookies:</p>
+  <p>PlanIA usa tres tipos de cookies:</p>
   <ul>
     <li><strong>Técnicas esenciales:</strong> las de Firebase Authentication, necesarias para mantener tu sesión iniciada. Sin ellas la aplicación no funciona, y por eso no requieren consentimiento.</li>
     <li><strong>Analíticas:</strong> las de Google Analytics (<code>_ga</code> y <code>_ga_&lt;ID&gt;</code>) en el sitio público planiat.com, para medir tráfico agregado. <strong>Estas solo se activan si las aceptás</strong>, y podés cambiar de opinión cuando quieras.</li>
+    <li><strong>De marketing:</strong> las del píxel de Meta (<code>_fbp</code> y <code>_fbc</code>), en el sitio público y en la aplicación, para medir qué anuncios nuestros terminan en un registro. <strong>Estas también dependen de que las aceptes</strong>, y rechazarlas no limita ninguna función.</li>
   </ul>
-  <p>No usamos pixeles publicitarios ni cookies de terceros con fines de perfilado comercial. El detalle completo, con nombre, finalidad y duración de cada cookie, está en la <a href="cookies.html">política de cookies</a>.</p>
+  <p>Tu decisión se recuerda en la cookie <code>plania_cookie_consent</code>, que se comparte entre planiat.com y app.planiat.com para no preguntártelo dos veces. El detalle completo, con nombre, finalidad y duración de cada cookie, está en la <a href="cookies.html">política de cookies</a>.</p>
 
   <h2 id="cambios">14. Cambios en esta política</h2>
   <p>Podemos actualizar esta política en cualquier momento. Los cambios significativos se comunicarán a través de una notificación dentro de la aplicación. La fecha de la última actualización siempre estará indicada al inicio de este documento.</p>

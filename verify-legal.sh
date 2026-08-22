@@ -122,4 +122,41 @@ assert_present "cookie-consent.js" dpa.html
 # Compromiso explicito que los clientes preguntan y que hay que poder sostener.
 assert_present "no los usamos para entrenar modelos" dpa.html
 
+# ── Pixel de Meta ───────────────────────────────────────────────────────────
+# El pixel se carga en planiat.com y en app.planiat.com. Estas afirmaciones
+# eran ciertas antes y dejaron de serlo: si alguna vuelve, el documento miente
+# sobre lo que el sitio hace con los datos de sus visitantes.
+assert_absent "No usamos pixeles publicitarios"
+assert_absent "no hay analytics ni telemetría; en el sitio público"
+assert_absent "ni compartimos datos con anunciantes"
+
+# La contracara: el pixel tiene que estar documentado con nombre y duracion.
+assert_present "_fbp" cookies.html
+assert_present "_fbc" cookies.html
+assert_present "plania_cookie_consent" cookies.html
+assert_present "píxel de Meta" privacidad.html
+assert_present "de marketing" privacidad.html
+
+# Meta es CORRESPONSABLE del tratamiento del pixel, no encargado: decide por su
+# cuenta que hace con esos datos. Confundirlo cambia el regimen legal aplicable.
+assert_present "corresponsable" privacidad.html
+
+# El pixel no puede cargarse antes del consentimiento en ninguno de los dos
+# repos. Si aparece un snippet suelto fuera del gate, esto tiene que gritar.
+if rg -q "connect.facebook.net" ./*.html; then
+  echo "FALLA: el pixel esta incrustado en el HTML, fuera del gate de consentimiento"; fail=1
+else
+  echo "OK: el pixel solo se carga desde cookie-consent.js"
+fi
+
+# El <noscript><img src=".../tr?id=..."> que Meta entrega junto al snippet se
+# dispara al cargar la pagina, sin pasar por ningun gate. Es HTML estatico: no
+# hay forma de condicionarlo al consentimiento. Por eso se omite a proposito, y
+# esto existe para que no lo pegue nadie "porque venia en el codigo de Meta".
+if rg -q "facebook.com/tr" ./*.html; then
+  echo "FALLA: el pixel <noscript> se dispara sin consentimiento"; fail=1
+else
+  echo "OK: sin pixel <noscript>"
+fi
+
 exit $fail
