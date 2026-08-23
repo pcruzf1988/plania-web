@@ -61,7 +61,11 @@ body::after {
   background-size: 180px;
 }
 
-img { max-width: 100%; display: block; }
+/* height:auto es obligatorio: las etiquetas <img> declaran width y height
+   intrinsecos para reservar el hueco antes de que cargue la imagen. Sin esta
+   regla el navegador toma ese height como alto fijo mientras el ancho se
+   escala al contenedor, y la imagen sale deformada. */
+img { max-width: 100%; height: auto; display: block; }
 a   { text-decoration: none; color: inherit; }
 
 ::selection { background: var(--tierra); color: white; }
@@ -446,7 +450,7 @@ a   { text-decoration: none; color: inherit; }
   letter-spacing: .02em;
 }
 .screenshot-wrap img {
-  display: block; width: 100%;
+  display: block; width: 100%; height: auto;
   border-radius: 0;
 }
 
