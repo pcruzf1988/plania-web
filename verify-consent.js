@@ -33,6 +33,8 @@ function run(stored) {
     addEventListener() {},
     head: { appendChild(c) { appended.push(c); } },
     body: { appendChild(c) { appended.push(c); } },
+    // El snippet del pixel de Meta inserta su <script> antes del primero.
+    getElementsByTagName: () => [{ parentNode: { insertBefore(c) { appended.push(c); } } }],
   };
 
   const win = {
@@ -43,7 +45,8 @@ function run(stored) {
     },
   };
 
-  const ctx = { window: win, document: doc, localStorage: win.localStorage };
+  // writeCookie lee location.hostname para decidir el domain de la cookie.
+  const ctx = { window: win, document: doc, localStorage: win.localStorage, location: { hostname: 'planiat.com' } };
   ctx.window.document = doc;
   vm.createContext(ctx);
   vm.runInContext(SRC, ctx);
