@@ -39,3 +39,4 @@ jobs:
             package.json
             package-lock.json
             skills-lock.json
+            verify-origin-links.js
