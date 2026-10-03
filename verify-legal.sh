@@ -159,4 +159,10 @@ else
   echo "OK: sin pixel <noscript>"
 fi
 
+# ── Medicion de origen de registros ─────────────────────────────────────────
+# La app guarda de donde llego cada cuenta y, si la persona quiere contarlo,
+# como nos conocio. La politica tiene que decirlo antes de que la app lo guarde.
+assert_present "de dónde llegaste" privacidad.html
+assert_present "cómo nos conociste" privacidad.html
+
 exit $fail
