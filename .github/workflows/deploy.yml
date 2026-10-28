@@ -40,3 +40,4 @@ jobs:
             package-lock.json
             skills-lock.json
             verify-origin-links.js
+            verify-short-links.js
