@@ -7,6 +7,10 @@
 
 RewriteEngine On
 
+# Los archivos con punto no se sirven: .ftp-deploy-sync-state.json (lo escribe el
+# deploy por FTP) lista todo el sitio. .well-known queda abierto para el SSL.
+RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
 RewriteRule ^ig/?$ /?utm_source=instagram&utm_medium=bio [R=302,L,QSA]
 RewriteRule ^fb/?$ /?utm_source=facebook&utm_medium=bio [R=302,L,QSA]
 RewriteRule ^li/?$ /?utm_source=linkedin&utm_medium=bio [R=302,L,QSA]

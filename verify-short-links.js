@@ -26,7 +26,7 @@ function reglas() {
     });
 }
 
-// Pide una ruta como el navegador. Devuelve "302 destino" o "sirve" (sin redirigir).
+// Pide una ruta como el navegador. Devuelve "302 destino", "403" o "sirve".
 function pedir(url) {
   const [ruta, query = ''] = url.split('?');
   // En un .htaccess de la raiz, Apache compara la ruta sin la barra inicial.
@@ -34,6 +34,7 @@ function pedir(url) {
   for (const r of reglas()) {
     const m = path.match(r.patron);
     if (!m) continue;
+    if (r.flags.includes('F')) return r.flags.includes('L') ? '403' : 'regla sin [F,L]';
     let destino = r.destino.replace(/\$(\d)/g, (_, n) => m[Number(n)] ?? '');
     if (query && r.flags.includes('QSA')) destino += (destino.includes('?') ? '&' : '?') + query;
     const redirige = r.flags.find((f) => f.startsWith('R'));
@@ -72,6 +73,13 @@ const casos = [
   ['un id que no es de pieza no redirige', '/ig/hola', 'sirve'],
   ['un kind desconocido no redirige', '/fb/2026-11-04-reel-1', 'sirve'],
   ['/wa no tiene links por pieza', '/wa/2026-11-04-post-1', 'sirve'],
+
+  // Los archivos con punto no se sirven: el estado del FTP lista el sitio entero.
+  ['el estado del deploy por FTP no se sirve', '/.ftp-deploy-sync-state.json', '403'],
+  ['el .htaccess no se sirve', '/.htaccess', '403'],
+  ['un archivo con punto en una carpeta no se sirve', '/assets/.DS_Store', '403'],
+  ['.well-known sigue sirviendo (certificado SSL)', '/.well-known/acme-challenge/abc', 'sirve'],
+  ['un archivo con punto en el medio del nombre sirve', '/css/styles.min.css', 'sirve'],
 ];
 
 let fail = 0;
@@ -83,7 +91,8 @@ function informa(ok, nombre, detalle) {
 
 informa(HTACCESS !== '', 'existe .htaccess en la raiz');
 informa(/^\s*RewriteEngine\s+On\s*$/m.test(HTACCESS), 'el .htaccess prende RewriteEngine');
-informa(reglas().length === 7, 'el .htaccess tiene exactamente 7 reglas', `tiene ${reglas().length}`);
+const redirecciones = reglas().filter((r) => r.flags.some((f) => f.startsWith('R'))).length;
+informa(redirecciones === 7, 'el .htaccess tiene exactamente 7 redirecciones', `tiene ${redirecciones}`);
 
 // El FTP sube lo que el exclude no saca. Un patron como **/.* o .htaccess dejaria
 // el sitio sin redirecciones sin que nadie se entere.
@@ -91,7 +100,10 @@ const exclude = (WORKFLOW.match(/exclude:\s*\|\n((?:\s+.+\n?)+)/) || [, ''])[1]
   .split('\n').map((l) => l.trim()).filter(Boolean);
 const sacaHtaccess = exclude.filter((p) => p.includes('htaccess') || /(^|\/)\.\*/.test(p) || p === '.*');
 informa(sacaHtaccess.length === 0, 'el deploy no excluye .htaccess', `excluye con ${JSON.stringify(sacaHtaccess)}`);
-informa(exclude.includes('verify-short-links.js'), 'el deploy no sube este verificador');
+// Los verificadores son del repo, no del sitio.
+const verificadores = fs.readdirSync('.').filter((f) => /^verify-/.test(f));
+const subidos = verificadores.filter((f) => !exclude.includes(f));
+informa(subidos.length === 0, 'el deploy no sube los verificadores', `sube ${JSON.stringify(subidos)}`);
 
 for (const [nombre, url, esperado] of casos) {
   let obtenido;
