@@ -1,0 +1,17 @@
+# Links cortos de redes (spec etapa 3, 3.6). Verificacion: node verify-short-links.js
+#
+# /ig, /fb, /li y /wa van en las bios; /{fb|li|ig}/{planItemId} va en las piezas.
+# El planItemId es YYYY-MM-DD-{post|story}-n: el mes sale como utm_campaign y el
+# kind como utm_medium. QSA conserva cualquier otro query string. Lo que no
+# matchea sigue sirviendo la landing como siempre.
+
+RewriteEngine On
+
+RewriteRule ^ig/?$ /?utm_source=instagram&utm_medium=bio [R=302,L,QSA]
+RewriteRule ^fb/?$ /?utm_source=facebook&utm_medium=bio [R=302,L,QSA]
+RewriteRule ^li/?$ /?utm_source=linkedin&utm_medium=bio [R=302,L,QSA]
+RewriteRule ^wa/?$ /?utm_source=whatsapp&utm_medium=bio [R=302,L,QSA]
+
+RewriteRule ^li/(([0-9]{4}-[0-9]{2})-[0-9]{2}-(post|story)-[0-9]+)/?$ /?utm_source=linkedin&utm_medium=$3&utm_campaign=$2&utm_content=$1 [R=302,L,QSA]
+RewriteRule ^fb/(([0-9]{4}-[0-9]{2})-[0-9]{2}-(post|story)-[0-9]+)/?$ /?utm_source=facebook&utm_medium=$3&utm_campaign=$2&utm_content=$1 [R=302,L,QSA]
+RewriteRule ^ig/(([0-9]{4}-[0-9]{2})-[0-9]{2}-(post|story)-[0-9]+)/?$ /?utm_source=instagram&utm_medium=$3&utm_campaign=$2&utm_content=$1 [R=302,L,QSA]
