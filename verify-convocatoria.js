@@ -64,6 +64,9 @@ const TEXTOS = [
   'herramienta o app',
   'planificar, pedir aprobación a tus clientes e informar',
   'herramientas o apps pagás',
+  // Mensaje de texto corto (Pedro, 2026-10-29): el cliente dice el minimo y la pregunta lo muestra.
+  'necesita al menos ',
+  'al menos 20 caracteres',
 ];
 
 // Devuelve los atributos de cada etiqueta <input>, <select> o <textarea> del HTML.

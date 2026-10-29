@@ -89,6 +89,7 @@
 
   function faltante(campo) { return 'Completá el campo "' + ETIQUETAS[campo] + '".'; }
   function revisar(campo) { return 'Revisá el campo "' + ETIQUETAS[campo] + '".'; }
+  function corto(campo, min) { return 'Revisá el campo "' + ETIQUETAS[campo] + '": necesita al menos ' + min + ' caracteres.'; }
 
   function mostrar(kind, text) {
     msgBox.className = 'conv-msg show ' + kind;
@@ -182,7 +183,7 @@
       }
       if (LARGOS[campo]) {
         if (valor.length > LARGOS[campo][1]) datos[campo] = valor = valor.slice(0, LARGOS[campo][1]);
-        if (valor.length < LARGOS[campo][0]) return { ok: false, error: revisar(campo), campo: campo };
+        if (valor.length < LARGOS[campo][0]) return { ok: false, error: corto(campo, LARGOS[campo][0]), campo: campo };
       }
     }
     return { ok: true, datos: datos };
