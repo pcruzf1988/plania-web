@@ -131,8 +131,8 @@ function tieneAttrs(name, esperados) {
   informa(faltan.length === 0, `${name} lleva ${Object.entries(esperados).map(([k, v]) => `${k}="${v}"`).join(' ')}`,
     `faltan o difieren: ${JSON.stringify(faltan)}`);
 }
-tieneAttrs('clientesActivos', { type: 'number', min: '0', max: '50', step: '1' });
-tieneAttrs('clientesIgFb', { type: 'number', min: '0', max: '50', step: '1' });
+tieneAttrs('clientesActivos', { type: 'text', inputmode: 'numeric', pattern: '[0-9]*', maxlength: '2' });
+tieneAttrs('clientesIgFb', { type: 'text', inputmode: 'numeric', pattern: '[0-9]*', maxlength: '2' });
 tieneAttrs('expectativa', { minlength: '20', maxlength: '600' });
 tieneAttrs('nombre', { minlength: '2', maxlength: '80' });
 for (const otro of ['rolOtro', 'planificacionOtro', 'cobroOtro']) tieneAttrs(otro, { type: 'text', maxlength: '120' });
