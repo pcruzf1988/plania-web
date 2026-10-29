@@ -27,22 +27,22 @@
 
   // Copia de proxy-plania/convocatoria.js (Tarea A2 del plan).
   var CAMPOS = [
-    'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido', 'rol',
-    'antiguedad', 'tendencia', 'clientesActivos', 'clientesIgFb', 'redes', 'planificacion',
-    'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'tarifa', 'disponibilidad',
+    'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido', 'rol', 'rolOtro',
+    'antiguedad', 'tendencia', 'clientesActivos', 'clientesIgFb', 'redes', 'planificacion', 'planificacionOtro',
+    'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'cobroOtro', 'tarifa', 'disponibilidad',
     'expectativa', 'comoSeEntero', 'aceptoContacto',
   ];
   var LISTAS = {
-    pais: ['argentina', 'chile', 'espana', 'uruguay', 'mexico', 'colombia', 'peru', 'otro'],
+    pais: ['argentina', 'chile', 'espana', 'uruguay', 'mexico', 'colombia', 'peru', 'estados_unidos', 'bolivia', 'costa_rica', 'cuba', 'ecuador', 'el_salvador', 'guatemala', 'honduras', 'nicaragua', 'panama', 'paraguay', 'puerto_rico', 'republica_dominicana', 'venezuela', 'otro'],
     contactoPreferido: ['whatsapp', 'correo', 'instagram'],
-    rol: ['freelance_full', 'freelance_part', 'agencia_propia', 'empleado'],
+    rol: ['freelance_full', 'freelance_part', 'agencia_propia', 'empleado', 'otro'],
     antiguedad: ['menos_1', '1_a_3', 'mas_3'],
     tendencia: ['creciendo', 'estable', 'achicandose'],
     redes: ['instagram', 'facebook', 'tiktok', 'linkedin', 'youtube', 'x', 'pinterest', 'otra'],
-    planificacion: ['planilla', 'herramienta', 'no_planifica'],
+    planificacion: ['planilla', 'herramienta', 'no_planifica', 'otra'],
     informes: ['siempre', 'a_veces', 'no'],
     horasMes: ['menos_5', '5_a_15', 'mas_15'],
-    cobro: ['fee_mensual', 'por_proyecto', 'mezcla'],
+    cobro: ['fee_mensual', 'por_proyecto', 'mezcla', 'otro'],
     tarifa: ['menos_100', '100_a_300', '300_a_600', 'mas_600', 'no_dice'],
     disponibilidad: ['ambos', 'uno', 'no'],
     comoSeEntero: ['instagram_plania', 'anuncio', 'recomendacion', 'otro'],
@@ -55,16 +55,19 @@
     pais: 'país',
     contactoPreferido: 'medio de contacto',
     rol: 'cómo trabajás hoy',
+    rolOtro: 'cómo trabajás hoy (otro)',
     antiguedad: 'antigüedad',
     tendencia: 'cartera de clientes',
     clientesActivos: 'clientes activos',
     clientesIgFb: 'clientes con Instagram y Facebook',
     redes: 'redes que gestionás',
     planificacion: 'cómo armás los planes',
+    planificacionOtro: 'cómo armás los planes (otra)',
     informes: 'informes de métricas',
     horasMes: 'horas por mes',
     herramientasQuePaga: 'herramientas que pagás',
     cobro: 'cómo cobrás',
+    cobroOtro: 'cómo cobrás (otro)',
     tarifa: 'cuánto cobrás',
     disponibilidad: 'disponibilidad',
     expectativa: 'qué esperás resolver',
@@ -74,6 +77,8 @@
   var OPCIONALES = { herramientasQuePaga: true, tarifa: true, comoSeEntero: true };
   var LARGOS = { nombre: [2, 80], whatsapp: [8, 20], instagram: [1, 40], herramientasQuePaga: [0, 300], expectativa: [20, 600] };
   var ENTEROS = { clientesActivos: true, clientesIgFb: true };
+  // Texto libre que solo existe cuando su select vale "otro" (mismo criterio que el backend).
+  var OTROS = { rolOtro: ['rol', 'otro'], planificacionOtro: ['planificacion', 'otra'], cobroOtro: ['cobro', 'otro'] };
   var CORREO = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
   var estado = document.getElementById('conv-estado');
@@ -148,6 +153,12 @@
         }
         continue;
       }
+      if (OTROS[campo]) {
+        if (datos[OTROS[campo][0]] !== OTROS[campo][1]) { datos[campo] = ''; continue; }
+        if (valor === '') return { ok: false, error: faltante(campo), campo: campo };
+        if (valor.length > 120) datos[campo] = valor.slice(0, 120);
+        continue;
+      }
       if (valor === '') {
         if (OPCIONALES[campo]) continue;
         return { ok: false, error: faltante(campo), campo: campo };
@@ -186,6 +197,15 @@
     btn.disabled = false;
     btn.textContent = 'Postularme';
   }
+
+  // Muestra el texto libre solo cuando el select que lo acompaña vale "otro".
+  Object.keys(OTROS).forEach(function (campo) {
+    var select = form.querySelector('[name="' + OTROS[campo][0] + '"]');
+    var wrap = document.getElementById('conv-' + campo + '-wrap');
+    function sincronizar() { wrap.hidden = select.value !== OTROS[campo][1]; }
+    select.addEventListener('change', sincronizar);
+    sincronizar();
+  });
 
   function cargarEstado() {
     fetch(PROXY_URL + '/api/convocatoria/estado')
