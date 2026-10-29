@@ -360,12 +360,12 @@
 
     <div class="conv-field">
       <label for="conv-clientesActivos">¿Cuántos clientes activos tenés hoy?</label>
-      <input type="number" id="conv-clientesActivos" name="clientesActivos" inputmode="numeric" min="0" max="50" step="1" placeholder="ej.: 4" required>
+      <input type="text" id="conv-clientesActivos" name="clientesActivos" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" placeholder="ej.: 4" required>
     </div>
 
     <div class="conv-field">
       <label for="conv-clientesIgFb">¿Cuántos de esos clientes tienen Instagram vinculado a una página de Facebook?</label>
-      <input type="number" id="conv-clientesIgFb" name="clientesIgFb" inputmode="numeric" min="0" max="50" step="1" placeholder="ej.: 3" required>
+      <input type="text" id="conv-clientesIgFb" name="clientesIgFb" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" placeholder="ej.: 3" required>
     </div>
 
     <div class="conv-field">
