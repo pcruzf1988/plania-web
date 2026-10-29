@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convocatoria Pro: 2 meses de PlanIA Pro gratis · PlanIA</title>
+  <meta name="description" content="Buscamos community y social media managers para probar PlanIA Pro gratis durante diciembre y enero. Postulate en dos minutos.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="canonical" href="https://planiat.com/convocatoria/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://planiat.com/convocatoria/">
+  <meta property="og:title" content="Convocatoria Pro: 2 meses de PlanIA Pro gratis">
+  <meta property="og:description" content="Buscamos community y social media managers para probar PlanIA Pro gratis durante diciembre y enero. Postulate en dos minutos.">
+  <meta property="og:site_name" content="PlanIA">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css?v=6">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .legal-header {
+      background: var(--carbon);
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .legal-header .label { color: rgba(255,255,255,.55); }
+    .legal-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; color: white;
+      letter-spacing: -.03em; margin-bottom: 12px;
+    }
+    .legal-header p { color: var(--text-muted); font-size: 15px; }
+
+    .legal-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 48px;
+      overflow-wrap: break-word;
+    }
+    .legal-body h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary); margin: 40px 0 12px;
+      letter-spacing: -.01em;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 14px;
+    }
+    .legal-body ul { margin: 0 0 16px 20px; }
+    .legal-body ul li {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 6px;
+    }
+    .legal-body strong { color: var(--text-primary); font-weight: 600; }
+    .legal-body a { color: var(--tierra); }
+    .legal-body a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--tierra-light);
+      border-left: 3px solid var(--tierra);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight-box p { color: var(--text-primary); margin: 0; font-size: 14px; }
+
+    body { padding-top: 66px; }
+
+    /* ── Formulario ─────────────────────────────────────────────────── */
+    .conv-form {
+      display: flex; flex-direction: column; gap: 22px;
+      margin-top: 28px;
+    }
+    .conv-field { display: flex; flex-direction: column; gap: 7px; }
+    .conv-field label,
+    .conv-field legend {
+      font-size: 14px; font-weight: 600;
+      color: var(--text-primary);
+      padding: 0;
+    }
+    .conv-field .hint { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+    .conv-field .motivo { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.6; }
+    .conv-field input,
+    .conv-field select,
+    .conv-field textarea {
+      font-family: inherit; font-size: 16px;
+      color: var(--text-primary);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+    .conv-field select {
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%236B6157' stroke-width='2'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+    .conv-field textarea { resize: vertical; min-height: 120px; }
+    .conv-field input:focus,
+    .conv-field select:focus,
+    .conv-field textarea:focus {
+      outline: none;
+      border-color: var(--tierra);
+      box-shadow: 0 0 0 3px var(--tierra-light);
+    }
+    .conv-field input::placeholder,
+    .conv-field textarea::placeholder { color: var(--text-muted); }
+
+    .conv-field fieldset { border: none; margin: 0; padding: 0; min-width: 0; }
+    .conv-checks {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+      margin-top: 8px;
+    }
+    .conv-check {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 500; color: var(--text-primary);
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px; cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .conv-check:hover { border-color: var(--tierra); }
+    .conv-check input {
+      width: 20px; height: 20px; margin: 0; flex: none;
+      accent-color: var(--tierra);
+    }
+
+    .conv-consent {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; font-weight: 400; color: var(--text-secondary);
+      line-height: 1.6; cursor: pointer;
+    }
+    .conv-consent input {
+      width: 20px; height: 20px; margin: 2px 0 0; flex: none;
+      accent-color: var(--tierra);
+    }
+
+    /* Honeypot: lo ve un bot, no una persona. */
+    .conv-trampa {
+      position: absolute; left: -9999px; top: -9999px;
+      width: 1px; height: 1px; overflow: hidden; opacity: 0;
+    }
+
+    .conv-submit {
+      align-self: flex-start;
+      font-family: inherit; font-size: 15px; font-weight: 600;
+      color: white; background: var(--tierra);
+      border: none; border-radius: var(--radius-sm);
+      padding: 14px 28px; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .conv-submit:hover:not(:disabled) { background: var(--tierra-dark); transform: translateY(-1px); }
+    .conv-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .conv-msg {
+      font-size: 14px; line-height: 1.7;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    .conv-msg.show { display: block; }
+    .conv-msg.ok {
+      background: rgba(61,90,62,.08);
+      border-left: 3px solid var(--verde);
+      color: var(--text-primary);
+    }
+    .conv-msg.err {
+      background: rgba(196,98,45,.08);
+      border-left: 3px solid var(--tierra);
+      color: var(--text-primary);
+    }
+    .conv-msg.info {
+      background: var(--surface-2);
+      border-left: 3px solid var(--ocre);
+      color: var(--text-primary);
+      font-size: 15px;
+    }
+    .conv-msg p { margin: 0; color: inherit; font-size: inherit; }
+    .conv-msg p + p { margin-top: 8px; }
+
+    @media(max-width: 900px) {
+      /* Sin menu hamburguesa en esta pagina: logo a la izquierda, boton a la derecha. */
+      .nav .container { justify-content: space-between; }
+    }
+    @media(max-width: 768px) {
+      .legal-header { padding: 40px 0 32px; }
+      .legal-header h1 { font-size: clamp(22px, 7vw, 34px); }
+      .legal-body { padding: 36px 20px 56px; }
+      .legal-body h2 { font-size: 16px; margin: 32px 0 10px; }
+      .legal-body p, .legal-body ul li { font-size: 14px; }
+      .legal-body ul { margin-left: 16px; }
+      .highlight-box { padding: 14px 16px; }
+      .conv-checks { grid-template-columns: 1fr; }
+      .conv-submit { align-self: stretch; text-align: center; padding: 16px 28px; font-size: 16px; }
+    }
+  </style>
+  <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
+       si el usuario acepta. Ver js/cookie-consent.js -->
+  <script src="../js/cookie-consent.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="container">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/images/logo-plania.png" alt="PlanIA">
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#funciones">Funciones</a></li>
+      <li><a href="../index.html#precios">Precios</a></li>
+    </ul>
+    <a href="../index.html#precios" class="btn btn-tierra nav-cta">Empezar gratis →</a>
+  </div>
+</header>
+
+<!-- HEADER -->
+<div class="legal-header">
+  <div class="container">
+    <div class="label">Para community y social media managers</div>
+    <h1>Convocatoria Pro: 2 meses de PlanIA Pro gratis</h1>
+    <p>Postulate en dos minutos desde el celular. Completá el formulario y te contactamos.</p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="legal-body">
+
+  <p>Estamos buscando community y social media managers que quieran probar <strong>PlanIA Pro</strong> con sus clientes reales durante <strong>diciembre y enero</strong>, sin pagar nada. Vos lo usás, nos contás qué funciona y qué no, y nosotros mejoramos la app con eso.</p>
+
+  <h2>Qué te llevás</h2>
+  <ul>
+    <li><strong>Pro completo:</strong> 10 clientes, 12 planes y 12 informes por mes.</li>
+    <li><strong>Capacitación grupal en vivo</strong> para arrancar con todo.</li>
+    <li><strong>Línea directa con el equipo</strong> y tus ideas dentro de la app.</li>
+  </ul>
+
+  <h2>Qué te pedimos</h2>
+  <ul>
+    <li>Al menos <strong>3 clientes con Instagram vinculado a una página de Facebook</strong>.</li>
+    <li>Una cuenta en <strong>app.planiat.com</strong> (si no la tenés, la creás gratis cuando quedes seleccionado).</li>
+    <li>Una <strong>encuesta breve por mes</strong> para contarnos cómo te fue.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <p><strong>Primera etapa hasta el 8 de noviembre. Resultados el lunes 9.</strong> Hay 10 lugares por etapa; si no quedás en la primera, seguís en lista para la segunda, que abre el jueves 12 de noviembre.</p>
+  </div>
+
+  <div class="conv-msg info" id="conv-estado"></div>
+
+  <form class="conv-form" id="conv-form" novalidate>
+    <h2>Postulate</h2>
+
+    <div class="conv-field">
+      <label for="conv-nombre">Nombre y apellido</label>
+      <input type="text" id="conv-nombre" name="nombre" placeholder="ej.: Ana Pérez" required minlength="2" maxlength="80" autocomplete="name">
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-correo">Correo electrónico <span class="hint">— acá te mandamos los resultados</span></label>
+      <input type="email" id="conv-correo" name="correo" placeholder="ej.: tumail@email.com" required maxlength="160" autocomplete="email">
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-whatsapp">WhatsApp <span class="hint">— con código de país</span></label>
+      <input type="tel" id="conv-whatsapp" name="whatsapp" placeholder="ej.: +54 9 11 2345 6789" required maxlength="30" autocomplete="tel">
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-instagram">Tu Instagram <span class="hint">— con o sin @</span></label>
+      <input type="text" id="conv-instagram" name="instagram" placeholder="ej.: @tu.usuario" required maxlength="41" autocomplete="off" autocapitalize="none">
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-pais">País</label>
+      <select id="conv-pais" name="pais" required>
+        <option value="">Elegí una opción</option>
+        <option value="argentina">Argentina</option>
+        <option value="chile">Chile</option>
+        <option value="espana">España</option>
+        <option value="uruguay">Uruguay</option>
+        <option value="mexico">México</option>
+        <option value="colombia">Colombia</option>
+        <option value="peru">Perú</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-contactoPreferido">¿Por dónde preferís que te contactemos si quedás seleccionado?</label>
+      <select id="conv-contactoPreferido" name="contactoPreferido" required>
+        <option value="">Elegí una opción</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="correo">Correo</option>
+        <option value="instagram">Instagram</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-rol">¿Cómo trabajás hoy?</label>
+      <select id="conv-rol" name="rol" required>
+        <option value="">Elegí una opción</option>
+        <option value="freelance_full">Freelance full time</option>
+        <option value="freelance_part">Freelance part time</option>
+        <option value="agencia_propia">Tengo agencia propia</option>
+        <option value="empleado">Empleado en una agencia o empresa</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-antiguedad">¿Hace cuánto trabajás como CM?</label>
+      <select id="conv-antiguedad" name="antiguedad" required>
+        <option value="">Elegí una opción</option>
+        <option value="menos_1">Menos de 1 año</option>
+        <option value="1_a_3">1 a 3 años</option>
+        <option value="mas_3">Más de 3 años</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-tendencia">¿Cómo viene tu cartera de clientes?</label>
+      <select id="conv-tendencia" name="tendencia" required>
+        <option value="">Elegí una opción</option>
+        <option value="creciendo">Creciendo</option>
+        <option value="estable">Estable</option>
+        <option value="achicandose">Achicándose</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-clientesActivos">¿Cuántos clientes activos tenés hoy?</label>
+      <input type="number" id="conv-clientesActivos" name="clientesActivos" inputmode="numeric" min="0" max="50" step="1" placeholder="ej.: 4" required>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-clientesIgFb">¿Cuántos de esos clientes tienen Instagram vinculado a una página de Facebook?</label>
+      <input type="number" id="conv-clientesIgFb" name="clientesIgFb" inputmode="numeric" min="0" max="50" step="1" placeholder="ej.: 3" required>
+    </div>
+
+    <div class="conv-field">
+      <fieldset>
+        <legend>¿Qué redes gestionás? <span class="hint">— marcá todas las que uses</span></legend>
+        <div class="conv-checks">
+          <label class="conv-check"><input type="checkbox" name="redes" value="instagram"> Instagram</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="facebook"> Facebook</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="tiktok"> TikTok</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="linkedin"> LinkedIn</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="youtube"> YouTube</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="x"> X</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="pinterest"> Pinterest</label>
+          <label class="conv-check"><input type="checkbox" name="redes" value="otra"> Otra</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-planificacion">¿Cómo armás hoy los planes de contenido?</label>
+      <select id="conv-planificacion" name="planificacion" required>
+        <option value="">Elegí una opción</option>
+        <option value="planilla">En una planilla o documento</option>
+        <option value="herramienta">Con una herramienta específica</option>
+        <option value="no_planifica">No planifico por adelantado</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-informes">¿Entregás informes de métricas a tus clientes?</label>
+      <select id="conv-informes" name="informes" required>
+        <option value="">Elegí una opción</option>
+        <option value="siempre">Sí, todos los meses</option>
+        <option value="a_veces">A veces</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-horasMes">¿Cuántas horas por mes te lleva planificar e informar?</label>
+      <select id="conv-horasMes" name="horasMes" required>
+        <option value="">Elegí una opción</option>
+        <option value="menos_5">Menos de 5</option>
+        <option value="5_a_15">5 a 15</option>
+        <option value="mas_15">Más de 15</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-herramientasQuePaga">¿Qué herramientas pagás hoy para tu trabajo? <span class="hint">— opcional</span></label>
+      <input type="text" id="conv-herramientasQuePaga" name="herramientasQuePaga" placeholder="ej.: diseño, programación de posts, métricas" maxlength="300">
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-cobro">¿Cómo cobrás a tus clientes?</label>
+      <select id="conv-cobro" name="cobro" required>
+        <option value="">Elegí una opción</option>
+        <option value="fee_mensual">Fee mensual fijo</option>
+        <option value="por_proyecto">Por trabajo o proyecto</option>
+        <option value="mezcla">Mezcla</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-tarifa">¿Cuánto cobrás por cliente al mes, aproximadamente? <span class="hint">— opcional, o el equivalente en tu moneda</span></label>
+      <p class="motivo">Esto nos ayuda a entender tu negocio; no cambia tu postulación.</p>
+      <select id="conv-tarifa" name="tarifa">
+        <option value="">Elegí una opción</option>
+        <option value="menos_100">Menos de USD 100</option>
+        <option value="100_a_300">USD 100 a 300</option>
+        <option value="300_a_600">USD 300 a 600</option>
+        <option value="mas_600">Más de USD 600</option>
+        <option value="no_dice">Prefiero no decirlo</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-disponibilidad">¿Vas a estar trabajando con tus clientes en diciembre y enero?</label>
+      <select id="conv-disponibilidad" name="disponibilidad" required>
+        <option value="">Elegí una opción</option>
+        <option value="ambos">Sí, los dos meses</option>
+        <option value="uno">Solo uno</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-expectativa">¿Qué esperás resolver con PlanIA?</label>
+      <textarea id="conv-expectativa" name="expectativa" placeholder="Contanos qué te gustaría dejar de hacer a mano, qué te lleva más tiempo o qué querés mejorar para tus clientes." required minlength="20" maxlength="600"></textarea>
+    </div>
+
+    <div class="conv-field">
+      <label for="conv-comoSeEntero">¿Cómo te enteraste de la convocatoria? <span class="hint">— opcional</span></label>
+      <select id="conv-comoSeEntero" name="comoSeEntero">
+        <option value="">Elegí una opción</option>
+        <option value="instagram_plania">Por el Instagram de PlanIA</option>
+        <option value="anuncio">Por un anuncio</option>
+        <option value="recomendacion">Me lo pasó alguien</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="conv-field">
+      <label class="conv-consent" for="conv-aceptoContacto">
+        <input type="checkbox" id="conv-aceptoContacto" name="aceptoContacto" value="true" required>
+        <span>Acepto que PlanIA me contacte por el medio que elegí y guarde mis datos para la selección, según la <a href="../privacidad.html#convocatoria" target="_blank" rel="noopener">política de privacidad</a>.</span>
+      </label>
+    </div>
+
+    <!-- Honeypot: una persona no lo ve ni lo puede tabular; si llega con valor, el proxy responde ok y no guarda. -->
+    <div class="conv-trampa" aria-hidden="true">
+      <label for="conv-sitio">Sitio web</label>
+      <input type="text" id="conv-sitio" name="sitio" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="conv-msg" id="conv-msg" role="status" aria-live="polite"></div>
+
+    <button type="submit" class="conv-submit" id="conv-submit">Postularme</button>
+  </form>
+
+  <div class="conv-msg ok" id="conv-ok" role="status" aria-live="polite"></div>
+
+  <p style="margin-top: 32px;">Si tenés cualquier problema con el formulario, escribinos a <a href="mailto:info@planiat.com">info@planiat.com</a> o por Instagram a <a href="https://www.instagram.com/plan.ia.t" target="_blank" rel="noopener">@plan.ia.t</a>.</p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="../assets/images/logo-plania.png" alt="PlanIA">
+  <ul class="f-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="../index.html#precios">Precios</a></li>
+    <li><a href="../privacidad.html">Privacidad</a></li>
+    <li><a href="../terminos.html">Términos</a></li>
+    <li><a href="../copyright.html">Copyright</a></li>
+    <li><a href="../cookies.html">Cookies</a></li>
+    <li><a href="../dpa.html">Encargado de datos</a></li>
+    <li><a href="../arrepentimiento.html">Botón de arrepentimiento</a></li>
+  </ul>
+  <div class="f-copy">
+    Desarrollado por Pedro Cruz <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a><br>
+    © 2026 PlanIA · planiat.com
+  </div>
+</footer>
+
+<script src="../js/convocatoria.js"></script>
+
+</body>
+</html>
