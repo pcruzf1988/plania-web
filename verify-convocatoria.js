@@ -21,22 +21,22 @@ function leer(ruta) {
 
 // Copia de proxy-plania/convocatoria.js (Tarea A2 del plan).
 const CAMPOS = [
-  'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido', 'rol',
-  'antiguedad', 'tendencia', 'clientesActivos', 'clientesIgFb', 'redes', 'planificacion',
-  'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'tarifa', 'disponibilidad',
+  'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido', 'rol', 'rolOtro',
+  'antiguedad', 'tendencia', 'clientesActivos', 'clientesIgFb', 'redes', 'planificacion', 'planificacionOtro',
+  'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'cobroOtro', 'tarifa', 'disponibilidad',
   'expectativa', 'comoSeEntero', 'aceptoContacto',
 ];
 const LISTAS = {
-  pais: ['argentina', 'chile', 'espana', 'uruguay', 'mexico', 'colombia', 'peru', 'otro'],
+  pais: ['argentina', 'chile', 'espana', 'uruguay', 'mexico', 'colombia', 'peru', 'estados_unidos', 'bolivia', 'costa_rica', 'cuba', 'ecuador', 'el_salvador', 'guatemala', 'honduras', 'nicaragua', 'panama', 'paraguay', 'puerto_rico', 'republica_dominicana', 'venezuela', 'otro'],
   contactoPreferido: ['whatsapp', 'correo', 'instagram'],
-  rol: ['freelance_full', 'freelance_part', 'agencia_propia', 'empleado'],
+  rol: ['freelance_full', 'freelance_part', 'agencia_propia', 'empleado', 'otro'],
   antiguedad: ['menos_1', '1_a_3', 'mas_3'],
   tendencia: ['creciendo', 'estable', 'achicandose'],
   redes: ['instagram', 'facebook', 'tiktok', 'linkedin', 'youtube', 'x', 'pinterest', 'otra'],
-  planificacion: ['planilla', 'herramienta', 'no_planifica'],
+  planificacion: ['planilla', 'herramienta', 'no_planifica', 'otra'],
   informes: ['siempre', 'a_veces', 'no'],
   horasMes: ['menos_5', '5_a_15', 'mas_15'],
-  cobro: ['fee_mensual', 'por_proyecto', 'mezcla'],
+  cobro: ['fee_mensual', 'por_proyecto', 'mezcla', 'otro'],
   tarifa: ['menos_100', '100_a_300', '300_a_600', 'mas_600', 'no_dice'],
   disponibilidad: ['ambos', 'uno', 'no'],
   comoSeEntero: ['instagram_plania', 'anuncio', 'recomendacion', 'otro'],
@@ -53,6 +53,17 @@ const TEXTOS = [
   'No pudimos enviar tu postulación. Probá de nuevo en un minuto.',
   'nos ayuda a entender tu negocio; no cambia tu postulación',
   'o el equivalente en tu moneda',
+  // Correcciones de Pedro (2026-10-29) al texto de la pagina y a las preguntas.
+  'A cambio solo te pedimos tu feedback',
+  'del 20 de noviembre al 31 de enero',
+  'Meta Business Suite',
+  'pendiente de aprobación por Meta',
+  'la podés crear gratis cuando quieras',
+  'CM o SMM',
+  'gestionás para tus clientes',
+  'herramienta o app',
+  'planificar, pedir revisión e informar',
+  'herramientas o apps pagás',
 ];
 
 // Devuelve los atributos de cada etiqueta <input>, <select> o <textarea> del HTML.
@@ -121,6 +132,7 @@ tieneAttrs('clientesActivos', { type: 'number', min: '0', max: '50', step: '1' }
 tieneAttrs('clientesIgFb', { type: 'number', min: '0', max: '50', step: '1' });
 tieneAttrs('expectativa', { minlength: '20', maxlength: '600' });
 tieneAttrs('nombre', { minlength: '2', maxlength: '80' });
+for (const otro of ['rolOtro', 'planificacionOtro', 'cobroOtro']) tieneAttrs(otro, { type: 'text', maxlength: '120' });
 
 // Honeypot: visible para los bots (no type=hidden), fuera del tab y sin autocompletar.
 const sitio = porNombre('sitio')[0];
