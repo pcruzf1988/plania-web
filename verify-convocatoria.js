@@ -62,7 +62,7 @@ const TEXTOS = [
   'CM o SMM',
   'gestionás para tus clientes',
   'herramienta o app',
-  'planificar, pedir revisión e informar',
+  'planificar, pedir aprobación a tus clientes e informar',
   'herramientas o apps pagás',
 ];
 
