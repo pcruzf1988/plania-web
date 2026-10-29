@@ -165,4 +165,11 @@ fi
 assert_present "de dónde llegaste" privacidad.html
 assert_present "cómo nos conociste" privacidad.html
 
+# ── Convocatoria Pro para community managers ───────────────────────────────
+# El formulario de planiat.com/convocatoria guarda nombre, correo, WhatsApp e
+# Instagram. La politica tiene que nombrar la finalidad y el plazo antes de que
+# la pagina se publique.
+assert_present "selección de participantes de la convocatoria Pro" privacidad.html
+assert_present "31 de marzo de 2027" privacidad.html
+
 exit $fail
