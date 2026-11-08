@@ -126,16 +126,23 @@
 
   // Los CTA llevan a app.planiat.com, otro origen: el registro se mide alla.
   // Este evento es el puente — mientras las altas son pocas, le da a Meta una
-  // senal intermedia con volumen suficiente para optimizar.
+  // senal intermedia con volumen suficiente para optimizar, y en GA es la
+  // conversion de la landing a la app. gtag y fbq solo existen si se acepto.
   function trackCtaClicks() {
     document.addEventListener('click', function (e) {
       var link = e.target.closest && e.target.closest('a[href*="app.planiat.com"]');
-      if (!link || typeof window.fbq !== 'function') return;
-      try {
-        window.fbq('trackCustom', 'ClickEmpezarGratis', {
-          origen: link.textContent.trim().slice(0, 40)
-        });
-      } catch (err) { /* nunca frenar la navegacion por un evento */ }
+      if (!link) return;
+      var origen = link.textContent.trim().slice(0, 40);
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag('event', 'click_empezar_gratis', { origen: origen });
+        } catch (err) { /* nunca frenar la navegacion por un evento */ }
+      }
+      if (typeof window.fbq === 'function') {
+        try {
+          window.fbq('trackCustom', 'ClickEmpezarGratis', { origen: origen });
+        } catch (err) { /* nunca frenar la navegacion por un evento */ }
+      }
     });
   }
 
