@@ -13,7 +13,7 @@
   'use strict';
 
   var KEY    = 'plania_cookie_consent';
-  var GA_ID  = 'G-SEVF5SCQNG';
+  var GA_ID  = 'G-W1CJQ1ZDVM';
   var DOMAIN = '.planiat.com';
   // 6 meses. Un consentimiento eterno no es consentimiento.
   var MAX_AGE = 15768000;
