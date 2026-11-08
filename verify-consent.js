@@ -12,6 +12,7 @@ const SRC = fs.readFileSync('js/cookie-consent.js', 'utf8');
 function run(stored) {
   const creados = [];
   const appended = [];
+  const clickHandlers = [];
   const store = new Map();
   if (stored !== null) store.set('plania_cookie_consent', stored);
 
@@ -30,7 +31,7 @@ function run(stored) {
     readyState: 'complete',
     getElementById: () => null,
     createElement: makeEl,
-    addEventListener() {},
+    addEventListener(type, fn) { if (type === 'click') clickHandlers.push(fn); },
     head: { appendChild(c) { appended.push(c); } },
     body: { appendChild(c) { appended.push(c); } },
     // El snippet del pixel de Meta inserta su <script> antes del primero.
@@ -57,7 +58,20 @@ function run(stored) {
   const bannerRenderizado = appended.some(
     (e) => e.className === 'cookie-banner'
   );
-  return { gaCargado, bannerRenderizado, ctx };
+  return { gaCargado, bannerRenderizado, ctx, clickHandlers };
+}
+
+// Simula un clic en un CTA que lleva a la app y devuelve los eventos que
+// recibio GA (los gtag('event', ...) que quedaron en dataLayer).
+function clicEnCta(stored) {
+  const r = run(stored);
+  const link = { textContent: '  Empezar gratis, sin tarjeta y en dos minutos  ' };
+  const target = { closest: (sel) => (sel.includes('app.planiat.com') ? link : null) };
+  for (const fn of r.clickHandlers) fn({ target });
+  const eventos = (r.ctx.window.dataLayer || [])
+    .map((args) => Array.from(args))
+    .filter((args) => args[0] === 'event');
+  return eventos;
 }
 
 const casos = [
@@ -77,5 +91,18 @@ for (const [nombre, stored, esperado] of casos) {
     `GA=${r.gaCargado} (esp ${esperado.ga})  banner=${r.bannerRenderizado} (esp ${esperado.banner})`
   );
 }
+
+// El clic en "Empezar gratis" llega a GA solo con consentimiento: es la
+// conversion de la landing a la app que mira Lucia.
+const conCta = clicEnCta('accepted');
+const okCon = conCta.length === 1 && conCta[0][1] === 'click_empezar_gratis' &&
+  conCta[0][2] && conCta[0][2].origen === 'Empezar gratis, sin tarjeta y en dos min';
+if (!okCon) fail = 1;
+console.log(`${okCon ? 'OK  ' : 'FALLA'} clic en CTA aceptado   eventos=${JSON.stringify(conCta)}`);
+
+const sinCta = clicEnCta('rejected');
+const okSin = sinCta.length === 0;
+if (!okSin) fail = 1;
+console.log(`${okSin ? 'OK  ' : 'FALLA'} clic en CTA rechazado  eventos=${JSON.stringify(sinCta)}`);
 
 process.exit(fail);
