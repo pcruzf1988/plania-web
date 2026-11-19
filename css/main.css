@@ -1201,11 +1201,6 @@ footer {
 /* El pie es carbon: se usa el lockup blanco tal cual (conserva el punto tierra). */
 footer img { height: 28px; opacity: .8; }
 .f-brand { display: flex; flex-direction: column; gap: 12px; }
-.f-tagline {
-  font-size: 13px; line-height: 1.5;
-  color: rgba(255,255,255,.4);
-  max-width: 320px;
-}
 .f-links {
   display: flex; flex-wrap: wrap; gap: 6px 24px;
   list-style: none;

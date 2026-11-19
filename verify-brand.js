@@ -138,8 +138,7 @@ check('.hero-note tiene estilo en main.css', /\.hero-note\s*\{/.test(mainCss));
 const FIRMA = 'Un producto de <a href="https://www.rutasdigitales.com.ar" target="_blank" rel="noopener">Rutas Digitales</a> · Jujuy, Argentina';
 for (const p of PAGINAS) {
   const footer = (html[p].match(/<footer>([\s\S]*?)<\/footer>/) || [])[1] || '';
-  check(`${p}: pie con "Hecha desde Jujuy por alguien que tuvo que resolver las redes de otros."`,
-    footer.includes('Hecha desde Jujuy por alguien que tuvo que resolver las redes de otros.'));
+  check(`${p}: pie sin la frase del fundador (retirada el 19/11/2026)`, !footer.includes('Hecha desde Jujuy'));
   check(`${p}: firma "Un producto de Rutas Digitales · Jujuy, Argentina"`, footer.includes(FIRMA));
   check(`${p}: pie conserva "© 2026 PlanIA · planiat.com"`, footer.includes('© 2026 PlanIA · planiat.com'));
   check(`${p}: pie sin "Desarrollado por Pedro Cruz"`, !footer.includes('Desarrollado por Pedro Cruz'));
