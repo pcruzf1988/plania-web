@@ -198,4 +198,12 @@ for (const p of PAGINAS) {
   check(`${p}: apple-touch-icon`, html[p].includes(`<link rel="apple-touch-icon" href="${r}assets/brand/apple-touch-icon-180.png`));
 }
 
+// ── Banda final (19/11/2026, opción 1 elegida por Pedro) ──────────────────
+{
+  const i = html['index.html'];
+  check('banda final: título con el slogan', i.includes('Las redes de cada cliente,<br class="br-desktop">planificadas en minutos.'));
+  check('banda final: bajada del Free', i.includes('Empezá con un cliente, un plan y un informe. Gratis y sin tarjeta.'));
+  check('banda final: sin el copy viejo', !i.includes('Más tiempo para la estrategia') && !i.includes('sin vencimiento, sin compromiso'));
+  check('banda final: botón "Crear mi primer plan gratis" sin flecha', !/Empezar gratis →/.test(i.slice(i.indexOf('Las redes de cada cliente,<br'))));
+}
 process.exit(fail);
