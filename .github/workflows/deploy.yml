@@ -44,3 +44,4 @@ jobs:
             verify-legal.sh
             verify-origin-links.js
             verify-short-links.js
+            verify-brand.js

@@ -1,7 +1,7 @@
 /* ============================================================
-   PlanIA · main.css — v4 Raycast Tech/SaaS
-   Paleta: tierra #C4622D | carbon #0D0A07 | surface #FAF8F5
-   Fuente: Inter
+   PlanIA · main.css — v5 manual de marca v1.1
+   Paleta: tierra #C4622D | carbon #1E1A16 | surface #FAF7F2
+   Fuentes: Playfair Display (titulares) · Hanken Grotesk (texto)
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,22 +11,28 @@
   --tierra-dark:   #9E4B1F;
   --tierra-light:  rgba(196,98,45,.1);
   --tierra-glow:   rgba(196,98,45,.3);
+  --tierra-boton:  #B5582A;
   --ocre:          #D4A853;
   --verde:         #3D5A3E;
-  --carbon:        #0D0A07;
+  --carbon:        #1E1A16;
   --carbon-2:      #18130E;
   --carbon-3:      #231A12;
-  --surface:       #FAF8F5;
+  --surface:       #FAF7F2;
   --surface-2:     #F5EDE0;
-  --border:        #E5DDD3;
+  --border:        #E2DAD0;
   --border-dark:   rgba(255,255,255,.08);
-  --text-primary:  #1A1209;
+  --text-primary:  #1E1A16;
   --text-secondary:#6B6157;
   --text-muted:    #A89A8A;
 
-  --radius:    16px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Hanken Grotesk', Arial, sans-serif;
+
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-xs:   4px;
+  --radius-lg:   20px;
+  --radius-pill: 999px;
 
   --shadow-sm:    0 2px 8px rgba(13,10,7,.04), 0 4px 16px rgba(13,10,7,.06);
   --shadow:       0 4px 20px rgba(13,10,7,.06), 0 16px 48px rgba(13,10,7,.10);
@@ -41,7 +47,7 @@
 html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   background: var(--surface);
   color: var(--text-primary);
   line-height: 1.65;
@@ -68,6 +74,13 @@ body::after {
 img { max-width: 100%; height: auto; display: block; }
 a   { text-decoration: none; color: inherit; }
 
+/* Titulares en serif (manual 04): Playfair Display solo en 700, sin tracking
+   negativo agresivo. El texto corriente queda en Hanken Grotesk. */
+h1, h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
 ::selection { background: var(--tierra); color: white; }
 
 
@@ -78,7 +91,7 @@ a   { text-decoration: none; color: inherit; }
 /* ── UTILITIES ──────────────────────────────────────────── */
 .label {
   font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .14em;
+  text-transform: uppercase; letter-spacing: .12em;
   color: var(--tierra); margin-bottom: 10px;
   display: inline-flex; align-items: center; gap: 8px;
 }
@@ -145,7 +158,7 @@ a   { text-decoration: none; color: inherit; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 13px 28px; border-radius: var(--radius-sm);
-  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  font-family: var(--font-sans); font-size: 15px; font-weight: 600;
   cursor: pointer; border: none;
   transition: all .4s var(--ease-out-expo);
   position: relative; overflow: hidden;
@@ -159,7 +172,7 @@ a   { text-decoration: none; color: inherit; }
 
 /* Primary tierra button */
 .btn-tierra {
-  background: var(--tierra); color: white;
+  background: var(--tierra-boton); color: white;
   box-shadow: 0 2px 8px rgba(196,98,45,.2), 0 1px 2px rgba(196,98,45,.15);
 }
 .btn-tierra::before {
@@ -169,7 +182,7 @@ a   { text-decoration: none; color: inherit; }
   opacity: 0;
   transition: opacity .4s;
 }
-.btn-tierra:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(196,98,45,.32), 0 16px 48px rgba(196,98,45,.14); }
+.btn-tierra:hover { background: var(--tierra-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(196,98,45,.32), 0 16px 48px rgba(196,98,45,.14); }
 .btn-tierra:hover::before { opacity: 1; }
 .btn-tierra:active { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(196,98,45,.22); }
 
@@ -379,11 +392,11 @@ a   { text-decoration: none; color: inherit; }
 }
 
 .hero h1 {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-serif);
   font-size: clamp(38px, 5.5vw, 68px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.10;
-  letter-spacing: -.035em;
+  letter-spacing: -.02em;
   color: white;
   margin-bottom: 24px;
   max-width: 860px; margin-left: auto; margin-right: auto;
@@ -412,8 +425,15 @@ a   { text-decoration: none; color: inherit; }
 
 .hero-ctas {
   display: flex; align-items: center; justify-content: center;
-  gap: 14px; margin-bottom: 72px;
+  gap: 14px; margin-bottom: 16px;
   flex-wrap: wrap;
+}
+
+/* Promesa de control debajo de los CTAs (manual 09) */
+.hero-note {
+  font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,.5);
+  margin: 0 auto 64px;
 }
 
 /* Hero screenshot */
@@ -494,9 +514,9 @@ a   { text-decoration: none; color: inherit; }
 .stat-item:hover::after { opacity: 1; }
 
 .stat-num {
-  font-family: 'Inter', sans-serif;
-  font-size: 42px; font-weight: 800;
-  letter-spacing: -.04em;
+  font-family: var(--font-sans);
+  font-size: 42px; font-weight: 700;
+  letter-spacing: -.02em;
   color: white;
   line-height: 1.1; margin-bottom: 10px;
   background: linear-gradient(135deg, white 0%, rgba(255,255,255,.75) 100%);
@@ -528,8 +548,8 @@ a   { text-decoration: none; color: inherit; }
 }
 .for-who-header h2 {
   font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 800;
-  letter-spacing: -.03em;
+  font-weight: 700;
+  letter-spacing: -.02em;
   line-height: 1.2;
   color: var(--text-primary);
 }
@@ -631,8 +651,9 @@ a   { text-decoration: none; color: inherit; }
 }
 
 .feat-text h3 {
+  font-family: var(--font-serif);
   font-size: clamp(24px, 2.8vw, 34px);
-  font-weight: 800; letter-spacing: -.03em;
+  font-weight: 700; letter-spacing: -.02em;
   line-height: 1.2; color: var(--text-primary);
   margin-bottom: 16px;
 }
@@ -743,7 +764,7 @@ a   { text-decoration: none; color: inherit; }
 }
 .workflow-header h2 {
   font-size: clamp(28px, 3.5vw, 42px);
-  font-weight: 800; letter-spacing: -.03em;
+  font-weight: 700; letter-spacing: -.02em;
   color: white; margin-bottom: 12px;
 }
 .workflow-header p {
@@ -794,7 +815,7 @@ a   { text-decoration: none; color: inherit; }
   width: 48px; height: 48px; border-radius: 50%;
   background: linear-gradient(135deg, var(--tierra) 0%, var(--tierra-dark) 100%);
   box-shadow: 0 4px 16px rgba(196,98,45,.3);
-  color: white; font-weight: 800; font-size: 18px;
+  color: white; font-weight: 700; font-size: 18px;
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 20px;
   position: relative; z-index: 1;
@@ -825,7 +846,7 @@ a   { text-decoration: none; color: inherit; }
 }
 .pricing-header h2 {
   font-size: clamp(28px, 3.5vw, 42px);
-  font-weight: 800; letter-spacing: -.03em;
+  font-weight: 700; letter-spacing: -.02em;
   color: var(--text-primary); margin-bottom: 10px;
 }
 .pricing-header p {
@@ -897,7 +918,7 @@ a   { text-decoration: none; color: inherit; }
 .pricing-card.hot .p-tier { color: rgba(255,255,255,.65); }
 
 .p-price {
-  font-size: 38px; font-weight: 800; letter-spacing: -.04em;
+  font-size: 38px; font-weight: 700; letter-spacing: -.02em;
   color: var(--text-primary); line-height: 1;
   margin-bottom: 10px;
   display: flex; align-items: baseline; gap: 2px;
@@ -948,7 +969,7 @@ a   { text-decoration: none; color: inherit; }
 .btn-p {
   display: flex; align-items: center; justify-content: center;
   width: 100%; padding: 13px 20px; border-radius: var(--radius-sm);
-  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
   cursor: pointer; border: none;
   transition: all .35s var(--ease-out-expo);
   letter-spacing: -.01em;
@@ -986,7 +1007,7 @@ a   { text-decoration: none; color: inherit; }
   display: inline-flex; align-items: center; justify-content: center;
   padding: 12px 24px; border-radius: var(--radius-sm);
   background: var(--verde); color: white;
-  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
   white-space: nowrap;
   transition: all .35s var(--ease-out-expo);
 }
@@ -1024,7 +1045,7 @@ a   { text-decoration: none; color: inherit; }
 }
 .faq-header h2 {
   font-size: clamp(28px, 3.5vw, 38px);
-  font-weight: 800; letter-spacing: -.03em;
+  font-weight: 700; letter-spacing: -.02em;
   color: var(--text-primary); margin-bottom: 8px;
 }
 
@@ -1035,7 +1056,7 @@ a   { text-decoration: none; color: inherit; }
   width: 100%; display: flex; align-items: center; justify-content: space-between;
   gap: 16px; padding: 22px 0;
   background: none; border: none; cursor: pointer;
-  font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600;
+  font-family: var(--font-sans); font-size: 16px; font-weight: 600;
   letter-spacing: -.01em; color: var(--text-primary);
   text-align: left;
   transition: color .3s;
@@ -1155,7 +1176,7 @@ a   { text-decoration: none; color: inherit; }
 .cta-band .container { position: relative; z-index: 1; }
 .cta-band h2 {
   font-size: clamp(30px, 4vw, 50px);
-  font-weight: 800; letter-spacing: -.035em;
+  font-weight: 700; letter-spacing: -.02em;
   color: white; line-height: 1.15; margin-bottom: 16px;
 }
 .cta-band p {
@@ -1177,7 +1198,14 @@ footer {
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 24px;
 }
-footer img { height: 28px; filter: brightness(0) invert(1); opacity: .6; }
+/* El pie es carbon: se usa el lockup blanco tal cual (conserva el punto tierra). */
+footer img { height: 28px; opacity: .8; }
+.f-brand { display: flex; flex-direction: column; gap: 12px; }
+.f-tagline {
+  font-size: 13px; line-height: 1.5;
+  color: rgba(255,255,255,.4);
+  max-width: 320px;
+}
 .f-links {
   display: flex; flex-wrap: wrap; gap: 6px 24px;
   list-style: none;
@@ -1249,7 +1277,7 @@ footer img { height: 28px; filter: brightness(0) invert(1); opacity: .6; }
 .lightbox-hint {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
   font-size: 12px; color: rgba(255,255,255,.35);
-  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-family: var(--font-sans); font-weight: 500;
   pointer-events: none;
 }
 
@@ -1291,8 +1319,8 @@ footer img { height: 28px; filter: brightness(0) invert(1); opacity: .6; }
   margin: 0 auto 20px;
 }
 .dl-modal h3 {
-  font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 800;
-  letter-spacing: -.03em; color: var(--text-primary);
+  font-family: var(--font-serif); font-size: 22px; font-weight: 700;
+  letter-spacing: -.02em; color: var(--text-primary);
   text-align: center; margin-bottom: 6px;
 }
 .dl-modal-sub {
