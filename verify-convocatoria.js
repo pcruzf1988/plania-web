@@ -46,8 +46,10 @@ const LISTAS = {
 // finalizada y error de red los pone el script, asi que se buscan en los dos.
 const TEXTOS = [
   'Convocatoria Pro: 2 meses de PlanIA Pro gratis',
-  'Primera etapa hasta el 8 de noviembre. Resultados el lunes 9.',
-  'Recibimos tu postulación. Los resultados de esta etapa salen el lunes',
+  // Reapertura (Pedro, 2026-11-23): hasta el 29 de noviembre, Pro desde que queda seleccionado.
+  'Inscripción abierta hasta el domingo 29 de noviembre.',
+  'el Pro se activa en ese momento, así ya armás los planes de diciembre',
+  'Recibimos tu postulación. Vamos eligiendo durante la semana y te escribimos por el medio que elegiste a más tardar el lunes 30 de noviembre.',
   'La primera etapa se completó. La segunda abre el jueves 12 de noviembre. Seguinos en @plan.ia.t para enterarte.',
   'La inscripción cerró. Si querés probar PlanIA, creá tu cuenta gratis en app.planiat.com.',
   'No pudimos enviar tu postulación. Probá de nuevo en un minuto.',
@@ -55,7 +57,7 @@ const TEXTOS = [
   'o el equivalente en tu moneda',
   // Correcciones de Pedro (2026-10-29) al texto de la pagina y a las preguntas.
   'A cambio solo te pedimos tu feedback',
-  'del 20 de noviembre al 31 de enero',
+  'desde que quedás seleccionado hasta el 31 de enero',
   'Meta Business Suite',
   'pendiente de aprobación por Meta',
   'la podés crear gratis cuando quieras',
