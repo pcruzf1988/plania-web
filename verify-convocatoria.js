@@ -57,7 +57,7 @@ const TEXTOS = [
   'o el equivalente en tu moneda',
   // Correcciones de Pedro (2026-10-29) al texto de la pagina y a las preguntas.
   'A cambio solo te pedimos tu feedback',
-  'desde que quedás seleccionado hasta el 31 de enero',
+  'desde que quedás seleccionado (a más tardar el lunes 30 de noviembre) hasta el 31 de enero',
   'Meta Business Suite',
   'pendiente de aprobación por Meta',
   'la podés crear gratis cuando quieras',
