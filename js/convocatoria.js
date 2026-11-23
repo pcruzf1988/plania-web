@@ -17,12 +17,9 @@
     correoInvalido: 'Revisá el correo: no parece válido.',
     igFbMayor: 'Los clientes con Instagram y Facebook no pueden ser más que los clientes activos.',
   };
-  // Dia del lunes de resultados por etapa (spec: "lunes 9" en la 1, "lunes 16" en la 2).
-  var DIA_RESULTADOS = { 1: '9', 2: '16' };
-  function textoConfirmacion(etapa) {
-    var dia = DIA_RESULTADOS[etapa] || DIA_RESULTADOS[1];
-    return 'Recibimos tu postulación. Los resultados de esta etapa salen el lunes ' + dia +
-      ' de noviembre y te escribimos por el medio que elegiste.';
+  // Reapertura hasta el domingo 29 de noviembre: se elige durante la semana.
+  function textoConfirmacion() {
+    return 'Recibimos tu postulación. Vamos eligiendo durante la semana y te escribimos por el medio que elegiste a más tardar el lunes 30 de noviembre.';
   }
 
   // Copia de proxy-plania/convocatoria.js (Tarea A2 del plan).
@@ -251,7 +248,7 @@
         var data = r.data || {};
         if (r.status === 200) {
           form.style.display = 'none';
-          okBox.textContent = textoConfirmacion(data.etapa);
+          okBox.textContent = textoConfirmacion();
           okBox.classList.add('show');
           okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
           return;
