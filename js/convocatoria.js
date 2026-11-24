@@ -16,6 +16,7 @@
     consentimiento: 'Necesitamos tu consentimiento para guardar tus datos y contactarte.',
     correoInvalido: 'Revisá el correo: no parece válido.',
     igFbMayor: 'Los clientes con Instagram y Facebook no pueden ser más que los clientes activos.',
+    esperaVerificacion: 'Esperá un segundo a que termine la verificación y volvé a enviar.',
   };
   // Reapertura hasta el domingo 29 de noviembre: se elige durante la semana.
   function textoConfirmacion() {
@@ -150,6 +151,15 @@
     btn.textContent = 'Postularme';
   }
 
+  // Turnstile (js/turnstile.js). Sin clave configurada no hay widget y el
+  // formulario envia como siempre, sin el campo turnstileToken.
+  var turnstile = window.PlaniaTurnstile;
+  var conTurnstile = !!turnstile && turnstile.isActive();
+  // El token sirve una sola vez: despues de cada intento se pide uno nuevo.
+  function renovarToken() {
+    if (conTurnstile) turnstile.reset();
+  }
+
   function cargarEstado() {
     fetch(PROXY_URL + '/api/convocatoria/estado')
       .then(function (res) { return res.json(); })
@@ -174,6 +184,14 @@
     }
     var payload = r.datos;
     payload.sitio = form.querySelector('input[name="sitio"]').value;
+    if (conTurnstile) {
+      var token = turnstile.getToken();
+      if (!token) {
+        mostrar('err', TEXTOS.esperaVerificacion);
+        return;
+      }
+      payload.turnstileToken = token;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Enviando…';
@@ -191,6 +209,7 @@
       })
       .then(function (r) {
         var data = r.data || {};
+        renovarToken();
         if (r.status === 200) {
           form.style.display = 'none';
           okBox.textContent = textoConfirmacion();
@@ -203,7 +222,8 @@
           habilitar();
           return;
         }
-        if (r.status === 400 && data.error) {
+        // 503 con texto: el proxy no pudo verificar el captcha y lo dice.
+        if ((r.status === 400 || r.status === 503) && data.error) {
           mostrar('err', data.error);
           habilitar();
           return;
@@ -212,6 +232,7 @@
         habilitar();
       })
       .catch(function () {
+        renovarToken();
         mostrar('err', TEXTOS.errorRed);
         habilitar();
       });

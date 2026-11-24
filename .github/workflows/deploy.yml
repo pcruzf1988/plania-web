@@ -45,3 +45,4 @@ jobs:
             verify-origin-links.js
             verify-short-links.js
             verify-brand.js
+            verify-turnstile.js
