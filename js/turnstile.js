@@ -47,6 +47,9 @@
     widgetId = window.turnstile.render(contenedor, {
       sitekey: TURNSTILE_SITE_KEY,
       language: 'es',
+      // 'flexible' ocupa el ancho del contenedor: en celulares angostos el
+      // tamano normal (300 px fijos) se salia de la tarjeta del formulario.
+      size: 'flexible',
       // El sitio es claro; si una pagina declara data-theme="dark", la sigue.
       theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light',
       callback: function (t) { token = t || ''; },

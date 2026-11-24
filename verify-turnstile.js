@@ -127,7 +127,7 @@ function evaluar(clave, conContenedor) {
   const o = render.opciones;
   informa(tiro === null && r.llamadas.render.length === 1 && render.donde === r.contenedor,
     'con clave: al cargar api.js se dibuja un widget en el contenedor', tiro);
-  informa(o.sitekey === 'CLAVE-DE-PRUEBA' && o.language === 'es' && o.theme === 'light',
+  informa(o.sitekey === 'CLAVE-DE-PRUEBA' && o.language === 'es' && o.theme === 'light' && o.size === 'flexible',
     'con clave: el widget lleva la clave, language "es" y el tema de la pagina',
     `opciones: ${JSON.stringify(o)}`);
 
