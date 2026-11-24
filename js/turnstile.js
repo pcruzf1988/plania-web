@@ -14,7 +14,7 @@
   // se escribe en este repo.
   // Mientras sea la cadena vacia este script no hace nada: no carga nada de
   // Cloudflare, no dibuja el widget y los formularios envian como siempre.
-  var TURNSTILE_SITE_KEY = '';
+  var TURNSTILE_SITE_KEY = '0x4AAAAAAGPuZLLFavphkCBc';
 
   var API_URL = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 
