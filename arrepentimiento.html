@@ -208,6 +208,7 @@
 
     <div class="arr-msg" id="arr-msg" role="status" aria-live="polite"></div>
 
+    <div id="plania-turnstile" hidden></div>
     <button type="submit" class="arr-submit" id="arr-submit">Enviar pedido de revocación</button>
   </form>
 
@@ -244,9 +245,14 @@
   </div>
 </footer>
 
+<script src="js/turnstile.js"></script>
 <script>
 (function () {
   var PROXY_URL = 'https://plania-proxy-production.up.railway.app';
+  // Turnstile (js/turnstile.js). Sin clave configurada no hay widget y el
+  // formulario envia como siempre, sin el campo turnstileToken.
+  var turnstile = window.PlaniaTurnstile;
+  var conTurnstile = !!turnstile && turnstile.isActive();
   var form   = document.getElementById('arr-form');
   var btn    = document.getElementById('arr-submit');
   var msgBox = document.getElementById('arr-msg');
@@ -274,6 +280,14 @@
       show('err', 'Revisá el email: no parece válido.');
       return;
     }
+    if (conTurnstile) {
+      var token = turnstile.getToken();
+      if (!token) {
+        show('err', 'Esperá un segundo a que termine la verificación y volvé a enviar.');
+        return;
+      }
+      payload.turnstileToken = token;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Enviando…';
@@ -286,6 +300,8 @@
         body: JSON.stringify(payload),
       });
       var data = await res.json().catch(function () { return {}; });
+      // El token sirve una sola vez: despues de cada respuesta se pide uno nuevo.
+      if (conTurnstile) turnstile.reset();
 
       if (!res.ok) {
         show('err', data.error || 'No pudimos registrar el pedido. Escribinos a info@planiat.com y lo resolvemos.');
@@ -298,6 +314,7 @@
       btn.textContent = 'Pedido enviado';
       show('ok', 'Listo, recibimos tu pedido de revocación. Te vamos a escribir a tu email para confirmarte la recepción y coordinar la devolución.');
     } catch (err) {
+      if (conTurnstile) turnstile.reset();
       show('err', 'No pudimos conectar con el servidor. Escribinos a info@planiat.com y lo resolvemos igual.');
       btn.disabled = false;
       btn.textContent = 'Enviar pedido de revocación';

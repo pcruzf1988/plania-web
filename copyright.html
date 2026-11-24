@@ -251,6 +251,7 @@
       <span>Declaro de buena fe que el uso denunciado no está autorizado por mí, por mi representante ni por la ley, y que la información que aporto es exacta y estoy legitimado para presentar este reclamo. *</span>
     </label>
 
+    <div id="plania-turnstile" hidden></div>
     <button type="submit" class="cr-submit" id="cr-submit">Enviar denuncia</button>
     <div class="cr-msg" id="cr-msg"></div>
   </form>
@@ -310,9 +311,14 @@
 </footer>
 
 <script src="js/main.js?v=5"></script>
+<script src="js/turnstile.js"></script>
 <script>
 (function () {
   var PROXY_URL = 'https://plania-proxy-production.up.railway.app';
+  // Turnstile (js/turnstile.js). Sin clave configurada no hay widget y el
+  // formulario envia como siempre, sin el campo turnstileToken.
+  var turnstile = window.PlaniaTurnstile;
+  var conTurnstile = !!turnstile && turnstile.isActive();
   var form   = document.getElementById('cr-form');
   var btn    = document.getElementById('cr-submit');
   var msgBox = document.getElementById('cr-msg');
@@ -347,6 +353,14 @@
       show('err', 'Necesitamos que confirmes la declaración de buena fe para poder procesar la denuncia.');
       return;
     }
+    if (conTurnstile) {
+      var token = turnstile.getToken();
+      if (!token) {
+        show('err', 'Esperá un segundo a que termine la verificación y volvé a enviar.');
+        return;
+      }
+      payload.turnstileToken = token;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Enviando…';
@@ -359,6 +373,8 @@
         body: JSON.stringify(payload),
       });
       var data = await res.json().catch(function () { return {}; });
+      // El token sirve una sola vez: despues de cada respuesta se pide uno nuevo.
+      if (conTurnstile) turnstile.reset();
 
       if (!res.ok) {
         show('err', data.error || 'No pudimos registrar la denuncia. Escribinos a copyright@planiat.com y la resolvemos.');
@@ -379,6 +395,7 @@
         : '';
       show('ok', 'Recibimos tu denuncia. La revisamos dentro de las 72 horas hábiles y te respondemos a tu email.' + ref);
     } catch (err) {
+      if (conTurnstile) turnstile.reset();
       show('err', 'No pudimos conectar con el servidor. Escribinos a copyright@planiat.com y lo resolvemos igual.');
       btn.disabled = false;
       btn.textContent = 'Enviar denuncia';
