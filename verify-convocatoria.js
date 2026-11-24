@@ -19,25 +19,20 @@ function leer(ruta) {
   return fs.existsSync(ruta) ? fs.readFileSync(ruta, 'utf8') : '';
 }
 
-// Copia de proxy-plania/convocatoria.js (Tarea A2 del plan).
+// Formulario corto (Pedro, 2026-11-23): los obligatorios de
+// proxy-plania/convocatoria.js mas "como te enteraste" (opcional, mide la pauta).
 const CAMPOS = [
-  'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido', 'rol', 'rolOtro',
-  'antiguedad', 'tendencia', 'clientesActivos', 'clientesIgFb', 'redes', 'planificacion', 'planificacionOtro',
-  'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'cobroOtro', 'tarifa', 'disponibilidad',
-  'expectativa', 'comoSeEntero', 'aceptoContacto',
+  'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido',
+  'clientesActivos', 'clientesIgFb', 'disponibilidad', 'expectativa', 'comoSeEntero', 'aceptoContacto',
+];
+// Las preguntas que salieron del formulario; el proxy las acepta como opcionales.
+const QUITADOS = [
+  'rol', 'rolOtro', 'antiguedad', 'tendencia', 'redes', 'planificacion', 'planificacionOtro',
+  'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'cobroOtro', 'tarifa',
 ];
 const LISTAS = {
   pais: ['argentina', 'chile', 'espana', 'uruguay', 'mexico', 'colombia', 'peru', 'estados_unidos', 'bolivia', 'costa_rica', 'cuba', 'ecuador', 'el_salvador', 'guatemala', 'honduras', 'nicaragua', 'panama', 'paraguay', 'puerto_rico', 'republica_dominicana', 'venezuela', 'otro'],
   contactoPreferido: ['whatsapp', 'correo', 'instagram'],
-  rol: ['freelance_full', 'freelance_part', 'agencia_propia', 'empleado', 'otro'],
-  antiguedad: ['menos_1', '1_a_3', 'mas_3'],
-  tendencia: ['creciendo', 'estable', 'achicandose'],
-  redes: ['instagram', 'facebook', 'tiktok', 'linkedin', 'youtube', 'x', 'pinterest', 'otra'],
-  planificacion: ['planilla', 'herramienta', 'no_planifica', 'otra'],
-  informes: ['siempre', 'a_veces', 'no'],
-  horasMes: ['menos_5', '5_a_15', 'mas_15'],
-  cobro: ['fee_mensual', 'por_proyecto', 'mezcla', 'otro'],
-  tarifa: ['menos_100', '100_a_300', '300_a_600', 'mas_600', 'no_dice'],
   disponibilidad: ['ambos', 'uno', 'no'],
   comoSeEntero: ['instagram_plania', 'anuncio', 'recomendacion', 'otro'],
 };
@@ -53,19 +48,12 @@ const TEXTOS = [
   'La primera etapa se completó. La segunda abre el jueves 12 de noviembre. Seguinos en @plan.ia.t para enterarte.',
   'La inscripción cerró. Si querés probar PlanIA, creá tu cuenta gratis en app.planiat.com.',
   'No pudimos enviar tu postulación. Probá de nuevo en un minuto.',
-  'nos ayuda a entender tu negocio; no cambia tu postulación',
-  'o el equivalente en tu moneda',
   // Correcciones de Pedro (2026-10-29) al texto de la pagina y a las preguntas.
   'A cambio solo te pedimos tu feedback',
   'desde que quedás seleccionado (a más tardar el lunes 30 de noviembre) hasta el 31 de enero',
   'Meta Business Suite',
   'pendiente de aprobación por Meta',
   'la podés crear gratis cuando quieras',
-  'CM o SMM',
-  'gestionás para tus clientes',
-  'herramienta o app',
-  'planificar, pedir aprobación a tus clientes e informar',
-  'herramientas o apps pagás',
   // Mensaje de texto corto (Pedro, 2026-10-29): el cliente dice el minimo y la pregunta lo muestra.
   'necesita al menos ',
   'al menos 20 caracteres',
@@ -137,7 +125,10 @@ tieneAttrs('clientesActivos', { type: 'text', inputmode: 'numeric', pattern: '[0
 tieneAttrs('clientesIgFb', { type: 'text', inputmode: 'numeric', pattern: '[0-9]*', maxlength: '2' });
 tieneAttrs('expectativa', { minlength: '20', maxlength: '600' });
 tieneAttrs('nombre', { minlength: '2', maxlength: '80' });
-for (const otro of ['rolOtro', 'planificacionOtro', 'cobroOtro']) tieneAttrs(otro, { type: 'text', maxlength: '120' });
+for (const campo of QUITADOS) {
+  informa(porNombre(campo).length === 0, `no hay control name="${campo}" (formulario corto)`);
+  informa(!JS.includes(`'${campo}'`), `el script no manda ${campo}`);
+}
 
 // Honeypot: visible para los bots (no type=hidden), fuera del tab y sin autocompletar.
 const sitio = porNombre('sitio')[0];

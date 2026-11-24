@@ -23,24 +23,15 @@
   }
 
   // Copia de proxy-plania/convocatoria.js (Tarea A2 del plan).
+  // Formulario corto (2026-11-23): los obligatorios del proxy mas "como te
+  // enteraste". El proxy sigue aceptando las demas preguntas como opcionales.
   var CAMPOS = [
-    'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido', 'rol', 'rolOtro',
-    'antiguedad', 'tendencia', 'clientesActivos', 'clientesIgFb', 'redes', 'planificacion', 'planificacionOtro',
-    'informes', 'horasMes', 'herramientasQuePaga', 'cobro', 'cobroOtro', 'tarifa', 'disponibilidad',
-    'expectativa', 'comoSeEntero', 'aceptoContacto',
+    'nombre', 'correo', 'whatsapp', 'instagram', 'pais', 'contactoPreferido',
+    'clientesActivos', 'clientesIgFb', 'disponibilidad', 'expectativa', 'comoSeEntero', 'aceptoContacto',
   ];
   var LISTAS = {
     pais: ['argentina', 'chile', 'espana', 'uruguay', 'mexico', 'colombia', 'peru', 'estados_unidos', 'bolivia', 'costa_rica', 'cuba', 'ecuador', 'el_salvador', 'guatemala', 'honduras', 'nicaragua', 'panama', 'paraguay', 'puerto_rico', 'republica_dominicana', 'venezuela', 'otro'],
     contactoPreferido: ['whatsapp', 'correo', 'instagram'],
-    rol: ['freelance_full', 'freelance_part', 'agencia_propia', 'empleado', 'otro'],
-    antiguedad: ['menos_1', '1_a_3', 'mas_3'],
-    tendencia: ['creciendo', 'estable', 'achicandose'],
-    redes: ['instagram', 'facebook', 'tiktok', 'linkedin', 'youtube', 'x', 'pinterest', 'otra'],
-    planificacion: ['planilla', 'herramienta', 'no_planifica', 'otra'],
-    informes: ['siempre', 'a_veces', 'no'],
-    horasMes: ['menos_5', '5_a_15', 'mas_15'],
-    cobro: ['fee_mensual', 'por_proyecto', 'mezcla', 'otro'],
-    tarifa: ['menos_100', '100_a_300', '300_a_600', 'mas_600', 'no_dice'],
     disponibilidad: ['ambos', 'uno', 'no'],
     comoSeEntero: ['instagram_plania', 'anuncio', 'recomendacion', 'otro'],
   };
@@ -51,31 +42,16 @@
     instagram: 'Instagram',
     pais: 'país',
     contactoPreferido: 'medio de contacto',
-    rol: 'cómo trabajás hoy',
-    rolOtro: 'cómo trabajás hoy (otro)',
-    antiguedad: 'antigüedad',
-    tendencia: 'cartera de clientes',
     clientesActivos: 'clientes activos',
     clientesIgFb: 'clientes con Instagram y Facebook',
-    redes: 'redes que gestionás',
-    planificacion: 'cómo armás los planes',
-    planificacionOtro: 'cómo armás los planes (otra)',
-    informes: 'informes de métricas',
-    horasMes: 'horas por mes',
-    herramientasQuePaga: 'herramientas que pagás',
-    cobro: 'cómo cobrás',
-    cobroOtro: 'cómo cobrás (otro)',
-    tarifa: 'cuánto cobrás',
     disponibilidad: 'disponibilidad',
     expectativa: 'qué esperás resolver',
     comoSeEntero: 'cómo te enteraste',
     aceptoContacto: 'consentimiento',
   };
-  var OPCIONALES = { herramientasQuePaga: true, tarifa: true, comoSeEntero: true };
-  var LARGOS = { nombre: [2, 80], whatsapp: [8, 20], instagram: [1, 40], herramientasQuePaga: [0, 300], expectativa: [20, 600] };
+  var OPCIONALES = { comoSeEntero: true };
+  var LARGOS = { nombre: [2, 80], whatsapp: [8, 20], instagram: [1, 40], expectativa: [20, 600] };
   var ENTEROS = { clientesActivos: true, clientesIgFb: true };
-  // Texto libre que solo existe cuando su select vale "otro" (mismo criterio que el backend).
-  var OTROS = { rolOtro: ['rol', 'otro'], planificacionOtro: ['planificacion', 'otra'], cobroOtro: ['cobro', 'otro'] };
   var CORREO = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
   var estado = document.getElementById('conv-estado');
@@ -104,18 +80,11 @@
     form.style.display = 'none';
   }
 
-  // Lee los 22 campos tal como los va a mandar: textos recortados, correo en
+  // Lee los campos tal como los va a mandar: textos recortados, correo en
   // minusculas, Instagram sin @, WhatsApp solo digitos y el + inicial.
   function leer() {
     var datos = {};
     CAMPOS.forEach(function (campo) {
-      if (campo === 'redes') {
-        datos.redes = Array.prototype.map.call(
-          form.querySelectorAll('input[name="redes"]:checked'),
-          function (el) { return el.value; }
-        );
-        return;
-      }
       if (campo === 'aceptoContacto') {
         datos.aceptoContacto = form.querySelector('input[name="aceptoContacto"]').checked;
         return;
@@ -140,21 +109,6 @@
 
       if (campo === 'aceptoContacto') {
         if (valor !== true) return { ok: false, error: TEXTOS.consentimiento, campo: campo };
-        continue;
-      }
-      if (campo === 'redes') {
-        if (!valor.length) return { ok: false, error: faltante(campo), campo: campo };
-        var vistas = {};
-        for (var j = 0; j < valor.length; j++) {
-          if (LISTAS.redes.indexOf(valor[j]) === -1 || vistas[valor[j]]) return { ok: false, error: revisar(campo), campo: campo };
-          vistas[valor[j]] = true;
-        }
-        continue;
-      }
-      if (OTROS[campo]) {
-        if (datos[OTROS[campo][0]] !== OTROS[campo][1]) { datos[campo] = ''; continue; }
-        if (valor === '') return { ok: false, error: faltante(campo), campo: campo };
-        if (valor.length > 120) datos[campo] = valor.slice(0, 120);
         continue;
       }
       if (valor === '') {
@@ -195,15 +149,6 @@
     btn.disabled = false;
     btn.textContent = 'Postularme';
   }
-
-  // Muestra el texto libre solo cuando el select que lo acompaña vale "otro".
-  Object.keys(OTROS).forEach(function (campo) {
-    var select = form.querySelector('[name="' + OTROS[campo][0] + '"]');
-    var wrap = document.getElementById('conv-' + campo + '-wrap');
-    function sincronizar() { wrap.hidden = select.value !== OTROS[campo][1]; }
-    select.addEventListener('change', sincronizar);
-    sincronizar();
-  });
 
   function cargarEstado() {
     fetch(PROXY_URL + '/api/convocatoria/estado')
