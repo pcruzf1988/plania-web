@@ -148,7 +148,7 @@ informa(/id="conv-msg"[^>]*role="status"[^>]*aria-live="polite"|role="status"[^>
   'conv-msg es role="status" aria-live="polite"');
 
 informa(HTML.includes('../privacidad.html#convocatoria'), 'el consentimiento linkea a ../privacidad.html#convocatoria');
-informa(HTML.includes('src="../js/convocatoria.js"'), 'la pagina carga ../js/convocatoria.js');
+informa(/src="\.\.\/js\/convocatoria\.js\?v=\d+"/.test(HTML), 'la pagina carga ../js/convocatoria.js con version (?v=), para que el CDN no sirva una copia vieja');
 
 const exclude = (WORKFLOW.match(/exclude:\s*\|\n((?:\s+.+\n?)+)/) || [, ''])[1]
   .split('\n').map((l) => l.trim()).filter(Boolean);

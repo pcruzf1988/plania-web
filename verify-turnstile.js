@@ -157,7 +157,7 @@ for (const f of FORMULARIOS) {
     `${f.pagina}: el contenedor esta justo arriba del boton de enviar`);
 
   // turnstile.js tiene que cargar antes que el codigo del formulario.
-  const envio = html.indexOf(f.codigo === f.pagina ? f.ruta : 'js/convocatoria.js"');
+  const envio = html.indexOf(f.codigo === f.pagina ? f.ruta : 'js/convocatoria.js?v=');
   informa(html.indexOf(etiqueta) !== -1 && html.indexOf(etiqueta) < envio,
     `${f.pagina}: ${f.src} carga antes que el codigo del formulario`);
 
