@@ -146,6 +146,26 @@
     });
   }
 
+  // La franja de la convocatoria en la portada lleva a /convocatoria/. Se mide
+  // aparte de los CTA a la app: es otra conversion. Igual que arriba, gtag y
+  // fbq solo existen si se acepto.
+  function trackConvocatoriaClicks() {
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('a.conv-bar');
+      if (!link) return;
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag('event', 'click_convocatoria', { origen: 'franja_portada' });
+        } catch (err) { /* nunca frenar la navegacion por un evento */ }
+      }
+      if (typeof window.fbq === 'function') {
+        try {
+          window.fbq('trackCustom', 'ClickConvocatoria', { origen: 'franja_portada' });
+        } catch (err) { /* nunca frenar la navegacion por un evento */ }
+      }
+    });
+  }
+
   function dismiss(banner, value) {
     set(value);
     if (banner && banner.parentNode) banner.parentNode.removeChild(banner);
@@ -197,6 +217,7 @@
   };
 
   trackCtaClicks();
+  trackConvocatoriaClicks();
 
   var stored = get();
   if (stored === 'accepted') {

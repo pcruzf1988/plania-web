@@ -4,6 +4,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── FRANJA DE LA CONVOCATORIA ─────────────────────────────────
+  // The bar sits above the fixed nav. Its real height (it wraps on phones) is
+  // published as --bar-h, which offsets the nav, the mobile menu and the hero.
+  // Past its closing time it is hidden and the offset goes back to 0.
+  const NAV_H = 66;
+  const convBar = document.getElementById('conv-bar');
+  const barHeight = () => (convBar && !convBar.hidden ? convBar.offsetHeight : 0);
+  const syncConvBar = () => {
+    if (!convBar) return;
+    const cierra = Date.parse(convBar.getAttribute('data-cierra'));
+    if (!Number.isNaN(cierra) && Date.now() >= cierra) convBar.hidden = true;
+    document.documentElement.style.setProperty('--bar-h', barHeight() + 'px');
+  };
+  if (convBar) {
+    syncConvBar();
+    window.addEventListener('resize', syncConvBar);
+    // Web fonts change the wrapping after the first measure.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncConvBar);
+    const falta = Date.parse(convBar.getAttribute('data-cierra')) - Date.now();
+    // setTimeout overflows above ~24.8 days; further away, the next visit handles it.
+    if (falta > 0 && falta < 2147483647) setTimeout(syncConvBar, falta);
+  }
+
   // ── STAGGERED REVEAL ──────────────────────────────────────
   const staggerGroups = [
     '.stats-band .container',
@@ -138,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        const offset = 72;
+        const offset = NAV_H + 6 + barHeight();
         const top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top, behavior: 'smooth' });
       }
@@ -169,9 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroEl = document.querySelector('.hero');
     const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : 0;
     nav.classList.toggle('scrolled', window.scrollY > 10);
-    nav.classList.toggle('on-dark', heroBottom > 66);
+    nav.classList.toggle('on-dark', heroBottom > NAV_H + barHeight());
   };
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
 
 
@@ -227,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // ── LIGHTBOX ────────────────────────────────────────────────
-document.querySelectorAll('.feat-img-wrap img').forEach(img => {
+document.querySelectorAll('.feat-img-wrap img, .phone-frame img').forEach(img => {
   img.addEventListener('click', e => {
     e.stopPropagation();
     openLightbox(img.src, img.alt);

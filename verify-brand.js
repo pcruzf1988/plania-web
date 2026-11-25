@@ -206,4 +206,156 @@ for (const p of PAGINAS) {
   check('banda final: sin el copy viejo', !i.includes('Más tiempo para la estrategia') && !i.includes('sin vencimiento, sin compromiso'));
   check('banda final: botón "Crear mi primer plan gratis" sin flecha', !/Empezar gratis →/.test(i.slice(i.indexOf('Las redes de cada cliente,<br'))));
 }
+
+// ── Landing actualizada (24/11/2026): funciones, capturas nuevas y franja de la convocatoria ──
+// Texto visible con las etiquetas convertidas en espacios (un <br> separa palabras).
+const plano = (s) => s.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+const mainJs = leer('js/main.js');
+const respCss = css['css/responsive.css'];
+
+// Ancho y alto reales de un PNG o WebP, leidos de la cabecera del archivo.
+function dimensiones(archivo) {
+  const b = fs.readFileSync(archivo);
+  if (b.toString('ascii', 1, 4) === 'PNG') return [b.readUInt32BE(16), b.readUInt32BE(20)];
+  if (b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+    const tipo = b.toString('ascii', 12, 16);
+    if (tipo === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+    if (tipo === 'VP8L') { const n = b.readUInt32LE(21); return [(n & 0x3fff) + 1, ((n >>> 14) & 0x3fff) + 1]; }
+    if (tipo === 'VP8X') return [b.readUIntLE(24, 3) + 1, b.readUIntLE(27, 3) + 1];
+  }
+  return null;
+}
+const imagenes = (src) => [...src.matchAll(/<img\b[^>]*>/g)].map((m) => {
+  const at = (n) => atributo(m[0], new RegExp(`\\b${n}="([^"]*)"`));
+  return { tag: m[0], src: at('src'), width: at('width'), height: at('height'), alt: at('alt'), loading: at('loading') };
+});
+
+{
+  // Franja de la convocatoria: arriba del menu, con su fecha de cierre.
+  const bar = (index.match(/<a\b[^>]*class="conv-bar"[^>]*>[\s\S]*?<\/a>/) || [''])[0];
+  const barTag = (bar.match(/<a\b[^>]*>/) || [''])[0];
+  check('franja convocatoria: existe <a class="conv-bar" id="conv-bar">', barTag.includes('id="conv-bar"'), barTag);
+  check('franja convocatoria: linkea a /convocatoria/', barTag.includes('href="/convocatoria/"'), barTag);
+  check('franja convocatoria: lleva el cierre data-cierra="2026-11-30T03:00:00Z"',
+    barTag.includes('data-cierra="2026-11-30T03:00:00Z"'), barTag);
+  check('franja convocatoria: texto de la convocatoria',
+    plano(bar).startsWith('Convocatoria Pro: 2 meses de PlanIA Pro gratis para community managers. Inscripción abierta hasta el domingo 29 de noviembre.'),
+    plano(bar));
+  check('franja convocatoria: llamada "Postulate →"', plano(bar).endsWith('Postulate →'), plano(bar));
+  check('franja convocatoria: va antes del menu', bar !== '' && index.indexOf(bar) < index.indexOf('<header class="nav'));
+  check('franja convocatoria: main.css la oculta con [hidden] (display:none le gana al flex)',
+    /\.conv-bar\[hidden\]\s*\{\s*display:\s*none/.test(mainCss));
+  const barRule = (mainCss.match(/\n\.conv-bar\s*\{([^}]*)\}/) || [])[1] || '';
+  check('franja convocatoria: sin alto fijo (se adapta si el texto ocupa dos lineas)',
+    barRule !== '' && !/[^-]height:/.test(` ${barRule}`), barRule.trim());
+  check(':root define --bar-h: 0px (sin franja no hay desplazamiento)', /--bar-h:\s*0px;/.test(root));
+  const navRule = (mainCss.match(/\n\.nav\s*\{([^}]*)\}/) || [])[1] || '';
+  check('.nav se ubica debajo de la franja: top: var(--bar-h)', /top:\s*var\(--bar-h\)/.test(navRule), navRule.trim());
+  const navMobile = (respCss.match(/\n\.nav-mobile\s*\{([^}]*)\}/) || [])[1] || '';
+  check('.nav-mobile abre debajo del menu y la franja: top: calc(66px + var(--bar-h))',
+    /top:\s*calc\(66px \+ var\(--bar-h\)\)/.test(navMobile), navMobile.trim());
+  const heroPads = [...(mainCss + respCss).matchAll(/\.hero\s*\{[^}]*?padding:\s*([^;]+);/g)].map((m) => m[1]);
+  check('el padding superior del hero suma la franja en todos los anchos',
+    heroPads.length === 4 && heroPads.every((p) => /^calc\(\d+px \+ var\(--bar-h\)\)/.test(p)), heroPads.join(' | '));
+  check('main.js mide la franja y publica --bar-h', mainJs.includes("getElementById('conv-bar')") && mainJs.includes("'--bar-h'"));
+  check('main.js oculta la franja al cierre (lee data-cierra)', mainJs.includes("getAttribute('data-cierra')"));
+  check('main.js ya no asume 66 px fijos para el estado on-dark', !/heroBottom > 66\b/.test(mainJs));
+  check('main.js ya no asume 72 px fijos al hacer scroll a una seccion', !/const offset = 72;/.test(mainJs));
+
+  // Precios: se conservan, y la nota dice la verdad sobre los medios de pago.
+  const nota = plano((index.match(/<p class="pricing-note">([\s\S]*?)<\/p>/) || [])[1] || '');
+  check('nota de precios: ya no dice "próximamente"', nota !== '' && !/pr[oó]ximamente/i.test(nota), nota);
+  check('nota de precios: tarjeta internacional en USD', /tarjeta/i.test(nota) && nota.includes('USD'), nota);
+  check('nota de precios: Argentina paga en pesos con MercadoPago', nota.includes('pesos') && nota.includes('MercadoPago'), nota);
+  check('precios: aclara qué no consume generaciones',
+    plano(index).includes('Mejorar el copy con IA, generar guiones de reel, exportar PDF y compartir enlaces de aprobación no consumen generaciones de plan.'));
+  for (const s of ['<sup>$</sup>16.99<span class="period"> / mes USD</span>', '<sup>$</sup>25.99<span class="period"> / mes USD</span>',
+    '<sup>$</sup>43.99<span class="period"> / mes USD</span>', 'o $19.500 ARS / mes con MercadoPago', 'o $30.000 ARS / mes con MercadoPago',
+    'o $51.000 ARS / mes con MercadoPago', '4 generaciones de plan por mes', '12 generaciones de plan por mes', '30 generaciones de plan por mes',
+    'Hasta 3 clientes', 'Hasta 10 clientes', 'Hasta 25 clientes']) {
+    check(`precios sin cambios: ${s.replace(/<[^>]+>/g, '')}`, index.includes(s));
+  }
+  const starter = index.slice(index.indexOf('<div class="p-tier">Starter</div>'), index.indexOf('Elegir Starter'));
+  check('Starter conserva "Soporte por email y WhatsApp"', starter.includes('<li>Soporte por email y WhatsApp</li>'));
+
+  // Funciones: cada bloque nuevo tiene su titulo.
+  const funciones = index.slice(index.indexOf('<div id="funciones">'), index.indexOf('<section class="workflow-section"'));
+  const titulos = [...funciones.matchAll(/<h[34][^>]*>([\s\S]*?)<\/h[34]>/g)].map((m) => plano(m[1]));
+  for (const t of [
+    'Un plan mensual completo. Copy incluido.',
+    'Tu cliente aprueba desde el celular, sin crear una cuenta',
+    'Pedile a la IA que mejore una pieza, no todo el plan',
+    'El guion del reel, escena por escena',
+    'La IA entiende el negocio. Vos le das la dirección.',
+    'Identidad visual de cada cliente',
+    'Informes de resultados y métricas que te toman minutos, no horas',
+    'Conocé a quién le hablás de verdad',
+    'El informe para el cliente, redactado y editable',
+    'Arrancá el día sabiendo exactamente qué hacer',
+    'Uma te explica cómo se hace, sin salir de la app',
+    'También en el celular, y conectado con lo que ya usás',
+    'Diseñar en Canva',
+    'Crear en Meta',
+    'Exportación en PDF',
+    'Tema claro y oscuro',
+  ]) check(`#funciones tiene el título "${t}"`, titulos.includes(t));
+  for (const s of ['Pendiente', 'Programada', 'Publicado', 'Falta insumo', 'Listo para programar', 'Mejorar con IA', 'hasta 8 colores', 'Business Suite']) {
+    check(`#funciones menciona "${s}"`, plano(funciones).includes(s));
+  }
+  check('FAQ: pregunta sobre la aprobación del cliente', index.includes('¿Cómo aprueba el plan mi cliente?'));
+
+  // Lo que no existe para los usuarios no se anuncia.
+  for (const s of ['Lucía', 'Lucia', 'Telegram', 'TikTok', 'LinkedIn', 'instalable', 'notificaciones push', 'colaboradores', 'miembros del equipo']) {
+    check(`index.html no anuncia "${s}"`, !plano(index).toLowerCase().includes(s.toLowerCase()));
+  }
+
+  let ld = null;
+  try { ld = JSON.parse((index.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/) || [])[1]); } catch (e) { ld = null; }
+  check('JSON-LD válido con featureList', !!ld && Array.isArray(ld.featureList) && ld.featureList.length >= 6);
+
+  // Capturas: ninguna vieja, todas existen, con su tamaño real, alt y carga diferida.
+  for (const p of PAGINAS) check(`${p}: no referencia captura-*.png`, !/captura-[a-z]+\.png/.test(html[p]));
+  const viejas = fs.readdirSync('assets/images').filter((f) => /^captura-/.test(f));
+  check('assets/images ya no tiene captura-*.png', viejas.length === 0, viejas.join(', '));
+  check('se conserva assets/images/og-image.png', fs.existsSync('assets/images/og-image.png'));
+
+  for (const p of ['index.html', 'convocatoria/index.html']) {
+    const imgs = imagenes(html[p]);
+    const capturas = imgs.filter((i) => /assets\/images\/app-/.test(i.src || ''));
+    check(`${p}: usa las capturas nuevas (assets/images/app-*)`, capturas.length >= (p === 'index.html' ? 12 : 2), `${capturas.length}`);
+    for (const i of imgs) {
+      const archivo = path.join(path.dirname(p), (i.src || '').split('?')[0]);
+      const existe = !!i.src && fs.existsSync(archivo);
+      check(`${p}: existe ${i.src}`, existe);
+      check(`${p}: ${i.src} lleva alt descriptivo`, !!i.alt && i.alt.length >= 20, i.alt);
+      if (!existe || !/\.(png|webp)$/.test(archivo)) continue;
+      const real = dimensiones(archivo);
+      check(`${p}: ${i.src} declara su tamaño real`,
+        !!real && Number(i.width) === real[0] && Number(i.height) === real[1], `declara ${i.width}x${i.height}, real ${real}`);
+      const peso = fs.statSync(archivo).size;
+      check(`${p}: ${i.src} pesa menos de 250 KB`, peso < 250 * 1024, `${Math.round(peso / 1024)} KB`);
+    }
+    const sinLazy = capturas.filter((i) => i.loading !== 'lazy');
+    if (p === 'index.html') {
+      const hero = index.slice(index.indexOf('<section class="hero">'), index.indexOf('<div class="stats-band">'));
+      check('index.html: solo la captura del hero carga sin loading="lazy"',
+        sinLazy.length === 1 && hero.includes(sinLazy[0].tag), sinLazy.map((i) => i.src).join(', '));
+    } else {
+      check(`${p}: todas las capturas llevan loading="lazy"`, sinLazy.length === 0, sinLazy.map((i) => i.src).join(', '));
+    }
+  }
+  check('index.html muestra las dos capturas de celular',
+    index.includes('app-aprobacion-celular.webp') && index.includes('app-plan-celular.webp'));
+  check('convocatoria: captura del plan y del portal de aprobación',
+    html['convocatoria/index.html'].includes('app-plan-lista.webp') && html['convocatoria/index.html'].includes('app-aprobacion-celular.webp'));
+
+  // Hostinger guarda CSS y JS una semana: lo que cambió sube de versión.
+  const version = (src, archivo) => Number(atributo(src, new RegExp(`${archivo.replace('.', '\\.')}\\?v=(\\d+)"`)) || 0);
+  for (const [archivo, minimo] of [['css/main.css', 9], ['css/responsive.css', 9], ['js/cookie-consent.js', 3]]) {
+    const vi = version(index, archivo);
+    const vc = version(html['convocatoria/index.html'], archivo);
+    check(`${archivo}: index.html y convocatoria cargan la misma versión nueva (?v=${minimo} o más)`, vi >= minimo && vi === vc, `index ${vi}, convocatoria ${vc}`);
+  }
+  check('js/main.js: index.html carga ?v=6 o más', version(index, 'js/main.js') >= 6);
+}
 process.exit(fail);
