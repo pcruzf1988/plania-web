@@ -18,8 +18,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/main.css?v=8">
-  <link rel="stylesheet" href="../css/responsive.css?v=8">
+  <link rel="stylesheet" href="../css/main.css?v=9">
+  <link rel="stylesheet" href="../css/responsive.css?v=9">
   <style>
     .legal-header {
       background: var(--carbon);
@@ -71,6 +71,8 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
     }
+    /* Phone screenshot next to the approval idea: narrow, never full width. */
+    .conv-shot-phone { max-width: 240px; margin: 14px 0 18px; border-radius: var(--radius); }
 
     .highlight-box {
       background: var(--tierra-light);
@@ -219,7 +221,7 @@
   </style>
   <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
        si el usuario acepta. Ver js/cookie-consent.js -->
-  <script src="../js/cookie-consent.js?v=2"></script>
+  <script src="../js/cookie-consent.js?v=3"></script>
 </head>
 <body>
 
@@ -256,11 +258,12 @@
   <p>PlanIA es una app web para quienes gestionan redes de clientes. Cargás el perfil de cada negocio una vez y cada mes arma el <strong>plan de contenidos completo, con el copy listo</strong>. Vos lo revisás, lo ajustás y se lo mandás a tu cliente: nada se publica sin tu ok.</p>
   <ul>
     <li><strong>Plan mensual con IA:</strong> publicaciones, carruseles, reels e historias, cada una con su copy, el insumo visual que hace falta y las indicaciones para el cliente.</li>
-    <li><strong>Aprobación con un enlace:</strong> tu cliente ve el plan desde el celular, sin crear una cuenta, y aprueba o pide cambios pieza por pieza.</li>
+    <li><strong>Aprobación con un enlace:</strong> tu cliente ve el plan desde el celular, sin crear una cuenta, y aprueba o pide cambios pieza por pieza.
+      <img class="conv-shot conv-shot-phone" src="../assets/images/app-aprobacion-celular.webp" alt="Portal de aprobación de PlanIA en un celular: el cliente lee el texto de una publicación y tiene los botones para aprobar las pendientes y terminar la revisión" width="780" height="1461" loading="lazy"></li>
     <li><strong>Métricas e informes:</strong> los datos de Instagram y Facebook de cada cliente en un panel, y el informe mensual redactado en minutos.</li>
     <li><strong>Todos tus clientes en un calendario:</strong> qué se publica esta semana y qué material te falta pedir.</li>
   </ul>
-  <img class="conv-shot" src="../assets/images/captura-plan.png?v=5" alt="Publicación del plan en PlanIA: copy listo para publicar, insumo visual necesario y accesos directos a Canva y Meta" width="1400" height="713" loading="lazy">
+  <img class="conv-shot" src="../assets/images/app-plan-lista.webp" alt="Plan mensual en PlanIA: tareas para el cliente y una publicación con su copy, el insumo visual necesario y los botones Generar guion, Diseñar en Canva y Crear en Meta" width="1600" height="972" loading="lazy">
   <p><a href="../index.html#funciones" target="_blank" rel="noopener">Ver todas las funciones</a> (se abre en otra pestaña).</p>
 
   <h2>Qué te llevás</h2>

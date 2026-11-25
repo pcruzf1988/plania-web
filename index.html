@@ -39,6 +39,17 @@
     "url": "https://planiat.com",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
+    "featureList": [
+      "Plan mensual de contenidos con IA: publicaciones, carruseles, reels e historias con copy, insumo visual e indicaciones para el cliente",
+      "Vistas de lista, calendario y tablero del plan, con estados Pendiente, Programada y Publicado",
+      "Portal de aprobación para el cliente con enlace privado, sin cuenta",
+      "Mejora del copy con IA y guion de reel por pieza",
+      "Perfil estratégico generado con IA e identidad visual por cliente",
+      "Métricas de Instagram y Facebook, audiencia e informe mensual editable",
+      "Calendario unificado de todos los clientes y cola de producción",
+      "Asistente Uma dentro de la app",
+      "Integración con Canva y exportación en PDF"
+    ],
     "offers": [
       { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
       { "@type": "Offer", "name": "Starter", "price": "16.99", "priceCurrency": "USD" },
@@ -74,14 +85,36 @@
     }
   </script>
 
-  <link rel="stylesheet" href="css/main.css?v=8">
-  <link rel="stylesheet" href="css/responsive.css?v=8">
+  <link rel="stylesheet" href="css/main.css?v=9">
+  <link rel="stylesheet" href="css/responsive.css?v=9">
 
   <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
        si el usuario acepta. Ver js/cookie-consent.js -->
-  <script src="js/cookie-consent.js"></script>
+  <script src="js/cookie-consent.js?v=3"></script>
+  <!-- Sin JavaScript nadie mide la franja: se le reserva un alto fijo. -->
+  <noscript><style>
+    :root { --bar-h: 44px; } .conv-bar { min-height: 44px; }
+    @media (max-width: 760px) { :root { --bar-h: 64px; } .conv-bar { min-height: 64px; } }
+  </style></noscript>
 </head>
 <body>
+
+<!-- ── FRANJA DE LA CONVOCATORIA ─────────────────────────────────────
+     Se oculta sola al cierre (data-cierra). El script de abajo corre antes del
+     primer pintado: mide la franja y publica --bar-h, que es lo que corre el
+     menu fijo y el hero. js/main.js la vuelve a medir si cambia el ancho. -->
+<a class="conv-bar" id="conv-bar" href="/convocatoria/" data-cierra="2026-11-30T03:00:00Z">
+  <span class="conv-bar-text"><strong>Convocatoria Pro:</strong> 2 meses de PlanIA Pro gratis para community managers.<span class="conv-bar-extra"> Inscripción abierta hasta el domingo 29 de noviembre.</span></span>
+  <span class="conv-bar-cta">Postulate →</span>
+</a>
+<script>
+  (function () {
+    var bar = document.getElementById('conv-bar');
+    if (!bar) return;
+    if (Date.now() >= Date.parse(bar.getAttribute('data-cierra'))) { bar.hidden = true; return; }
+    document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
+  })();
+</script>
 
 <!-- ── NAV ──────────────────────────────────────────────────────────── -->
 <header class="nav on-dark">
@@ -154,7 +187,7 @@
       <span class="dot"></span>
       <span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        Sin descargas · 100% online
+        Tu cliente aprueba con un enlace
       </span>
     </div>
 
@@ -174,7 +207,7 @@
           </div>
           <div class="screenshot-url">planiat.com</div>
         </div>
-        <img src="assets/images/captura-dashboard.png?v=6" width="2000" height="1054" alt="Panel de inicio de PlanIA — calendario semanal de publicaciones, publicaciones próximas e insumos pendientes">
+        <img src="assets/images/app-inicio.webp" width="1600" height="1017" alt="Inicio de PlanIA: calendario semanal con las publicaciones de todos los clientes y cola de producción con el estado de cada pieza">
       </div>
       <div class="screenshot-glow"></div>
     </div>
@@ -225,14 +258,16 @@
         </div>
         <h3>Community Managers y Gestores de Redes</h3>
       </div>
-      <p class="subtitle">Si manejás las redes de varios clientes, PlanIA te da un flujo profesional de principio a fin: perfil estratégico → plan mensual con copy → seguimiento de publicaciones → informe de métricas listo para enviar. La IA no reemplaza tu criterio — lo potencia para que puedas dedicar más tiempo a la estrategia y menos a la operativa.</p>
+      <p class="subtitle">Si manejás las redes de varios clientes, PlanIA te da un flujo profesional de principio a fin: perfil estratégico → plan mensual con copy → aprobación del cliente → seguimiento de publicaciones → informe de métricas listo para enviar. La IA no reemplaza tu criterio — lo potencia para que puedas dedicar más tiempo a la estrategia y menos a la operativa.</p>
       <ul class="fw-list">
         <li>Gestioná múltiples clientes desde un solo lugar</li>
         <li>Plan mensual completo con copy listo para cada publicación</li>
-        <li>Panel de inicio diario con publicaciones próximas e insumos pendientes</li>
+        <li>Tu cliente aprueba el plan desde un enlace, sin crear una cuenta</li>
+        <li>Inicio diario con el calendario de todos los clientes y la cola de producción</li>
         <li>Informe de resultados, métricas, conclusiones y propuestas, en PDF para presentarle al cliente cada mes</li>
         <li>Notas privadas por cliente para no perder contexto</li>
         <li>Exportá el perfil estratégico en PDF para validar y firmar</li>
+        <li>Identidad visual de cada cliente: logo, colores y tipografías</li>
       </ul>
     </div>
 
@@ -249,35 +284,122 @@
       <div class="feat">
         <div class="feat-text reveal-left">
           <div class="feat-tag">Generación con IA</div>
-          <h3>Un plan mensual completo.<br class="br-desktop">Copy incluido.</h3>
-          <p>No solo títulos ni ideas sueltas. PlanIA genera cada publicación con el texto completo listo para crear la publicación en Meta Business, el formato recomendado, el eje de comunicación, los hashtags, los insumos visuales y las tareas del cliente.</p>
+          <h3>Un plan mensual completo. <br class="br-desktop">Copy incluido.</h3>
+          <p>No solo títulos ni ideas sueltas. PlanIA arma el mes con publicaciones, carruseles, reels e historias, y cada pieza llega con su copy, el insumo visual que hace falta y las indicaciones para el cliente.</p>
           <ul class="feat-list">
-            <li><span class="ico">✓</span> Copy completo y listo para publicar en cada post</li>
-            <li><span class="ico">✓</span> Tendencias web del sector inyectadas automáticamente en el plan</li>
-            <li><span class="ico">✓</span> Vista lista y vista calendario del plan</li>
-            <li><span class="ico">✓</span> Regeneración con instrucciones: pedile cambios específicos a la IA</li>
+            <li><span class="ico">✓</span> Copy completo en cada pieza, con formato, eje de comunicación y hashtags</li>
+            <li><span class="ico">✓</span> Insumo visual necesario y tareas para el cliente, semana por semana</li>
+            <li><span class="ico">✓</span> Tendencias web del sector incluidas automáticamente en el plan</li>
+            <li><span class="ico">✓</span> Tres vistas del mismo plan: lista, calendario y tablero</li>
             <li><span class="ico">✓</span> Edición de cualquier publicación directamente en la app</li>
-            <li><span class="ico">✓</span> Exportación del plan completo y guía de insumos para el cliente en PDF</li>
-            <li><span class="ico">✓</span> Seguimiento de estado: pendiente, programada, publicada</li>
-            <li><span class="ico">✓</span> Botón de Whatsapp para enviar al cliente el recordatorio de los insumos pendientes</li>
+            <li><span class="ico">✓</span> Regeneración con instrucciones: pedile cambios específicos a la IA</li>
           </ul>
         </div>
         <div class="feat-img reveal-right">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-plan.png?v=5" width="1400" height="713" loading="lazy" alt="Publicación del plan en PlanIA — copy listo para publicar, insumo visual necesario y accesos directos a Canva y Meta">
+            <img src="assets/images/app-plan-lista.webp" width="1600" height="972" loading="lazy" alt="Vista de lista del plan mensual en PlanIA: tareas para el cliente y una publicación con su copy, el insumo visual necesario y los botones Generar guion, Diseñar en Canva y Crear en Meta">
+          </div>
+        </div>
+      </div>
+
+      <div class="feat-gallery">
+        <figure class="feat-shot reveal">
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-plan-calendario.webp" width="1600" height="991" loading="lazy" alt="Vista de calendario del plan mensual en PlanIA, con las piezas de cada día marcadas según su estado">
+          </div>
+          <figcaption>
+            <h4>El mes en un calendario</h4>
+            <p>Cada pieza en su día, con el color de su estado. De un vistazo ves qué semanas están cubiertas.</p>
+          </figcaption>
+        </figure>
+        <figure class="feat-shot reveal">
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-plan-tablero.webp" width="1600" height="1026" loading="lazy" alt="Vista de tablero del plan mensual en PlanIA, con las piezas en tres columnas: Pendiente, Programada y Publicado">
+          </div>
+          <figcaption>
+            <h4>Un tablero para el seguimiento</h4>
+            <p>Arrastrás cada pieza entre Pendiente, Programada y Publicado a medida que avanzás con el mes.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Aprobación del cliente -->
+  <div class="feat-section alt">
+    <div class="container">
+      <div class="feat flip">
+        <div class="feat-text reveal-right">
+          <div class="feat-tag">Aprobación del cliente</div>
+          <h3>Tu cliente aprueba desde el celular, sin crear una cuenta</h3>
+          <p>Generás un enlace privado del plan y se lo mandás. Tu cliente lo abre en el celular, lee cada pieza y la aprueba o te pide cambios. Vos ves sus respuestas dentro del plan.</p>
+          <ul class="feat-list">
+            <li><span class="ico">✓</span> Un enlace privado por plan, sin usuario ni contraseña para el cliente</li>
+            <li><span class="ico">✓</span> Aprueba o pide cambios pieza por pieza</li>
+            <li><span class="ico">✓</span> Marca blanca: el portal se presenta con el nombre de tu cliente</li>
+            <li><span class="ico">✓</span> Lo compartís por WhatsApp o por donde ya hablás con tu cliente</li>
+            <li><span class="ico">✓</span> Los enlaces de aprobación no consumen generaciones de tu plan</li>
+          </ul>
+        </div>
+        <div class="feat-img reveal-left">
+          <div class="phone-frame">
+            <img src="assets/images/app-aprobacion-celular.webp" width="780" height="1461" loading="lazy" alt="Portal de aprobación de PlanIA en un celular: el cliente lee el texto de una publicación y tiene los botones para aprobar las pendientes y terminar la revisión">
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 2. Perfil estratégico -->
+  <!-- 3. IA en cada pieza -->
+  <div class="feat-section">
+    <div class="container">
+      <div class="feat">
+        <div class="feat-text reveal-left">
+          <div class="feat-tag">IA en cada pieza</div>
+          <h3>Pedile a la IA que mejore una pieza, no todo el plan</h3>
+          <p>Si una publicación no te cierra, no hace falta regenerar el mes. Con “Mejorar con IA” ajustás el copy de esa pieza: elegís una mejora rápida o le escribís qué querés cambiar.</p>
+          <ul class="feat-list">
+            <li><span class="ico">✓</span> Mejoras rápidas: más corto, más largo, con o sin emojis, tono más serio, mejorar el hook o el CTA</li>
+            <li><span class="ico">✓</span> O describís el ajuste con tus palabras</li>
+            <li><span class="ico">✓</span> “Ampliar con IA” desarrolla el insumo visual para que quien diseña o graba sepa qué hacer</li>
+            <li><span class="ico">✓</span> Nada de esto consume generaciones de tu plan</li>
+          </ul>
+        </div>
+        <div class="feat-img reveal-right">
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-mejorar-con-ia.webp" width="984" height="854" loading="lazy" alt="Ventana Mejorar publicación con IA en PlanIA: el copy actual editable, mejoras rápidas como Más corto o Mejorar hook y un campo para describir el ajuste">
+          </div>
+        </div>
+      </div>
+
+      <div class="feat flip">
+        <div class="feat-text reveal-right">
+          <div class="feat-tag">Guion de reel</div>
+          <h3>El guion del reel, escena por escena</h3>
+          <p>En cada reel del plan podés generar el guion: el hook de los primeros segundos, las escenas con su duración y el texto en pantalla, y el cierre con el llamado a la acción.</p>
+          <ul class="feat-list">
+            <li><span class="ico">✓</span> Hook, escenas y CTA listos para grabar</li>
+            <li><span class="ico">✓</span> Lo copiás como texto para pasárselo a quien graba</li>
+            <li><span class="ico">✓</span> Si no te convence, lo regenerás</li>
+            <li><span class="ico">✓</span> Tampoco consume generaciones de tu plan</li>
+          </ul>
+        </div>
+        <div class="feat-img narrow reveal-left">
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-guion-reel.webp" width="1098" height="1522" loading="lazy" alt="Guion de un reel generado en PlanIA: hook de los primeros 4 segundos y seis escenas, cada una con su duración y el texto en pantalla">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Perfil estratégico e identidad visual -->
   <div class="feat-section alt">
     <div class="container">
       <div class="feat flip">
         <div class="feat-text reveal-right">
           <div class="feat-tag">Perfil estratégico del cliente</div>
-          <h3>La IA entiende el negocio.<br class="br-desktop">Vos le das la dirección.</h3>
+          <h3>La IA entiende el negocio. <br class="br-desktop">Vos le das la dirección.</h3>
           <p>Antes de escribir una sola publicación, PlanIA construye un perfil estratégico completo del negocio. Vos lo revisás, ajustás lo que haga falta y lo validás con el cliente. Eso hace que cada plan generado esté anclado en la realidad del negocio y en tu criterio como profesional.</p>
           <ul class="feat-list">
             <li><span class="ico">✓</span> Diferencial y propuesta de valor del negocio</li>
@@ -286,17 +408,22 @@
             <li><span class="ico">✓</span> Público objetivo con motivaciones y contexto</li>
             <li><span class="ico">✓</span> PDF de perfil para validar y firmar con el cliente</li>
           </ul>
+          <h4>Identidad visual de cada cliente</h4>
+          <p>Junto al perfil guardás la marca del cliente: el logo, hasta 8 colores y 2 tipografías. Queda a mano cada vez que hay que diseñar una pieza.</p>
         </div>
-        <div class="feat-img reveal-left">
+        <div class="feat-img feat-img-stack reveal-left">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-perfil.png?v=4" width="2288" height="1840" loading="lazy" alt="Perfil estratégico del cliente en PlanIA — diferencial, tono, ejes y público objetivo">
+            <img src="assets/images/app-perfil-estrategico.webp" width="1600" height="446" loading="lazy" alt="Perfil estratégico de un cliente en PlanIA: diferencial, tono de comunicación, ejes de comunicación y público objetivo, cada uno editable">
+          </div>
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-identidad-visual.webp" width="1600" height="605" loading="lazy" alt="Tarjeta Identidad visual de un cliente en PlanIA: logo en fondo claro y oscuro, colores de marca con su código y tipografías de título y de cuerpo">
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. Métricas -->
+  <!-- 5. Métricas, audiencia e informe -->
   <div class="feat-section">
     <div class="container">
       <div class="feat">
@@ -315,56 +442,113 @@
         </div>
         <div class="feat-img reveal-right">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-metricas.png?v=4" width="2288" height="1840" loading="lazy" alt="Panel de métricas de Instagram y Facebook en PlanIA">
+            <img src="assets/images/app-metricas.webp" width="1600" height="1136" loading="lazy" alt="Panel de métricas de Instagram en PlanIA con datos de ejemplo: seguidores, alcance, vistas, interacciones, evolución de los últimos 30 días y acciones en el perfil">
           </div>
+          <p class="feat-caption">Captura con datos de ejemplo.</p>
         </div>
+      </div>
+
+      <div class="feat-gallery">
+        <figure class="feat-shot reveal">
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-audiencia.webp" width="1600" height="1131" loading="lazy" alt="Audiencia de Instagram en PlanIA: seguidores por edad y género, distribución de género y ranking de ciudades y países">
+          </div>
+          <figcaption>
+            <h4>Conocé a quién le hablás de verdad</h4>
+            <p>La audiencia de Instagram por edad y género, y las ciudades y países desde donde te siguen. Son datos de la API de Meta, no estimaciones.</p>
+          </figcaption>
+        </figure>
+        <figure class="feat-shot reveal">
+          <div class="feat-img-wrap">
+            <img src="assets/images/app-informe.webp" width="1600" height="828" loading="lazy" alt="Informe mensual generado con IA en PlanIA: números del período comparados con el anterior, resumen del mes y qué pasó, con botones para editar y exportar a PDF">
+          </div>
+          <figcaption>
+            <h4>El informe para el cliente, redactado y editable</h4>
+            <p>La IA escribe el informe del mes con los números, lo que pasó y los próximos pasos. Lo editás a tu criterio y lo exportás en PDF.</p>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
 
-  <!-- 4. Audiencia -->
+  <!-- 6. Inicio -->
   <div class="feat-section alt">
     <div class="container">
       <div class="feat flip">
         <div class="feat-text reveal-right">
-          <div class="feat-tag">Demografía de la audiencia</div>
-          <h3>Conocé a quién le hablás de verdad</h3>
-          <p>PlanIA trae los datos demográficos reales de la audiencia de <strong>Instagram:</strong> cómo se distribuyen por edad y género, desde qué ciudades y países te siguen.</p>
+          <div class="feat-tag">Centro de operaciones</div>
+          <h3>Arrancá el día sabiendo exactamente qué hacer</h3>
+          <p>El inicio de PlanIA junta a todos tus clientes en una sola pantalla: qué se publica esta semana, qué piezas todavía esperan material y cuáles ya están para programar.</p>
           <ul class="feat-list">
-            <li><span class="ico">✓</span> Distribución por edad y género de los seguidores</li>
-            <li><span class="ico">✓</span> Top ciudades y países de la audiencia</li>
-            <li><span class="ico">✓</span> Incluido en el informe PDF de métricas</li>
-            <li><span class="ico">✓</span> Datos reales de la API de Meta, no estimaciones</li>
+            <li><span class="ico">✓</span> Calendario unificado de todos los clientes: semanal, mensual o tablero</li>
+            <li><span class="ico">✓</span> Cola de producción con las piezas de los próximos 7 días</li>
+            <li><span class="ico">✓</span> Filtros “Falta insumo” y “Listo para programar”</li>
+            <li><span class="ico">✓</span> Recordatorio por WhatsApp al cliente cuando falta material</li>
+            <li><span class="ico">✓</span> Acceso directo a cada pieza con un clic</li>
           </ul>
         </div>
         <div class="feat-img reveal-left">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-audiencia.png?v=4" width="2288" height="1840" loading="lazy" alt="Demografía de audiencia de Instagram en PlanIA — edad, género, ciudades y países">
+            <img src="assets/images/app-inicio.webp" width="1600" height="1017" loading="lazy" alt="Inicio de PlanIA: calendario semanal de publicaciones de todos los clientes y cola de producción con fecha, pieza, cliente, formato, insumo y estado">
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 5. Dashboard -->
+  <!-- 7. Uma -->
   <div class="feat-section">
     <div class="container">
       <div class="feat">
         <div class="feat-text reveal-left">
-          <div class="feat-tag">Centro de operaciones</div>
-          <h3>Arrancá el día sabiendo exactamente qué hacer</h3>
-          <p>El dashboard de PlanIA es tu centro de operaciones diario. De un vistazo sabés qué publicaciones vencen pronto, qué insumos visuales te faltan y en qué estado están tus clientes.</p>
+          <div class="feat-tag">Asistente dentro de la app</div>
+          <h3>Uma te explica cómo se hace, sin salir de la app</h3>
+          <p>Uma es la asistente de PlanIA. Le preguntás cómo hacer algo y te responde con los pasos, ahí mismo, mientras trabajás.</p>
           <ul class="feat-list">
-            <li><span class="ico">✓</span> Calendario de publicaciones con vista semanal o mensual</li>
-            <li><span class="ico">✓</span> Publicaciones próximas de todos los clientes (7 días)</li>
-            <li><span class="ico">✓</span> Insumos visuales pendientes con anticipación a la fecha</li>
-            <li><span class="ico">✓</span> Estado de cada cliente: planes activos y conexión con Meta</li>
-            <li><span class="ico">✓</span> Acceso directo al plan del cliente con un clic</li>
+            <li><span class="ico">✓</span> Responde dudas de uso: dónde está cada cosa y cómo se hace</li>
+            <li><span class="ico">✓</span> Disponible en cualquier pantalla de la app</li>
+            <li><span class="ico">✓</span> Es una asistente con inteligencia artificial y puede equivocarse: si algo no cierra, nos escribís</li>
           </ul>
         </div>
-        <div class="feat-img reveal-right">
+        <div class="feat-img narrow reveal-right">
           <div class="feat-img-wrap">
-            <img src="assets/images/captura-dashboard.png?v=6" width="2000" height="1054" loading="lazy" alt="Panel de inicio de PlanIA con el calendario semanal, las publicaciones próximas y los insumos pendientes">
+            <img src="assets/images/app-uma.webp" width="767" height="1283" loading="lazy" alt="Uma, la asistente de PlanIA, respondiendo qué opciones hay cuando no te gusta una publicación generada: editarla a mano, mejorarla con IA o regenerarla">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Celular e integraciones -->
+  <div class="feat-section alt">
+    <div class="container">
+      <div class="feat flip">
+        <div class="feat-text reveal-right">
+          <div class="feat-tag">Y además</div>
+          <h3>También en el celular, y conectado con lo que ya usás</h3>
+          <p>PlanIA se abre desde el navegador del celular: revisás el plan, cambiás el estado de una pieza o copiás un texto estés donde estés.</p>
+          <div class="extras-grid">
+            <div class="extra-card">
+              <h4>Diseñar en Canva</h4>
+              <p>Cada pieza tiene su botón “Diseñar en Canva”: abrís el diseño con un clic y seguís donde lo dejaste.</p>
+            </div>
+            <div class="extra-card">
+              <h4>Crear en Meta</h4>
+              <p>Copia el texto de la pieza y abre Meta Business Suite para que la crees ahí. Publicar lo decidís vos.</p>
+            </div>
+            <div class="extra-card">
+              <h4>Exportación en PDF</h4>
+              <p>El plan, el perfil estratégico, el informe de métricas y la guía de insumos para el cliente salen en PDF.</p>
+            </div>
+            <div class="extra-card">
+              <h4>Tema claro y oscuro</h4>
+              <p>Elegís cómo ver la app según la hora y tu pantalla.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feat-img reveal-left">
+          <div class="phone-frame">
+            <img src="assets/images/app-plan-celular.webp" width="780" height="1465" loading="lazy" alt="Plan mensual de PlanIA en un celular: una publicación con su copy listo para publicar y los estados Pendiente, Programada y Publicado">
           </div>
         </div>
       </div>
@@ -400,8 +584,8 @@
       </div>
       <div class="step reveal">
         <div class="step-num">4</div>
-        <h4>Revisás, diseñás y aprobás</h4>
-        <p>Editás lo que necesites con tu criterio profesional, abrís el diseño de cada publicación en Canva con un clic y exportás en PDF para el cliente.</p>
+        <h4>Revisás y tu cliente aprueba</h4>
+        <p>Ajustás lo que haga falta con tu criterio, abrís el diseño en Canva y le mandás el enlace: tu cliente aprueba o pide cambios desde el celular.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">5</div>
@@ -702,6 +886,10 @@
 
     </div>
 
+    <p class="pricing-extra reveal">
+      <strong>Mejorar el copy con IA, generar guiones de reel, exportar PDF y compartir enlaces de aprobación no consumen generaciones de plan.</strong> Las generaciones se usan al crear o regenerar un plan completo.
+    </p>
+
     <div class="social-strip reveal">
       <div>
         <h4>¿Sos ONG, fundación o asociación sin fines de lucro?</h4>
@@ -711,7 +899,7 @@
     </div>
 
     <p class="pricing-note">
-      Pagos en pesos argentinos con MercadoPago (tarjeta de crédito) · Pagos internacionales próximamente · Los planes se contratan dentro de la app · Tus datos se guardan de forma segura en la nube con Firebase (Google)
+      Pagos con tarjeta en USD desde cualquier país · En Argentina también podés pagar en pesos con MercadoPago · Los planes se contratan dentro de la app · Tus datos se guardan de forma segura en la nube con Firebase (Google)
     </p>
   </div>
 </section>
@@ -737,7 +925,15 @@
       ¿PlanIA publica automáticamente en Instagram o Facebook?
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <div class="faq-a">No, PlanIA genera el plan y el copy completo de cada publicación, con botón para crear directamente en Meta Business o copiar y pegar en la plataforma que prefieras. Esto es intencional — la mayoría de los community managers y gestores de redes prefiere tener control total sobre los detalles de cada publicación en la plataforma que corresponde.</div>
+    <div class="faq-a">No, PlanIA genera el plan y el copy completo de cada publicación, con el botón “Crear en Meta”, que copia el texto y abre Meta Business Suite, o para copiar y pegar en la plataforma que prefieras. Esto es intencional — la mayoría de los community managers y gestores de redes prefiere tener control total sobre los detalles de cada publicación en la plataforma que corresponde.</div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-q">
+      ¿Cómo aprueba el plan mi cliente?
+      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="faq-a">Desde el plan generás un <strong>enlace privado</strong> y se lo mandás, por ejemplo por WhatsApp. Tu cliente lo abre en el celular, sin crear una cuenta ni instalar nada, y aprueba o pide cambios pieza por pieza. Vos ves sus respuestas en el plan y ajustás lo que haga falta. Los enlaces de aprobación no consumen generaciones.</div>
   </div>
 
   <div class="faq-item reveal">
@@ -761,7 +957,7 @@
       ¿Mis datos y los de mis clientes están seguros?
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <div class="faq-a">Sí. Tus datos se guardan de forma segura en <strong>Firebase (infraestructura de Google)</strong>, encriptados y accesibles solo con tu cuenta. PlanIA no vende ni comparte tus datos con terceros. Las únicas conexiones externas son: Anthropic (para generar contenido con IA), Meta (para importar métricas) y Firebase (para tu cuenta y datos), y solo cuando vos lo pedís explícitamente.</div>
+    <div class="faq-a">Sí. Tus datos se guardan de forma segura en <strong>Firebase (infraestructura de Google)</strong>, encriptados y accesibles solo con tu cuenta. PlanIA no vende ni comparte tus datos con terceros. Las únicas conexiones externas son: Anthropic (para generar contenido con IA), Meta (para importar métricas), Canva (si conectás tu cuenta para diseñar) y Firebase (para tu cuenta y datos), y solo cuando vos lo pedís explícitamente.</div>
   </div>
 
   <div class="faq-item reveal">
@@ -904,6 +1100,6 @@
 <!-- La UTM y el sitio de origen de la visita viajan en los links a la app.
      Ver js/origin-links.js -->
 <script src="js/origin-links.js?v=1"></script>
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

@@ -177,4 +177,17 @@ informa(JS.includes("'convocatoria_inicio'") && JS.includes("'ConvocatoriaInicio
 informa(/typeof window\.gtag === 'function'/.test(JS) && /typeof window\.fbq === 'function'/.test(JS),
   'los eventos solo salen si gtag y fbq existen (hay consentimiento)');
 
+// Capturas nuevas (2026-11-24): el plan y, junto a "Aprobación con un enlace",
+// el portal de aprobación en el celular. Ninguna captura vieja.
+informa(!/captura-[a-z]+\.png/.test(HTML), 'la pagina no referencia captura-*.png');
+informa(HTML.includes('../assets/images/app-plan-lista.webp'), 'la pagina muestra la captura nueva del plan');
+informa(HTML.includes('../assets/images/app-aprobacion-celular.webp'), 'la pagina muestra el portal de aprobacion en el celular');
+informa(HTML.indexOf('Aprobación con un enlace') < HTML.indexOf('app-aprobacion-celular.webp') &&
+  HTML.indexOf('app-aprobacion-celular.webp') < HTML.indexOf('<h2>Qué te llevás</h2>'),
+  'la captura del portal va dentro del bloque "Qué es PlanIA", despues de "Aprobación con un enlace"');
+for (const m of HTML.matchAll(/<img\b[^>]*\bsrc="([^"]+)"[^>]*>/g)) {
+  const archivo = `convocatoria/${m[1].split('?')[0]}`;
+  informa(fs.existsSync(archivo), `existe la imagen ${m[1]}`);
+}
+
 process.exit(fail);

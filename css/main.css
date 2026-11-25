@@ -42,6 +42,10 @@
   --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
   --ease-spring:   cubic-bezier(.34, 1.56, .64, 1);
   --ease-smooth:   cubic-bezier(.4, 0, .2, 1);
+
+  /* Alto de la franja de la convocatoria. Lo publica el script que la mide;
+     sin franja (o ya cerrada) queda en 0 y nada se corre. */
+  --bar-h: 0px;
 }
 
 html { scroll-behavior: smooth; overflow-x: clip; }
@@ -227,9 +231,33 @@ h1, h2 {
 .btn-lg { padding: 17px 38px; font-size: 16px; border-radius: 12px; }
 
 
+/* ── FRANJA DE LA CONVOCATORIA ──────────────────────────── */
+/* Sin alto declarado: en un celular el texto ocupa dos o tres lineas y el
+   resto de la pagina se corre segun lo que mida (--bar-h). */
+.conv-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 101;
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 4px 14px;
+  padding: 9px 20px;
+  background: var(--tierra-dark);
+  color: rgba(255,255,255,.92);
+  font-size: 13.5px; line-height: 1.45; font-weight: 500;
+  text-align: center;
+  transition: background .3s;
+}
+.conv-bar[hidden] { display: none; }
+.conv-bar strong { color: white; font-weight: 700; }
+.conv-bar-cta {
+  color: white; font-weight: 700; white-space: nowrap;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.conv-bar:hover { background: #8A4019; }
+.conv-bar:focus-visible { outline: 2px solid white; outline-offset: -4px; }
+
+
 /* ── NAV ────────────────────────────────────────────────── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: var(--bar-h); left: 0; right: 0; z-index: 100;
   height: 66px;
   background: rgba(250,248,245,.92);
   backdrop-filter: blur(24px) saturate(1.4);
@@ -302,7 +330,7 @@ h1, h2 {
 
 /* ── HERO ────────────────────────────────────────────────── */
 .hero {
-  padding: 140px 0 100px;
+  padding: calc(140px + var(--bar-h)) 0 100px;
   text-align: center;
   background: var(--carbon);
   position: relative; overflow: hidden;
@@ -744,6 +772,65 @@ h1, h2 {
 }
 .feat-img-wrap:hover img { transform: scale(1.02); }
 
+/* Segunda fila dentro de la misma seccion (ej.: guion del reel) */
+.feat + .feat { margin-top: 80px; }
+
+/* Capturas altas (modales, asistente): no ocupan todo el ancho de la columna */
+.feat-img.narrow { max-width: 440px; width: 100%; margin: 0 auto; }
+
+/* Dos capturas apiladas en la columna de imagen */
+.feat-img-stack { display: grid; gap: 28px; }
+
+/* Subtitulo dentro del texto de una funcion */
+.feat-text h4 {
+  font-size: 17px; font-weight: 700; letter-spacing: -.01em;
+  color: var(--text-primary); margin: 32px 0 8px;
+}
+.feat-text h4 + p { font-size: 15px; margin-bottom: 0; }
+.feat-text .feat-list + p { margin: 20px 0 0; font-size: 14px; }
+
+/* Aclaracion debajo de una captura */
+.feat-caption {
+  font-size: 12px; color: var(--text-muted);
+  text-align: center; margin-top: 12px;
+}
+
+/* Galeria de capturas secundarias, cada una con su titulo */
+.feat-gallery {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; margin-top: 72px; align-items: start;
+}
+.feat-shot h4 {
+  font-size: 17px; font-weight: 700; letter-spacing: -.01em;
+  color: var(--text-primary); margin: 24px 0 6px;
+}
+.feat-shot p { font-size: 14px; line-height: 1.65; color: var(--text-secondary); }
+
+/* Captura de celular: marco simple, sin la barra de ventana */
+.phone-frame {
+  width: 100%; max-width: 300px; margin: 0 auto;
+  padding: 10px;
+  background: var(--carbon);
+  border-radius: 36px;
+  box-shadow: 0 8px 32px rgba(13,10,7,.14), 0 32px 80px rgba(13,10,7,.20);
+  cursor: zoom-in;
+}
+.phone-frame img { display: block; width: 100%; border-radius: 27px; }
+
+/* Tarjetas compactas (funciones sin captura) */
+.extras-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 8px;
+}
+.extra-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 22px 24px;
+}
+.feat-text .extra-card h4 { margin: 0 0 8px; font-size: 16px; }
+.feat-text .extra-card p { font-size: 14px; line-height: 1.6; margin: 0; }
+
 
 /* ── WORKFLOW SECTION ───────────────────────────────────── */
 .workflow-section {
@@ -1027,6 +1114,13 @@ h1, h2 {
   margin-bottom: 4px;
 }
 .social-strip p { font-size: 13px; color: var(--text-secondary); }
+
+/* Lo que no descuenta generaciones, debajo de los planes */
+.pricing-extra {
+  font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+  text-align: center; max-width: 720px; margin: 0 auto 32px;
+}
+.pricing-extra strong { color: var(--text-primary); }
 
 .pricing-note {
   font-size: 12px; color: var(--text-muted);

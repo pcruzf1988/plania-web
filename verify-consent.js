@@ -105,6 +105,42 @@ const okSin = sinCta.length === 0;
 if (!okSin) fail = 1;
 console.log(`${okSin ? 'OK  ' : 'FALLA'} clic en CTA rechazado  eventos=${JSON.stringify(sinCta)}`);
 
+// The convocatoria bar on the landing page: one event per click with consent,
+// none when rejected, and it never counts as a click_empezar_gratis.
+function clicEnFranja(stored) {
+  const r = run(stored);
+  const link = { textContent: 'Convocatoria Pro: 2 meses de PlanIA Pro gratis Postulate →' };
+  const target = { closest: (sel) => (sel.includes('conv-bar') ? link : null) };
+  for (const fn of r.clickHandlers) fn({ target });
+  const ga = (r.ctx.window.dataLayer || []).map((args) => Array.from(args)).filter((args) => args[0] === 'event');
+  const fbq = r.ctx.window.fbq;
+  const meta = ((fbq && fbq.queue) || []).map((args) => Array.from(args)).filter((args) => args[0] === 'trackCustom');
+  return { ga, meta, hayFbq: typeof fbq === 'function' };
+}
+{
+  const con = clicEnFranja('accepted');
+  const okGa = con.ga.length === 1 && con.ga[0][1] === 'click_convocatoria';
+  const okMeta = con.meta.length === 1 && con.meta[0][1] === 'ClickConvocatoria';
+  if (!okGa || !okMeta) fail = 1;
+  console.log(`${okGa && okMeta ? 'OK  ' : 'FALLA'} clic en franja aceptado  ga=${JSON.stringify(con.ga)} meta=${JSON.stringify(con.meta)}`);
+
+  const sin = clicEnFranja('rejected');
+  const okSinFranja = sin.ga.length === 0 && sin.meta.length === 0 && !sin.hayFbq;
+  if (!okSinFranja) fail = 1;
+  console.log(`${okSinFranja ? 'OK  ' : 'FALLA'} clic en franja rechazado ga=${JSON.stringify(sin.ga)} meta=${JSON.stringify(sin.meta)}`);
+
+  const nada = clicEnFranja(null);
+  const okNada = nada.ga.length === 0 && nada.meta.length === 0 && !nada.hayFbq;
+  if (!okNada) fail = 1;
+  console.log(`${okNada ? 'OK  ' : 'FALLA'} clic en franja sin decision ga=${JSON.stringify(nada.ga)} meta=${JSON.stringify(nada.meta)}`);
+
+  // A click on an app CTA still reports only click_empezar_gratis.
+  const soloCta = clicEnCta('accepted').map((e) => e[1]);
+  const okSolo = soloCta.length === 1 && soloCta[0] === 'click_empezar_gratis';
+  if (!okSolo) fail = 1;
+  console.log(`${okSolo ? 'OK  ' : 'FALLA'} clic en CTA no dispara click_convocatoria  eventos=${JSON.stringify(soloCta)}`);
+}
+
 // The banner also renders on /convocatoria/, where a relative link is a 404.
 {
   const ok = SRC.includes('<a href="/cookies.html">') && !SRC.includes('<a href="cookies.html">');

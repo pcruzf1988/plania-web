@@ -38,7 +38,7 @@
 /* ── MOBILE NAV MENU ──────────────────────────────────────── */
 .nav-mobile {
   position: fixed;
-  top: 66px;
+  top: calc(66px + var(--bar-h));
   left: 0;
   right: 0;
   background: var(--surface);
@@ -108,7 +108,7 @@
   .nav-links { gap: 22px; }
 
   /* Hero */
-  .hero { padding: 120px 0 80px; }
+  .hero { padding: calc(120px + var(--bar-h)) 0 80px; }
   .hero h1 { font-size: clamp(32px, 5vw, 56px); }
 
   /* Stats */
@@ -150,7 +150,7 @@
   .nav.on-dark .nav-cta { padding: 8px 16px; }
 
   /* Hero */
-  .hero { padding: 100px 0 64px; }
+  .hero { padding: calc(100px + var(--bar-h)) 0 64px; }
   .hero h1 {
     font-size: clamp(32px, 8vw, 44px);
     letter-spacing: -.02em;
@@ -193,9 +193,14 @@
 
   /* Features */
   .feat { grid-template-columns: 1fr; gap: 32px; }
-  .feat.flip .feat-text { order: unset; }
-  .feat.flip .feat-img  { order: unset; }
   .feat-section { padding: 60px 0; }
+  .feat + .feat { margin-top: 56px; }
+  .feat-gallery { grid-template-columns: 1fr; gap: 40px; margin-top: 48px; }
+  .feat-img-stack { gap: 20px; }
+  .phone-frame { max-width: 260px; }
+  /* El texto siempre va antes que su captura cuando se apilan */
+  .feat .feat-text, .feat.flip .feat-text { order: 1; }
+  .feat .feat-img, .feat.flip .feat-img { order: 2; }
 
   /* On mobile, side reveals come from bottom */
   .reveal-left,
@@ -216,9 +221,12 @@
   }
   .workflow-steps::before { display: none; }
   .step {
-    display: flex; flex-direction: row; align-items: flex-start;
-    gap: 16px; text-align: left; padding: 20px 20px;
+    /* Numero a la izquierda; titulo y texto apilados a la derecha. */
+    display: grid; grid-template-columns: 40px 1fr; align-items: start;
+    column-gap: 16px; text-align: left; padding: 20px 20px;
   }
+  .step .step-num { grid-row: 1 / span 2; }
+  .step h4 { margin-bottom: 6px; align-self: end; }
   .step-num {
     width: 40px; height: 40px; flex-shrink: 0;
     margin: 0; font-size: 16px;
@@ -303,9 +311,16 @@
   .step:hover .step-num { transform: none; }
 }
 
+/* On phones the bar keeps the offer and the call to action; the deadline is
+   on the page it links to. */
+@media (max-width: 760px) {
+  .conv-bar-extra { display: none; }
+}
+
 /* ── Small phones ── */
 @media (max-width: 400px) {
-  .hero { padding: 88px 0 52px; }
+  .hero { padding: calc(88px + var(--bar-h)) 0 52px; }
+  .conv-bar { font-size: 12.5px; padding: 8px 14px; }
   .hero-sub { font-size: 15px; }
   .hero-badge { font-size: 10px; padding: 5px 12px; }
   .stats-band .container { grid-template-columns: 1fr; }
@@ -317,6 +332,7 @@
   .fw-card-top { flex-direction: column; align-items: flex-start; gap: 10px; }
   .dl-modal { padding: 28px 20px; }
   .pricing-header h2 { font-size: 26px; }
+  .extras-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Reduced motion ── */
