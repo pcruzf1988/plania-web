@@ -105,4 +105,11 @@ const okSin = sinCta.length === 0;
 if (!okSin) fail = 1;
 console.log(`${okSin ? 'OK  ' : 'FALLA'} clic en CTA rechazado  eventos=${JSON.stringify(sinCta)}`);
 
+// The banner also renders on /convocatoria/, where a relative link is a 404.
+{
+  const ok = SRC.includes('<a href="/cookies.html">') && !SRC.includes('<a href="cookies.html">');
+  if (!ok) fail = 1;
+  console.log(`${ok ? 'OK:   ' : 'FALLA:'} el banner linkea a /cookies.html (absoluto)`);
+}
+
 process.exit(fail);

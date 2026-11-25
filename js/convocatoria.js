@@ -65,6 +65,18 @@
   function revisar(campo) { return 'Revisá el campo "' + ETIQUETAS[campo] + '".'; }
   function corto(campo, min) { return 'Revisá el campo "' + ETIQUETAS[campo] + '": necesita al menos ' + min + ' caracteres.'; }
 
+  // gtag y fbq solo existen si el visitante acepto las cookies (ver
+  // cookie-consent.js): sin consentimiento no sale ningun evento. Un fallo de
+  // medicion nunca tiene que frenar la postulacion.
+  function medir(eventoGa, eventoMeta, estandar) {
+    if (typeof window.gtag === 'function') {
+      try { window.gtag('event', eventoGa); } catch (err) { /* no-op */ }
+    }
+    if (typeof window.fbq === 'function') {
+      try { window.fbq(estandar ? 'track' : 'trackCustom', eventoMeta); } catch (err) { /* no-op */ }
+    }
+  }
+
   function mostrar(kind, text) {
     msgBox.className = 'conv-msg show ' + kind;
     msgBox.textContent = text;
@@ -211,6 +223,7 @@
         var data = r.data || {};
         renovarToken();
         if (r.status === 200) {
+          medir('generate_lead', 'Lead', true);
           form.style.display = 'none';
           okBox.textContent = textoConfirmacion();
           okBox.classList.add('show');
@@ -236,6 +249,15 @@
         mostrar('err', TEXTOS.errorRed);
         habilitar();
       });
+  });
+
+  // Primer campo tocado: separa a quien empieza el formulario de quien solo
+  // mira la pagina. Sale una sola vez por carga.
+  var inicioMedido = false;
+  form.addEventListener('focusin', function () {
+    if (inicioMedido) return;
+    inicioMedido = true;
+    medir('convocatoria_inicio', 'ConvocatoriaInicio', false);
   });
 
   cargarEstado();

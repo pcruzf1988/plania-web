@@ -149,6 +149,7 @@ informa(/id="conv-msg"[^>]*role="status"[^>]*aria-live="polite"|role="status"[^>
 
 informa(HTML.includes('../privacidad.html#convocatoria'), 'el consentimiento linkea a ../privacidad.html#convocatoria');
 informa(/src="\.\.\/js\/convocatoria\.js\?v=\d+"/.test(HTML), 'la pagina carga ../js/convocatoria.js con version (?v=), para que el CDN no sirva una copia vieja');
+informa(/src="\.\.\/js\/cookie-consent\.js\?v=\d+"/.test(HTML), 'la pagina carga ../js/cookie-consent.js con ?v=');
 
 const exclude = (WORKFLOW.match(/exclude:\s*\|\n((?:\s+.+\n?)+)/) || [, ''])[1]
   .split('\n').map((l) => l.trim()).filter(Boolean);
@@ -161,5 +162,19 @@ informa(JS.includes('/api/convocatoria/postular'), 'el script envia a /api/convo
 // funcion de carga tiene que llamar a mostrarFormulario() tambien en su catch.
 const llamadas = (JS.match(/mostrarFormulario\(\)/g) || []).length;
 informa(llamadas >= 2, 'mostrarFormulario() se llama al menos dos veces (rama abierta y rama de error)', `se llama ${llamadas} veces`);
+
+// Conversion (Pedro, 2026-11-24): ads land here, so the page has to say what
+// PlanIA is, keep the visitor on the form and report the application.
+informa(HTML.includes('<h2>Qué es PlanIA</h2>'), 'la pagina explica que es PlanIA antes del formulario');
+informa(HTML.indexOf('<h2>Qué es PlanIA</h2>') < HTML.indexOf('id="conv-form"'), 'el bloque "Qué es PlanIA" va antes del formulario');
+informa(HTML.includes('Ideal si ya manejás <strong>3 clientes o más</strong>'), 'el requisito de clientes esta suavizado');
+informa(!HTML.includes('Al menos <strong>3 clientes'), 'el requisito ya no dice "Al menos 3 clientes"');
+const navCta = (HTML.match(/<a\b[^>]*class="[^"]*nav-cta[^"]*"[^>]*>/) || [''])[0];
+informa(navCta.includes('href="#conv-form"'), 'el boton del menu lleva al formulario', navCta);
+informa(/<div class="legal-header">[\s\S]*?href="#conv-form"[\s\S]*?<\/div>\s*<\/div>/.test(HTML), 'el encabezado tiene un boton que baja al formulario');
+informa(JS.includes("'generate_lead'") && JS.includes("'Lead'"), 'el envio correcto avisa a GA (generate_lead) y a Meta (Lead)');
+informa(JS.includes("'convocatoria_inicio'") && JS.includes("'ConvocatoriaInicio'"), 'el primer campo tocado avisa el inicio del formulario');
+informa(/typeof window\.gtag === 'function'/.test(JS) && /typeof window\.fbq === 'function'/.test(JS),
+  'los eventos solo salen si gtag y fbq existen (hay consentimiento)');
 
 process.exit(fail);

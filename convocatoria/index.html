@@ -61,6 +61,17 @@
     .legal-body a { color: var(--tierra); }
     .legal-body a:hover { text-decoration: underline; }
 
+    html { scroll-behavior: smooth; }
+    /* The nav is fixed (66px): anchors must not land underneath it. */
+    #conv-form { scroll-margin-top: 82px; }
+    .conv-hero-cta { margin-top: 22px; }
+    .conv-shot {
+      display: block; width: 100%; height: auto;
+      margin: 20px 0 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
     .highlight-box {
       background: var(--tierra-light);
       border-left: 3px solid var(--tierra);
@@ -208,7 +219,7 @@
   </style>
   <!-- Analytics con consentimiento previo: el script de GA solo se inyecta
        si el usuario acepta. Ver js/cookie-consent.js -->
-  <script src="../js/cookie-consent.js"></script>
+  <script src="../js/cookie-consent.js?v=2"></script>
 </head>
 <body>
 
@@ -222,7 +233,7 @@
       <li><a href="../index.html#funciones">Funciones</a></li>
       <li><a href="../index.html#precios">Precios</a></li>
     </ul>
-    <a href="../index.html#precios" class="btn btn-tierra nav-cta">Empezar gratis →</a>
+    <a href="#conv-form" class="btn btn-tierra nav-cta">Postularme →</a>
   </div>
 </header>
 
@@ -232,6 +243,7 @@
     <div class="label">Para community y social media managers</div>
     <h1>Convocatoria Pro: 2 meses de PlanIA Pro gratis</h1>
     <p>Postulate en dos minutos desde el celular. Completá el formulario y te contactamos.</p>
+    <a href="#conv-form" class="btn btn-tierra conv-hero-cta">Postularme ahora</a>
   </div>
 </div>
 
@@ -239,6 +251,17 @@
 <div class="legal-body">
 
   <p>Estamos buscando community y social media managers que quieran probar <strong>PlanIA Pro</strong> con sus clientes reales durante <strong>diciembre y enero</strong>, sin pagar nada. A cambio solo te pedimos tu feedback: queremos saber qué tal te resulta, qué cosas te sirven más y cuáles mejorarías o te gustaría que incorporáramos.</p>
+
+  <h2>Qué es PlanIA</h2>
+  <p>PlanIA es una app web para quienes gestionan redes de clientes. Cargás el perfil de cada negocio una vez y cada mes arma el <strong>plan de contenidos completo, con el copy listo</strong>. Vos lo revisás, lo ajustás y se lo mandás a tu cliente: nada se publica sin tu ok.</p>
+  <ul>
+    <li><strong>Plan mensual con IA:</strong> publicaciones, carruseles, reels e historias, cada una con su copy, el insumo visual que hace falta y las indicaciones para el cliente.</li>
+    <li><strong>Aprobación con un enlace:</strong> tu cliente ve el plan desde el celular, sin crear una cuenta, y aprueba o pide cambios pieza por pieza.</li>
+    <li><strong>Métricas e informes:</strong> los datos de Instagram y Facebook de cada cliente en un panel, y el informe mensual redactado en minutos.</li>
+    <li><strong>Todos tus clientes en un calendario:</strong> qué se publica esta semana y qué material te falta pedir.</li>
+  </ul>
+  <img class="conv-shot" src="../assets/images/captura-plan.png?v=5" alt="Publicación del plan en PlanIA: copy listo para publicar, insumo visual necesario y accesos directos a Canva y Meta" width="1400" height="713" loading="lazy">
+  <p><a href="../index.html#funciones" target="_blank" rel="noopener">Ver todas las funciones</a> (se abre en otra pestaña).</p>
 
   <h2>Qué te llevás</h2>
   <ul>
@@ -249,7 +272,7 @@
 
   <h2>Qué te pedimos</h2>
   <ul>
-    <li>Al menos <strong>3 clientes con Instagram vinculado a una página de Facebook</strong> (Meta Business Suite). Hoy la vinculación para obtener las métricas se gestiona desde Meta. <span class="hint">Próximamente: ingreso independiente solo con Instagram Login, ya desarrollado y pendiente de aprobación por Meta.</span></li>
+    <li>Ideal si ya manejás <strong>3 clientes o más</strong> con Instagram vinculado a una página de Facebook (Meta Business Suite). Hoy la vinculación para obtener las métricas se gestiona desde Meta. <span class="hint">Próximamente: ingreso independiente solo con Instagram Login, ya desarrollado y pendiente de aprobación por Meta.</span></li>
     <li>Una cuenta en <strong>app.planiat.com</strong>. Si no la tenés, la podés crear gratis cuando quieras; si quedás seleccionado te avisamos y hacemos el upgrade a Pro.</li>
     <li>Una <strong>encuesta breve por mes</strong> para contarnos cómo te fue.</li>
   </ul>
@@ -414,7 +437,7 @@
 <script src="../js/turnstile.js"></script>
 <!-- El ?v= cambia cada vez que cambia el archivo: el CDN y el navegador guardan
      los .js una semana y sin esto siguen sirviendo la version anterior. -->
-<script src="../js/convocatoria.js?v=2"></script>
+<script src="../js/convocatoria.js?v=3"></script>
 
 </body>
 </html>

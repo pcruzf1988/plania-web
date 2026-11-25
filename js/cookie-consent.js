@@ -160,7 +160,7 @@
     banner.innerHTML =
       '<p>Usamos cookies técnicas para que el sitio funcione y, si nos dejás, ' +
       'cookies analíticas para entender qué páginas se visitan. ' +
-      '<a href="cookies.html">Más detalle</a>.</p>' +
+      '<a href="/cookies.html">Más detalle</a>.</p>' +
       '<div class="cookie-banner-actions">' +
         '<button type="button" data-consent="rejected">Solo las esenciales</button>' +
         '<button type="button" data-consent="accepted">Aceptar todas</button>' +
